@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>SlackfariExtension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>392759FC1F43692800BF003C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>39275A121F43693300BF003C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

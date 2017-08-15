@@ -7,12 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		368891ECABDA1FDF739600E8 /* Pods_SlackfariExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D106005A4FB3D5C28E77D05E /* Pods_SlackfariExtension.framework */; };
 		392759E51F43692800BF003C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392759E41F43692800BF003C /* AppDelegate.swift */; };
 		392759E71F43692800BF003C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392759E61F43692800BF003C /* ViewController.swift */; };
 		392759E91F43692800BF003C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392759E81F43692800BF003C /* Assets.xcassets */; };
 		392759EC1F43692800BF003C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 392759EA1F43692800BF003C /* Main.storyboard */; };
 		392759F71F43692800BF003C /* SlackfariTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392759F61F43692800BF003C /* SlackfariTests.swift */; };
 		39275A021F43692800BF003C /* SlackfariUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39275A011F43692800BF003C /* SlackfariUITests.swift */; };
+		39275A161F43693300BF003C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39275A151F43693300BF003C /* Cocoa.framework */; };
+		39275A1B1F43693300BF003C /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39275A1A1F43693300BF003C /* SafariExtensionHandler.swift */; };
+		39275A1D1F43693300BF003C /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39275A1C1F43693300BF003C /* SafariExtensionViewController.swift */; };
+		39275A201F43693300BF003C /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39275A1E1F43693300BF003C /* SafariExtensionViewController.xib */; };
+		39275A231F43693300BF003C /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 39275A221F43693300BF003C /* script.js */; };
+		39275A251F43693300BF003C /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 39275A241F43693300BF003C /* ToolbarItemIcon.pdf */; };
+		39275A281F43693300BF003C /* SlackfariExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 39275A131F43693300BF003C /* SlackfariExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		60E5750947E64543DC246DD4 /* Pods_Slackfari.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F3A3AB929B9FD07A94831E /* Pods_Slackfari.framework */; };
+		A54C0664296B4F18643C4358 /* Pods_SlackfariTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5AD7DB224EB1185612F98 /* Pods_SlackfariTests.framework */; };
+		C326FBCDDB61338363A21A07 /* Pods_SlackfariUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A04BA0D3660573F347E0F81 /* Pods_SlackfariUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,9 +41,31 @@
 			remoteGlobalIDString = 392759E01F43692800BF003C;
 			remoteInfo = Slackfari;
 		};
+		39275A261F43693300BF003C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 392759D91F43692800BF003C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 39275A121F43693300BF003C;
+			remoteInfo = SlackfariExtension;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		39275A2C1F43693300BF003C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				39275A281F43693300BF003C /* SlackfariExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0A04BA0D3660573F347E0F81 /* Pods_SlackfariUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SlackfariUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		392759E11F43692800BF003C /* Slackfari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slackfari.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		392759E41F43692800BF003C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		392759E61F43692800BF003C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +78,26 @@
 		392759FD1F43692800BF003C /* SlackfariUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlackfariUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39275A011F43692800BF003C /* SlackfariUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackfariUITests.swift; sourceTree = "<group>"; };
 		39275A031F43692800BF003C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39275A131F43693300BF003C /* SlackfariExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SlackfariExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		39275A151F43693300BF003C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		39275A191F43693300BF003C /* SlackfariExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SlackfariExtension.entitlements; sourceTree = "<group>"; };
+		39275A1A1F43693300BF003C /* SafariExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionHandler.swift; sourceTree = "<group>"; };
+		39275A1C1F43693300BF003C /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
+		39275A1F1F43693300BF003C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
+		39275A211F43693300BF003C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39275A221F43693300BF003C /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
+		39275A241F43693300BF003C /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
+		580D57991675FB42EA12B22F /* Pods-Slackfari.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slackfari.release.xcconfig"; path = "Pods/Target Support Files/Pods-Slackfari/Pods-Slackfari.release.xcconfig"; sourceTree = "<group>"; };
+		5932746A3300289464BE5D52 /* Pods-SlackfariUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlackfariUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SlackfariUITests/Pods-SlackfariUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		66F3A3AB929B9FD07A94831E /* Pods_Slackfari.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slackfari.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		823AA130A050AB03C7DE2F58 /* Pods-SlackfariTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlackfariTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SlackfariTests/Pods-SlackfariTests.release.xcconfig"; sourceTree = "<group>"; };
+		9CDB78A056BED05FA181815A /* Pods-SlackfariUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlackfariUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SlackfariUITests/Pods-SlackfariUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AD79FD7B04B7D9401DBBF8BD /* Pods-SlackfariExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlackfariExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-SlackfariExtension/Pods-SlackfariExtension.release.xcconfig"; sourceTree = "<group>"; };
+		AE586EB152FF9F458F89B7D6 /* Pods-Slackfari.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slackfari.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Slackfari/Pods-Slackfari.debug.xcconfig"; sourceTree = "<group>"; };
+		C0DC11AC3C4FC3369D2C50F1 /* Pods-SlackfariExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlackfariExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SlackfariExtension/Pods-SlackfariExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		D106005A4FB3D5C28E77D05E /* Pods_SlackfariExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SlackfariExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3E5AD7DB224EB1185612F98 /* Pods_SlackfariTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SlackfariTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F44322AE79C2ADA9E183069A /* Pods-SlackfariTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlackfariTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SlackfariTests/Pods-SlackfariTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60E5750947E64543DC246DD4 /* Pods_Slackfari.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A54C0664296B4F18643C4358 /* Pods_SlackfariTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,19 +121,47 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C326FBCDDB61338363A21A07 /* Pods_SlackfariUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		39275A101F43693300BF003C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39275A161F43693300BF003C /* Cocoa.framework in Frameworks */,
+				368891ECABDA1FDF739600E8 /* Pods_SlackfariExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A41FEF2DAC65FF9B87C6595 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AE586EB152FF9F458F89B7D6 /* Pods-Slackfari.debug.xcconfig */,
+				580D57991675FB42EA12B22F /* Pods-Slackfari.release.xcconfig */,
+				F44322AE79C2ADA9E183069A /* Pods-SlackfariTests.debug.xcconfig */,
+				823AA130A050AB03C7DE2F58 /* Pods-SlackfariTests.release.xcconfig */,
+				5932746A3300289464BE5D52 /* Pods-SlackfariUITests.debug.xcconfig */,
+				9CDB78A056BED05FA181815A /* Pods-SlackfariUITests.release.xcconfig */,
+				C0DC11AC3C4FC3369D2C50F1 /* Pods-SlackfariExtension.debug.xcconfig */,
+				AD79FD7B04B7D9401DBBF8BD /* Pods-SlackfariExtension.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		392759D81F43692800BF003C = {
 			isa = PBXGroup;
 			children = (
 				392759E31F43692800BF003C /* Slackfari */,
 				392759F51F43692800BF003C /* SlackfariTests */,
 				39275A001F43692800BF003C /* SlackfariUITests */,
+				39275A171F43693300BF003C /* SlackfariExtension */,
+				39275A141F43693300BF003C /* Frameworks */,
 				392759E21F43692800BF003C /* Products */,
+				0A41FEF2DAC65FF9B87C6595 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +171,7 @@
 				392759E11F43692800BF003C /* Slackfari.app */,
 				392759F21F43692800BF003C /* SlackfariTests.xctest */,
 				392759FD1F43692800BF003C /* SlackfariUITests.xctest */,
+				39275A131F43693300BF003C /* SlackfariExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,6 +206,40 @@
 			path = SlackfariUITests;
 			sourceTree = "<group>";
 		};
+		39275A141F43693300BF003C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39275A151F43693300BF003C /* Cocoa.framework */,
+				66F3A3AB929B9FD07A94831E /* Pods_Slackfari.framework */,
+				D3E5AD7DB224EB1185612F98 /* Pods_SlackfariTests.framework */,
+				0A04BA0D3660573F347E0F81 /* Pods_SlackfariUITests.framework */,
+				D106005A4FB3D5C28E77D05E /* Pods_SlackfariExtension.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		39275A171F43693300BF003C /* SlackfariExtension */ = {
+			isa = PBXGroup;
+			children = (
+				39275A1A1F43693300BF003C /* SafariExtensionHandler.swift */,
+				39275A1C1F43693300BF003C /* SafariExtensionViewController.swift */,
+				39275A1E1F43693300BF003C /* SafariExtensionViewController.xib */,
+				39275A211F43693300BF003C /* Info.plist */,
+				39275A221F43693300BF003C /* script.js */,
+				39275A241F43693300BF003C /* ToolbarItemIcon.pdf */,
+				39275A181F43693300BF003C /* Supporting Files */,
+			);
+			path = SlackfariExtension;
+			sourceTree = "<group>";
+		};
+		39275A181F43693300BF003C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				39275A191F43693300BF003C /* SlackfariExtension.entitlements */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,13 +247,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39275A061F43692800BF003C /* Build configuration list for PBXNativeTarget "Slackfari" */;
 			buildPhases = (
+				45347598EA6EC98230D45FE8 /* [CP] Check Pods Manifest.lock */,
 				392759DD1F43692800BF003C /* Sources */,
 				392759DE1F43692800BF003C /* Frameworks */,
 				392759DF1F43692800BF003C /* Resources */,
+				39275A2C1F43693300BF003C /* Embed App Extensions */,
+				46AD22495DDB3C9394D43C12 /* [CP] Embed Pods Frameworks */,
+				28432779C8F98E0439AFB2D4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				39275A271F43693300BF003C /* PBXTargetDependency */,
 			);
 			name = Slackfari;
 			productName = Slackfari;
@@ -146,9 +269,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39275A091F43692800BF003C /* Build configuration list for PBXNativeTarget "SlackfariTests" */;
 			buildPhases = (
+				E66167CD6DD33622B3F72E89 /* [CP] Check Pods Manifest.lock */,
 				392759EE1F43692800BF003C /* Sources */,
 				392759EF1F43692800BF003C /* Frameworks */,
 				392759F01F43692800BF003C /* Resources */,
+				3E6D10AB034D48F3E6853FEE /* [CP] Embed Pods Frameworks */,
+				79593BDB26160FAA3C90BE0E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,9 +290,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39275A0C1F43692800BF003C /* Build configuration list for PBXNativeTarget "SlackfariUITests" */;
 			buildPhases = (
+				52BAD343AC65E25104BE6465 /* [CP] Check Pods Manifest.lock */,
 				392759F91F43692800BF003C /* Sources */,
 				392759FA1F43692800BF003C /* Frameworks */,
 				392759FB1F43692800BF003C /* Resources */,
+				A7195B1041284F34FD15F441 /* [CP] Embed Pods Frameworks */,
+				C8713ECDFBD4A586416042AA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -177,6 +306,25 @@
 			productName = SlackfariUITests;
 			productReference = 392759FD1F43692800BF003C /* SlackfariUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		39275A121F43693300BF003C /* SlackfariExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 39275A291F43693300BF003C /* Build configuration list for PBXNativeTarget "SlackfariExtension" */;
+			buildPhases = (
+				A9D562990192322C7E59D290 /* [CP] Check Pods Manifest.lock */,
+				39275A0F1F43693300BF003C /* Sources */,
+				39275A101F43693300BF003C /* Frameworks */,
+				39275A111F43693300BF003C /* Resources */,
+				2FE459034F3F106AC045A777 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SlackfariExtension;
+			productName = SlackfariExtension;
+			productReference = 39275A131F43693300BF003C /* SlackfariExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -205,6 +353,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 392759E01F43692800BF003C;
 					};
+					39275A121F43693300BF003C = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 9MWQQ54CZQ;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 392759DC1F43692800BF003C /* Build configuration list for PBXProject "Slackfari" */;
@@ -223,6 +376,7 @@
 				392759E01F43692800BF003C /* Slackfari */,
 				392759F11F43692800BF003C /* SlackfariTests */,
 				392759FC1F43692800BF003C /* SlackfariUITests */,
+				39275A121F43693300BF003C /* SlackfariExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -251,7 +405,206 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		39275A111F43693300BF003C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39275A251F43693300BF003C /* ToolbarItemIcon.pdf in Resources */,
+				39275A201F43693300BF003C /* SafariExtensionViewController.xib in Resources */,
+				39275A231F43693300BF003C /* script.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		28432779C8F98E0439AFB2D4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Slackfari/Pods-Slackfari-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2FE459034F3F106AC045A777 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SlackfariExtension/Pods-SlackfariExtension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E6D10AB034D48F3E6853FEE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SlackfariTests/Pods-SlackfariTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45347598EA6EC98230D45FE8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Slackfari-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		46AD22495DDB3C9394D43C12 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Slackfari/Pods-Slackfari-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SlackWebAPIKit/SlackWebAPIKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlackWebAPIKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Slackfari/Pods-Slackfari-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52BAD343AC65E25104BE6465 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SlackfariUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79593BDB26160FAA3C90BE0E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SlackfariTests/Pods-SlackfariTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7195B1041284F34FD15F441 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SlackfariUITests/Pods-SlackfariUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9D562990192322C7E59D290 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SlackfariExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8713ECDFBD4A586416042AA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SlackfariUITests/Pods-SlackfariUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E66167CD6DD33622B3F72E89 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SlackfariTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		392759DD1F43692800BF003C /* Sources */ = {
@@ -279,6 +632,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		39275A0F1F43693300BF003C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39275A1D1F43693300BF003C /* SafariExtensionViewController.swift in Sources */,
+				39275A1B1F43693300BF003C /* SafariExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -292,6 +654,11 @@
 			target = 392759E01F43692800BF003C /* Slackfari */;
 			targetProxy = 392759FE1F43692800BF003C /* PBXContainerItemProxy */;
 		};
+		39275A271F43693300BF003C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 39275A121F43693300BF003C /* SlackfariExtension */;
+			targetProxy = 39275A261F43693300BF003C /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -301,6 +668,14 @@
 				392759EB1F43692800BF003C /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		39275A1E1F43693300BF003C /* SafariExtensionViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				39275A1F1F43693300BF003C /* Base */,
+			);
+			name = SafariExtensionViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -400,7 +775,9 @@
 		};
 		39275A071F43692800BF003C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE586EB152FF9F458F89B7D6 /* Pods-Slackfari.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9MWQQ54CZQ;
@@ -414,7 +791,9 @@
 		};
 		39275A081F43692800BF003C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 580D57991675FB42EA12B22F /* Pods-Slackfari.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9MWQQ54CZQ;
@@ -428,6 +807,7 @@
 		};
 		39275A0A1F43692800BF003C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F44322AE79C2ADA9E183069A /* Pods-SlackfariTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -444,6 +824,7 @@
 		};
 		39275A0B1F43692800BF003C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 823AA130A050AB03C7DE2F58 /* Pods-SlackfariTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -460,6 +841,7 @@
 		};
 		39275A0D1F43692800BF003C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5932746A3300289464BE5D52 /* Pods-SlackfariUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -475,6 +857,7 @@
 		};
 		39275A0E1F43692800BF003C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CDB78A056BED05FA181815A /* Pods-SlackfariUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -485,6 +868,38 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Slackfari;
+			};
+			name = Release;
+		};
+		39275A2A1F43693300BF003C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0DC11AC3C4FC3369D2C50F1 /* Pods-SlackfariExtension.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_ENTITLEMENTS = SlackfariExtension/SlackfariExtension.entitlements;
+				DEVELOPMENT_TEAM = 9MWQQ54CZQ;
+				INFOPLIST_FILE = SlackfariExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.albertomoral.Slackfari.SlackfariExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		39275A2B1F43693300BF003C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD79FD7B04B7D9401DBBF8BD /* Pods-SlackfariExtension.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_ENTITLEMENTS = SlackfariExtension/SlackfariExtension.entitlements;
+				DEVELOPMENT_TEAM = 9MWQQ54CZQ;
+				INFOPLIST_FILE = SlackfariExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.albertomoral.Slackfari.SlackfariExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -507,6 +922,7 @@
 				39275A081F43692800BF003C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		39275A091F43692800BF003C /* Build configuration list for PBXNativeTarget "SlackfariTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +931,7 @@
 				39275A0B1F43692800BF003C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		39275A0C1F43692800BF003C /* Build configuration list for PBXNativeTarget "SlackfariUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +940,16 @@
 				39275A0E1F43692800BF003C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		39275A291F43693300BF003C /* Build configuration list for PBXNativeTarget "SlackfariExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				39275A2A1F43693300BF003C /* Debug */,
+				39275A2B1F43693300BF003C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

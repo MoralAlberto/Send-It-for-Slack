@@ -1,0 +1,6 @@
+framework module Pods_SlackfariUITests {
+  umbrella header "Pods-SlackfariUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
