@@ -1,3 +1,7 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-    safari.extension.dispatchMessage("Hello World!");
-});
+safari.self.addEventListener("message", handleMessage);
+
+function handleMessage(message) {
+    var selectedText = window.getSelection().toString();
+    console.log("selected " + selectedText)
+    safari.extension.dispatchMessage("getURL", { "selectedText": selectedText });
+}
