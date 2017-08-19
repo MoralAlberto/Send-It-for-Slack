@@ -13,6 +13,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     static let shared = SafariExtensionViewController()
 
     @IBOutlet weak var tableView: NSTableView!
+//    @IBOutlet weak var tableView: NSTableView!
     
 //    let presenter = Presenter()
     
