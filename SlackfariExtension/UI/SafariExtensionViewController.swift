@@ -8,7 +8,7 @@
 
 import SafariServices
 
-class SafariExtensionViewController: SFSafariExtensionViewController {
+class SafariExtensionViewController: SFSafariExtensionViewController, NSTableViewDataSource, NSTableViewDelegate {
     
     static let shared = SafariExtensionViewController()
 
@@ -19,15 +19,17 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = nil
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.rowSizeStyle = .large
         tableView.backgroundColor = NSColor.clear
     }
-}
-
-extension SafariExtensionViewController: NSTableViewDataSource {
-
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        tableView.reloadData()
+    }
+    
     func numberOfRows(in tableView: NSTableView) -> Int {
         return 10
     }
@@ -43,6 +45,6 @@ extension SafariExtensionViewController: NSTableViewDataSource {
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return 80
+        return 26
     }
 }
