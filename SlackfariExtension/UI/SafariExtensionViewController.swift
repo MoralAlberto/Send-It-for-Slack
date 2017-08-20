@@ -10,10 +10,6 @@ import SafariServices
 import SlackWebAPIKit
 import RxSwift
 
-protocol Channelable {
-    var name: String { get }
-}
-
 class SafariExtensionViewController: SFSafariExtensionViewController {
     
     static let shared = SafariExtensionViewController()
