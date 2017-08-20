@@ -20,6 +20,12 @@
 		39275A231F43693300BF003C /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 39275A221F43693300BF003C /* script.js */; };
 		39275A251F43693300BF003C /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 39275A241F43693300BF003C /* ToolbarItemIcon.pdf */; };
 		39275A281F43693300BF003C /* SlackfariExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 39275A131F43693300BF003C /* SlackfariExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3940477F1F4A074A00133098 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3940477E1F4A074A00133098 /* UserViewModel.swift */; };
+		394047811F4A075100133098 /* ChannelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394047801F4A075100133098 /* ChannelViewModel.swift */; };
+		394047831F4A075A00133098 /* GroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394047821F4A075A00133098 /* GroupViewModel.swift */; };
+		394047861F4A089900133098 /* UserViewModel+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394047851F4A089900133098 /* UserViewModel+User.swift */; };
+		394047881F4A08A800133098 /* ChannelViewModel+Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394047871F4A08A800133098 /* ChannelViewModel+Channel.swift */; };
+		3940478A1F4A08B300133098 /* GroupViewModel+Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394047891F4A08B300133098 /* GroupViewModel+Group.swift */; };
 		394F825E1F44E5C500C377C3 /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394F825C1F44E5C500C377C3 /* SafariExtensionViewController.swift */; };
 		394F82601F44E5ED00C377C3 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394F825F1F44E5ED00C377C3 /* Presenter.swift */; };
 		60E5750947E64543DC246DD4 /* Pods_Slackfari.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F3A3AB929B9FD07A94831E /* Pods_Slackfari.framework */; };
@@ -88,6 +94,12 @@
 		39275A221F43693300BF003C /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
 		39275A241F43693300BF003C /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 		3940477D1F49F8CF00133098 /* Slackfari.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Slackfari.entitlements; sourceTree = "<group>"; };
+		3940477E1F4A074A00133098 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		394047801F4A075100133098 /* ChannelViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewModel.swift; sourceTree = "<group>"; };
+		394047821F4A075A00133098 /* GroupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewModel.swift; sourceTree = "<group>"; };
+		394047851F4A089900133098 /* UserViewModel+User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserViewModel+User.swift"; sourceTree = "<group>"; };
+		394047871F4A08A800133098 /* ChannelViewModel+Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChannelViewModel+Channel.swift"; sourceTree = "<group>"; };
+		394047891F4A08B300133098 /* GroupViewModel+Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GroupViewModel+Group.swift"; sourceTree = "<group>"; };
 		394F825C1F44E5C500C377C3 /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
 		394F825F1F44E5ED00C377C3 /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		580D57991675FB42EA12B22F /* Pods-Slackfari.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slackfari.release.xcconfig"; path = "Pods/Target Support Files/Pods-Slackfari/Pods-Slackfari.release.xcconfig"; sourceTree = "<group>"; };
@@ -244,6 +256,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		394047841F4A088E00133098 /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				394047851F4A089900133098 /* UserViewModel+User.swift */,
+				394047871F4A08A800133098 /* ChannelViewModel+Channel.swift */,
+				394047891F4A08B300133098 /* GroupViewModel+Group.swift */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
 		394F825B1F44E5C500C377C3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +279,10 @@
 		394F825D1F44E5C500C377C3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				3940477E1F4A074A00133098 /* UserViewModel.swift */,
+				394047801F4A075100133098 /* ChannelViewModel.swift */,
+				394047821F4A075A00133098 /* GroupViewModel.swift */,
+				394047841F4A088E00133098 /* Mappers */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -663,8 +689,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				394F82601F44E5ED00C377C3 /* Presenter.swift in Sources */,
+				394047861F4A089900133098 /* UserViewModel+User.swift in Sources */,
+				394047881F4A08A800133098 /* ChannelViewModel+Channel.swift in Sources */,
+				3940477F1F4A074A00133098 /* UserViewModel.swift in Sources */,
+				394047831F4A075A00133098 /* GroupViewModel.swift in Sources */,
 				39275A1B1F43693300BF003C /* SafariExtensionHandler.swift in Sources */,
 				394F825E1F44E5C500C377C3 /* SafariExtensionViewController.swift in Sources */,
+				394047811F4A075100133098 /* ChannelViewModel.swift in Sources */,
+				3940478A1F4A08B300133098 /* GroupViewModel+Group.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
