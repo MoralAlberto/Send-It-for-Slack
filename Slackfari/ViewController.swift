@@ -6,6 +6,8 @@
 //  Copyright © 2017 Alberto Moral. All rights reserved.
 //
 
+import Cocoa
+
 class ViewController: NSViewController {
     
     override func viewDidLoad() {

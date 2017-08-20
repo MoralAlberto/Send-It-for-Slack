@@ -21,6 +21,8 @@ class SafariExtensionViewController: SFSafariExtensionViewController, NSTableVie
     
     var items = [Channel]()
     
+    var url: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +44,15 @@ class SafariExtensionViewController: SFSafariExtensionViewController, NSTableVie
         }, onError: { error in
             print("Error \(error)")
         }).addDisposableTo(disposeBag)
+    }
+    
+    @IBAction func sendMessage(_ sender: Any) {
+        let selected = items[tableView.selectedRow]
+        presenter?.send(message: url ?? "", channel: selected.name ?? "").subscribe(onNext: { isSent in
+            print("message sent")
+        }, onError: { (error) in
+            print("Error \(error)")
+        }).disposed(by: disposeBag)
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {

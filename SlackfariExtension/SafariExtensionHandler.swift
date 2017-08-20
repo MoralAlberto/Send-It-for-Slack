@@ -16,7 +16,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
                 return
             }
             print("URL \(text.absoluteString)")
-            //SafariExtensionViewController.shared.display(url: text.absoluteString)
+            SafariExtensionViewController.shared.url = text.absoluteString
         }
     }
     
