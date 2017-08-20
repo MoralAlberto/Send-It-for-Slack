@@ -87,6 +87,7 @@
 		39275A211F43693300BF003C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39275A221F43693300BF003C /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
 		39275A241F43693300BF003C /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
+		3940477D1F49F8CF00133098 /* Slackfari.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Slackfari.entitlements; sourceTree = "<group>"; };
 		394F825C1F44E5C500C377C3 /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
 		394F825F1F44E5ED00C377C3 /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		580D57991675FB42EA12B22F /* Pods-Slackfari.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slackfari.release.xcconfig"; path = "Pods/Target Support Files/Pods-Slackfari/Pods-Slackfari.release.xcconfig"; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 		392759E31F43692800BF003C /* Slackfari */ = {
 			isa = PBXGroup;
 			children = (
+				3940477D1F49F8CF00133098 /* Slackfari.entitlements */,
 				392759E41F43692800BF003C /* AppDelegate.swift */,
 				392759E61F43692800BF003C /* ViewController.swift */,
 				392759E81F43692800BF003C /* Assets.xcassets */,
@@ -359,6 +361,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 9MWQQ54CZQ;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					392759F11F43692800BF003C = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -799,6 +806,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Slackfari/Slackfari.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9MWQQ54CZQ;
@@ -817,6 +825,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Slackfari/Slackfari.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9MWQQ54CZQ;
