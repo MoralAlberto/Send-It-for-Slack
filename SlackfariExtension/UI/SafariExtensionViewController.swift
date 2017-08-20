@@ -7,6 +7,8 @@
 //
 
 import SafariServices
+import SlackWebAPIKit
+import RxSwift
 
 class SafariExtensionViewController: SFSafariExtensionViewController, NSTableViewDataSource, NSTableViewDelegate {
     
@@ -14,31 +16,45 @@ class SafariExtensionViewController: SFSafariExtensionViewController, NSTableVie
 
     @IBOutlet weak var tableView: NSTableView!
     
-//    let presenter = Presenter()
+    var presenter: Presenter?
+    let disposeBag = DisposeBag()
+    
+    var items = [Channel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        API.sharedInstance.set(token: "")
         
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowSizeStyle = .large
         tableView.backgroundColor = NSColor.clear
-    }
-    
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        tableView.reloadData()
+        
+        presenter = Presenter()
+        presenter?.getChannels()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] channels in
+            guard let strongSelf = self else { return }
+            strongSelf.items = channels
+            strongSelf.tableView.reloadData()
+            print("Channels \(channels)")
+        }, onError: { error in
+            print("Error \(error)")
+        }).addDisposableTo(disposeBag)
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return 10
+        return items.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cellIdentifier = "NameCellID"
         
         if let cell = tableView.make(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView {
-            cell.textField?.stringValue = "Hello"
+            let item = items[row]
+            let name = item.name
+            cell.textField?.stringValue = name ?? "No name"
             return cell
         }
         return nil
