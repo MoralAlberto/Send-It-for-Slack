@@ -10,7 +10,8 @@ import Foundation
 import SlackWebAPIKit
 
 extension ChannelViewModel {
-    init(channel: Channel) {
-        self.name = channel.name ?? ""
+    init?(channel: Channel) {
+        guard let name = channel.name else { return nil }
+        self.name = name
     }
 }
