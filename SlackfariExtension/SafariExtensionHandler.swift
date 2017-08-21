@@ -15,7 +15,6 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             guard let text = properties?.url else {
                 return
             }
-            print("URL \(text.absoluteString)")
             SafariExtensionViewController.shared.url = text.absoluteString
         }
     }
