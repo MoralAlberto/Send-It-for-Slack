@@ -1,22 +1,22 @@
 import Foundation
 
 public class Channel {
-    var created: Int?
-    var creator: String?
-    var id: String?
-    var isArchived: Bool?
-    var isChannel: Bool?
-    var isGeneral: Bool?
-    var isMember: Bool?
-    var isMPIM: Bool?
-    var isOrgShared: Bool?
-    var isPrivate: Bool?
-    var isShared: Bool?
-    var name: String?
-    var nameNormalized: String?
-    var numMembers: Int?
-    var purpose: Purpose?
-    var topic: Topic?
+    public var created: Int?
+    public var creator: String?
+    public var id: String?
+    public var isArchived: Bool?
+    public var isChannel: Bool?
+    public var isGeneral: Bool?
+    public var isMember: Bool?
+    public var isMPIM: Bool?
+    public var isOrgShared: Bool?
+    public var isPrivate: Bool?
+    public var isShared: Bool?
+    public var name: String?
+    public var nameNormalized: String?
+    public var numMembers: Int?
+    public var purpose: Purpose?
+    public var topic: Topic?
     
     init(created: Int?,
          creator: String?,

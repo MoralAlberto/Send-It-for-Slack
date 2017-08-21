@@ -1,13 +1,13 @@
 import Foundation
 
 public class User {
-    var id: String?
-    var teamId: String?
-    var name: String?
-    var deleted: Bool?
-    var color: String?
-    var realName: String?
-    var profileImage: String?
+    public var id: String?
+    public var teamId: String?
+    public var name: String?
+    public var deleted: Bool?
+    public var color: String?
+    public var realName: String?
+    public var profileImage: String?
     
     init(id: String?,
          teamId: String?,
