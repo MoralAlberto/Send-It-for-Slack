@@ -29,6 +29,7 @@
 		3940478D1F4A17B900133098 /* Channeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3940478C1F4A17B900133098 /* Channeable.swift */; };
 		394F825E1F44E5C500C377C3 /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394F825C1F44E5C500C377C3 /* SafariExtensionViewController.swift */; };
 		394F82601F44E5ED00C377C3 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394F825F1F44E5ED00C377C3 /* Presenter.swift */; };
+		39FCC62F1F4B52DE00B98C31 /* SafariExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCC62E1F4B52DE00B98C31 /* SafariExtensionView.swift */; };
 		60E5750947E64543DC246DD4 /* Pods_Slackfari.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F3A3AB929B9FD07A94831E /* Pods_Slackfari.framework */; };
 		A54C0664296B4F18643C4358 /* Pods_SlackfariTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5AD7DB224EB1185612F98 /* Pods_SlackfariTests.framework */; };
 		C326FBCDDB61338363A21A07 /* Pods_SlackfariUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A04BA0D3660573F347E0F81 /* Pods_SlackfariUITests.framework */; };
@@ -104,6 +105,7 @@
 		3940478C1F4A17B900133098 /* Channeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channeable.swift; sourceTree = "<group>"; };
 		394F825C1F44E5C500C377C3 /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
 		394F825F1F44E5ED00C377C3 /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		39FCC62E1F4B52DE00B98C31 /* SafariExtensionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariExtensionView.swift; sourceTree = "<group>"; };
 		580D57991675FB42EA12B22F /* Pods-Slackfari.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slackfari.release.xcconfig"; path = "Pods/Target Support Files/Pods-Slackfari/Pods-Slackfari.release.xcconfig"; sourceTree = "<group>"; };
 		5932746A3300289464BE5D52 /* Pods-SlackfariUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlackfariUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SlackfariUITests/Pods-SlackfariUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		66F3A3AB929B9FD07A94831E /* Pods_Slackfari.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slackfari.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -281,6 +283,7 @@
 			children = (
 				394F825C1F44E5C500C377C3 /* SafariExtensionViewController.swift */,
 				394F825F1F44E5ED00C377C3 /* Presenter.swift */,
+				39FCC62D1F4B52D200B98C31 /* Subviews */,
 				394F825D1F44E5C500C377C3 /* ViewModels */,
 			);
 			path = UI;
@@ -296,6 +299,14 @@
 				394047841F4A088E00133098 /* Mappers */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		39FCC62D1F4B52D200B98C31 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				39FCC62E1F4B52DE00B98C31 /* SafariExtensionView.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -707,6 +718,7 @@
 				3940477F1F4A074A00133098 /* UserViewModel.swift in Sources */,
 				394047831F4A075A00133098 /* GroupViewModel.swift in Sources */,
 				39275A1B1F43693300BF003C /* SafariExtensionHandler.swift in Sources */,
+				39FCC62F1F4B52DE00B98C31 /* SafariExtensionView.swift in Sources */,
 				3940478D1F4A17B900133098 /* Channeable.swift in Sources */,
 				394F825E1F44E5C500C377C3 /* SafariExtensionViewController.swift in Sources */,
 				394047811F4A075100133098 /* ChannelViewModel.swift in Sources */,
