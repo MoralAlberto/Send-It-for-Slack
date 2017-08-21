@@ -19,8 +19,10 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     fileprivate var presenter: Presenter?
     fileprivate let disposeBag = DisposeBag()
     
-    fileprivate var items = [Channelable]()
+    @IBOutlet weak var buttonSend: NSButton!
+    
     var url: String?
+    var dataProvider: TableViewDataProvider?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,15 +38,14 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     }
     
     private func configureTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
+        dataProvider = TableViewDataProvider(tableView: tableView)
         tableView.rowSizeStyle = .large
         tableView.backgroundColor = NSColor.clear
     }
     
     @IBAction func sendMessage(_ sender: Any) {
-        let selected = items[tableView.selectedRow]
         guard let post = url else { return }
+        guard let selected = dataProvider?.getItem(at: tableView.selectedRow) else { return }
         let type = checkChannel(type: selected)
         send(message: post, toChannel: selected.name, withType: type)
     }
@@ -54,16 +55,20 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (users, channels, groups) in
                 guard let strongSelf = self else { return }
-                let usersViewModel: [Channelable] = users.map(UserViewModel.init)
-                let channelsViewModel: [Channelable] = channels.map(ChannelViewModel.init)
-                let groupsViewModel: [Channelable] = groups.map(GroupViewModel.init)
-                
-                strongSelf.items = usersViewModel + channelsViewModel + groupsViewModel
+                strongSelf.buildViewModel(users: users, channels: channels, groups: groups)
                 strongSelf.tableView.reloadData()
                 }, onError: { error in
                     print("Error \(error)")
             }
         ).disposed(by: disposeBag)
+    }
+    
+    private func buildViewModel(users: [User], channels: [Channel], groups: [Group]) {
+        guard let dataProvider = dataProvider else { return }
+        let usersViewModel: [Channelable] = users.flatMap(UserViewModel.init)
+        let channelsViewModel: [Channelable] = channels.flatMap(ChannelViewModel.init)
+        let groupsViewModel: [Channelable] = groups.flatMap(GroupViewModel.init)
+        dataProvider.set(items: usersViewModel + channelsViewModel + groupsViewModel)
     }
     
     private func checkChannel(type: Channelable) -> MessageType {
@@ -82,27 +87,5 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         }, onError: { (error) in
             print("Error \(error)")
         }).disposed(by: disposeBag)
-    }
-}
-
-extension SafariExtensionViewController: NSTableViewDataSource, NSTableViewDelegate {
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return items.count
-    }
-    
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let cellIdentifier = "NameCellID"
-        
-        if let cell = tableView.make(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView {
-            let item = items[row]
-            let name = item.name
-            cell.textField?.stringValue = name
-            return cell
-        }
-        return nil
-    }
-    
-    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return 26
     }
 }
