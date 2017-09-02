@@ -129,7 +129,7 @@
                     </scroller>
                 </scrollView>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h5f-jA-dmo">
-                    <rect key="frame" x="267" y="-4" width="65" height="70"/>
+                    <rect key="frame" x="267" y="-4" width="65" height="32"/>
                     <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Dsh-wI-nRz">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -156,7 +156,6 @@
                 <constraint firstItem="4Iy-aV-wGF" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" constant="-123.5" id="4xy-8c-dIK"/>
                 <constraint firstItem="2Hl-JB-zos" firstAttribute="top" secondItem="xkh-ik-0Tj" secondAttribute="bottom" constant="8" id="7hc-py-mvq"/>
                 <constraint firstAttribute="trailing" secondItem="nR6-69-hBK" secondAttribute="trailing" constant="59" id="FEX-el-GrU"/>
-                <constraint firstItem="h5f-jA-dmo" firstAttribute="centerY" secondItem="2Hl-JB-zos" secondAttribute="centerY" constant="-4.5" id="JSM-CW-U4L"/>
                 <constraint firstAttribute="bottom" secondItem="nR6-69-hBK" secondAttribute="bottom" id="Jae-jC-ty5"/>
                 <constraint firstItem="ioh-V4-enG" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="9" id="PpQ-wJ-F5N"/>
                 <constraint firstAttribute="trailing" secondItem="xkh-ik-0Tj" secondAttribute="trailing" id="a0e-5S-HgI"/>

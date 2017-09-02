@@ -56,7 +56,7 @@ class AddTeamView: NSView {
     }
     
     private func addSubviews() {
-        layer?.backgroundColor = NSColor.blue.cgColor
+        layer?.backgroundColor = Stylesheet.color(.mainLightGray).cgColor
         addSubview(closeButton)
         addSubview(addButton)
         addSubview(nameField)
@@ -68,25 +68,24 @@ class AddTeamView: NSView {
     }
     
     func addTeam() {
-        Swift.print("name \(nameField.stringValue) with token \(tokenField.stringValue)")
         delegate?.didTapOnAddTeamButton(teamName: nameField.stringValue, token: tokenField.stringValue)
     }
     
     private func addConstraints() {
         constrain(nameField, tokenField, closeButton, addButton) { nameField, tokenField, closeButton, addButton in
-            nameField.top == nameField.superview!.top + 30
-            nameField.leading == nameField.superview!.leading + 8
-            nameField.trailing == nameField.superview!.trailing - 8
+            nameField.top == nameField.superview!.top + Stylesheet.margin(.big)
+            nameField.leading == nameField.superview!.leading + Stylesheet.margin(.medium)
+            nameField.trailing == nameField.superview!.trailing - Stylesheet.margin(.medium)
             
-            tokenField.top == nameField.bottom + 8
-            tokenField.leading == tokenField.superview!.leading + 8
-            tokenField.trailing == tokenField.superview!.trailing - 8
+            tokenField.top == nameField.bottom + Stylesheet.margin(.medium)
+            tokenField.leading == tokenField.superview!.leading + Stylesheet.margin(.medium)
+            tokenField.trailing == tokenField.superview!.trailing - Stylesheet.margin(.medium)
             
-            closeButton.top == closeButton.superview!.top + 8
-            closeButton.trailing == closeButton.superview!.trailing - 8
+            closeButton.top == closeButton.superview!.top + Stylesheet.margin(.medium)
+            closeButton.trailing == closeButton.superview!.trailing - Stylesheet.margin(.medium)
             
-            addButton.bottom == addButton.superview!.bottom - 8
-            addButton.trailing == addButton.superview!.trailing - 8
+            addButton.bottom == addButton.superview!.bottom - Stylesheet.margin(.medium)
+            addButton.trailing == addButton.superview!.trailing - Stylesheet.margin(.medium)
         }
     }
 }

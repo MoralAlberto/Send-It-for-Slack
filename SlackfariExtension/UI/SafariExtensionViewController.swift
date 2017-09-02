@@ -41,7 +41,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         
 //        UserDefaults.standard.removeObject(forKey: "teams")
         
-        API.sharedInstance.set(token: "")
+        API.sharedInstance.set(token: "xoxp-220728744260-221560162310-226472479939-023594ef326c368b601646bec84b64b0")
         configureTableView()
         configureCollectionView()
     }
