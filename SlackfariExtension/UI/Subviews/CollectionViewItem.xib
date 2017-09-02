@@ -9,15 +9,20 @@
         <customObject id="-2" userLabel="File's Owner" customClass="CollectionViewItem" customModule="SlackfariExtension" customModuleProvider="target">
             <connections>
                 <outlet property="nameLabel" destination="adZ-D3-3kg" id="bkr-vU-8aj"/>
+                <outlet property="teamImageView" destination="8ft-sO-nkn" id="wZx-6t-QmZ"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="40" height="17"/>
+            <rect key="frame" x="0.0" y="0.0" width="40" height="42"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8ft-sO-nkn">
+                    <rect key="frame" x="0.0" y="0.0" width="40" height="42"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="tbc-J1-2FO"/>
+                </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adZ-D3-3kg">
                     <rect key="frame" x="-2" y="0.0" width="44" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="LQL-gb-pgs">
@@ -28,12 +33,15 @@
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="adZ-D3-3kg" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="GPo-vD-NXj"/>
-                <constraint firstItem="adZ-D3-3kg" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="SAc-56-FkZ"/>
-                <constraint firstAttribute="bottom" secondItem="adZ-D3-3kg" secondAttribute="bottom" id="coy-VV-6cp"/>
-                <constraint firstAttribute="trailing" secondItem="adZ-D3-3kg" secondAttribute="trailing" id="gG4-6j-3MK"/>
+                <constraint firstAttribute="bottom" secondItem="8ft-sO-nkn" secondAttribute="bottom" id="07N-Gc-RcN"/>
+                <constraint firstItem="adZ-D3-3kg" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="Ebs-fh-Vua"/>
+                <constraint firstItem="8ft-sO-nkn" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="Itl-fR-Io9"/>
+                <constraint firstItem="8ft-sO-nkn" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="a5U-bx-wYq"/>
+                <constraint firstAttribute="trailing" secondItem="adZ-D3-3kg" secondAttribute="trailing" id="c0o-Bd-tba"/>
+                <constraint firstAttribute="trailing" secondItem="8ft-sO-nkn" secondAttribute="trailing" id="fgY-UN-oJx"/>
+                <constraint firstAttribute="bottom" secondItem="adZ-D3-3kg" secondAttribute="bottom" id="rfz-zV-5Qj"/>
             </constraints>
-            <point key="canvasLocation" x="-61.5" y="156"/>
+            <point key="canvasLocation" x="-62" y="156"/>
         </customView>
         <collectionViewItem id="5Xm-KQ-Klt" customClass="CollectionViewItem" customModule="SlackfariExtension" customModuleProvider="target"/>
     </objects>

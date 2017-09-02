@@ -8,6 +8,8 @@
 
 import Foundation
 import Cocoa
+import Alamofire
+import AlamofireImage
 
 protocol CollectionViewDataProviderDelegate: class {
     func didTapOnTeam(withToken token: String)
@@ -35,6 +37,7 @@ class CollectionViewDataProvider: NSObject {
     func set(items: [[String: String]]) {
         self.items = items
     }
+    
 }
 
 extension CollectionViewDataProvider: NSCollectionViewDataSource, NSCollectionViewDelegate {
@@ -52,6 +55,15 @@ extension CollectionViewDataProvider: NSCollectionViewDataSource, NSCollectionVi
         guard let collectionViewItem = item as? CollectionViewItem else { return item }
         
         collectionViewItem.nameLabel?.stringValue = items[indexPath.item]["name"]!
+        
+        let imageURL = items[indexPath.item]["image"]!
+        
+        Alamofire.request(imageURL).responseImage { response in
+            if let image = response.result.value {
+                collectionViewItem.teamImageView.image = image
+            }
+        }
+        
         return item
     }
     

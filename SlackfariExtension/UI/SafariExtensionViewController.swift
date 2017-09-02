@@ -39,6 +39,8 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        UserDefaults.standard.removeObject(forKey: "teams")
+        
         API.sharedInstance.set(token: "")
         configureTableView()
         configureCollectionView()
@@ -144,6 +146,7 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
     func didTapOnAddTeamButton(teamName: String, token: String) {
         let saveTemporalToken = API.sharedInstance.getToken()
         API.sharedInstance.set(token: token)
+        presenter = Presenter()
         
         presenter?.getTeamInfo().subscribe(onNext: { [weak self](team) in
             guard let strongSelf = self else { return }
