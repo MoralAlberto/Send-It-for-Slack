@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		368891ECABDA1FDF739600E8 /* Pods_SlackfariExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D106005A4FB3D5C28E77D05E /* Pods_SlackfariExtension.framework */; };
+		391476371F5B3B3D00DFB2FB /* Stylesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391476361F5B3B3D00DFB2FB /* Stylesheet.swift */; };
 		392759E51F43692800BF003C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392759E41F43692800BF003C /* AppDelegate.swift */; };
 		392759E71F43692800BF003C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392759E61F43692800BF003C /* ViewController.swift */; };
 		392759E91F43692800BF003C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392759E81F43692800BF003C /* Assets.xcassets */; };
@@ -82,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		0A04BA0D3660573F347E0F81 /* Pods_SlackfariUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SlackfariUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		391476361F5B3B3D00DFB2FB /* Stylesheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stylesheet.swift; sourceTree = "<group>"; };
 		392759E11F43692800BF003C /* Slackfari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slackfari.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		392759E41F43692800BF003C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		392759E61F43692800BF003C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		391476351F5B3AFC00DFB2FB /* Stylesheet */ = {
+			isa = PBXGroup;
+			children = (
+				391476361F5B3B3D00DFB2FB /* Stylesheet.swift */,
+			);
+			path = Stylesheet;
+			sourceTree = "<group>";
+		};
 		392759D81F43692800BF003C = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				39275A1A1F43693300BF003C /* SafariExtensionHandler.swift */,
+				391476351F5B3AFC00DFB2FB /* Stylesheet */,
 				394F825B1F44E5C500C377C3 /* UI */,
 				399D4BC41F5A975A002D7893 /* Helpers */,
 				39275A1E1F43693300BF003C /* SafariExtensionViewController.xib */,
@@ -769,6 +780,7 @@
 				399D4BC81F5A9932002D7893 /* CollectionViewDataProvider.swift in Sources */,
 				399D4BCD1F5A9B85002D7893 /* CollectionViewItem.swift in Sources */,
 				3940478A1F4A08B300133098 /* GroupViewModel+Group.swift in Sources */,
+				391476371F5B3B3D00DFB2FB /* Stylesheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
