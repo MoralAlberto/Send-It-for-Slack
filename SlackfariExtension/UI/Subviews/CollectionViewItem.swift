@@ -11,10 +11,11 @@ import Cocoa
 
 class CollectionViewItem: NSCollectionViewItem {
     
+    @IBOutlet weak var nameLabel: NSTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.wantsLayer = true
-//        textField?.stringValue = "Team"
         view.layer?.backgroundColor = NSColor.lightGray.cgColor
     }
 }

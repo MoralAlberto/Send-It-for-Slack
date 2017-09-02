@@ -11,7 +11,7 @@ import SlackWebAPIKit
 import RxSwift
 import Cartography
 
-class SafariExtensionViewController: SFSafariExtensionViewController, AddTeamViewDelegate {
+class SafariExtensionViewController: SFSafariExtensionViewController {
     
     static let shared = SafariExtensionViewController()
 
@@ -58,6 +58,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController, AddTeamVie
     
     private func configureCollectionView() {
         teamDataProvider = CollectionViewDataProvider(collectionView: collectionView)
+        teamDataProvider?.delegate = self
         guard let teams = UserDefaults.standard.array(forKey: "teams") as? [[String: String]] else {
             return
         }
@@ -71,13 +72,14 @@ class SafariExtensionViewController: SFSafariExtensionViewController, AddTeamVie
         send(message: post, toChannel: selected.name, withType: type)
     }
     
-    private func getAllChannels() {
+    fileprivate func getAllChannels() {
         guard let presenter = presenter else { return }
-        Observable.combineLatest(presenter.getUsers(), presenter.getChannels(), presenter.getGroups())
+        Observable.combineLatest(presenter.getUsers(), presenter.getChannels())
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] (users, channels, groups) in
+            .subscribe(onNext: { [weak self] (users, channels) in
                 guard let strongSelf = self else { return }
-                strongSelf.buildViewModel(users: users, channels: channels, groups: groups)
+                Swift.print("Receive channels \(channels)")
+                strongSelf.buildViewModel(users: users, channels: channels)
                 strongSelf.tableView.reloadData()
                 }, onError: { error in
                     print("Error \(error)")
@@ -85,12 +87,11 @@ class SafariExtensionViewController: SFSafariExtensionViewController, AddTeamVie
         ).disposed(by: disposeBag)
     }
     
-    private func buildViewModel(users: [User], channels: [Channel], groups: [Group]) {
+    private func buildViewModel(users: [User], channels: [Channel]) {
         guard let dataProvider = dataProvider else { return }
         let usersViewModel: [Channelable] = users.flatMap(UserViewModel.init)
         let channelsViewModel: [Channelable] = channels.flatMap(ChannelViewModel.init)
-        let groupsViewModel: [Channelable] = groups.flatMap(GroupViewModel.init)
-        dataProvider.set(items: usersViewModel + channelsViewModel + groupsViewModel)
+        dataProvider.set(items: usersViewModel + channelsViewModel)
     }
     
     private func checkChannel(type: Channelable) -> MessageType {
@@ -133,23 +134,23 @@ class SafariExtensionViewController: SFSafariExtensionViewController, AddTeamVie
             }
         }, completionHandler: nil)
     }
-    
+}
+
+extension SafariExtensionViewController: AddTeamViewDelegate {
     func didTapOnCloseButton() {
         addTeamView.removeFromSuperview()
     }
     
     func didTapOnAddTeamButton(teamName: String, token: String) {
-        
         let saveTemporalToken = API.sharedInstance.getToken()
         API.sharedInstance.set(token: token)
         
         presenter?.getTeamInfo().subscribe(onNext: { [weak self](team) in
             guard let strongSelf = self else { return }
             strongSelf.save(team: team, name: teamName, token: token)
-        }, onError: { (error) in
-            print("Error \(error)")
-            API.sharedInstance.set(token: saveTemporalToken ?? "")
-            
+            }, onError: { (error) in
+                print("Error \(error)")
+                API.sharedInstance.set(token: saveTemporalToken ?? "")
         }, onCompleted: {
             print("Completed")
         }).disposed(by: disposeBag)
@@ -160,6 +161,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController, AddTeamVie
         guard var teams = UserDefaults.standard.array(forKey: "teams") as? [[String: String]] else {
             UserDefaults.standard.set([["name": name, "token": token, "image": team.icon!]], forKey: "teams")
             UserDefaults.standard.synchronize()
+            collectionView.reloadData()
             return
         }
         
@@ -168,6 +170,17 @@ class SafariExtensionViewController: SFSafariExtensionViewController, AddTeamVie
             UserDefaults.standard.set(teams, forKey: "teams")
             UserDefaults.standard.synchronize()
         }
+        teamDataProvider?.set(items: teams)
+        collectionView.reloadData()
     }
 }
 
+extension SafariExtensionViewController: CollectionViewDataProviderDelegate {
+    
+    func didTapOnTeam(withToken token: String) {
+        Swift.print("Get channels with token \(token)")
+        API.sharedInstance.set(token: token)
+        presenter = Presenter()
+        getAllChannels()
+    }
+}

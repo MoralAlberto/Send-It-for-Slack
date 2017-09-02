@@ -9,7 +9,13 @@
 import Foundation
 import Cocoa
 
+protocol CollectionViewDataProviderDelegate: class {
+    func didTapOnTeam(withToken token: String)
+}
+
 class CollectionViewDataProvider: NSObject {
+    
+    weak var delegate: CollectionViewDataProviderDelegate?
     
     fileprivate var items = [[String: String]]()
     private var collectionView: NSCollectionView
@@ -42,15 +48,15 @@ extension CollectionViewDataProvider: NSCollectionViewDataSource, NSCollectionVi
     }
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        
         let item = collectionView.makeItem(withIdentifier: "CollectionViewItem", for: indexPath)
-        guard item is CollectionViewItem else { return item }        
-        item.textField?.stringValue = items[indexPath.item]["name"]!
+        guard let collectionViewItem = item as? CollectionViewItem else { return item }
+        
+        collectionViewItem.nameLabel?.stringValue = items[indexPath.item]["name"]!
         return item
     }
     
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         let token = items[(indexPaths.first?.item)!]["token"]
-        Swift.print("Token \(String(describing: token))")
+        delegate?.didTapOnTeam(withToken: token!)
     }
 }
