@@ -73,7 +73,7 @@ class AddTeamView: NSView {
     
     private func addConstraints() {
         constrain(nameField, tokenField, closeButton, addButton) { nameField, tokenField, closeButton, addButton in
-            nameField.top == nameField.superview!.top + Stylesheet.margin(.big)
+            nameField.top == nameField.superview!.top + Stylesheet.margin(.big) + Stylesheet.margin(.medium) + Stylesheet.margin(.small)
             nameField.leading == nameField.superview!.leading + Stylesheet.margin(.medium)
             nameField.trailing == nameField.superview!.trailing - Stylesheet.margin(.medium)
             
