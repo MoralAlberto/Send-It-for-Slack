@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		368891ECABDA1FDF739600E8 /* Pods_SlackfariExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D106005A4FB3D5C28E77D05E /* Pods_SlackfariExtension.framework */; };
 		391476371F5B3B3D00DFB2FB /* Stylesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391476361F5B3B3D00DFB2FB /* Stylesheet.swift */; };
+		391476391F5B3FA100DFB2FB /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391476381F5B3FA100DFB2FB /* UserDefaults.swift */; };
 		392759E51F43692800BF003C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392759E41F43692800BF003C /* AppDelegate.swift */; };
 		392759E71F43692800BF003C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392759E61F43692800BF003C /* ViewController.swift */; };
 		392759E91F43692800BF003C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392759E81F43692800BF003C /* Assets.xcassets */; };
@@ -84,6 +85,7 @@
 /* Begin PBXFileReference section */
 		0A04BA0D3660573F347E0F81 /* Pods_SlackfariUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SlackfariUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		391476361F5B3B3D00DFB2FB /* Stylesheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stylesheet.swift; sourceTree = "<group>"; };
+		391476381F5B3FA100DFB2FB /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		392759E11F43692800BF003C /* Slackfari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slackfari.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		392759E41F43692800BF003C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		392759E61F43692800BF003C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				399D4BC51F5A977D002D7893 /* Array+Dictionary.swift */,
+				391476381F5B3FA100DFB2FB /* UserDefaults.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -776,6 +779,7 @@
 				3940478D1F4A17B900133098 /* Channeable.swift in Sources */,
 				394F825E1F44E5C500C377C3 /* SafariExtensionViewController.swift in Sources */,
 				394047811F4A075100133098 /* ChannelViewModel.swift in Sources */,
+				391476391F5B3FA100DFB2FB /* UserDefaults.swift in Sources */,
 				399D4BC61F5A977D002D7893 /* Array+Dictionary.swift in Sources */,
 				399D4BC81F5A9932002D7893 /* CollectionViewDataProvider.swift in Sources */,
 				399D4BCD1F5A9B85002D7893 /* CollectionViewItem.swift in Sources */,
