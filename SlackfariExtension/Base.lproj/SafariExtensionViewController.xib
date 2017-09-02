@@ -108,7 +108,7 @@
                             <collectionView selectable="YES" allowsEmptySelection="NO" id="7pp-bb-esY">
                                 <rect key="frame" x="0.0" y="0.0" width="269" height="23"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" id="Br8-CB-fro">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="4" minimumLineSpacing="4" scrollDirection="horizontal" id="Br8-CB-fro">
                                     <size key="itemSize" width="40" height="23"/>
                                 </collectionViewFlowLayout>
                                 <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
