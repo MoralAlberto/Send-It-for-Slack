@@ -41,7 +41,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         
 //        UserDefaults.standard.removeObject(forKey: "teams")
         
-        API.sharedInstance.set(token: "xoxp-220728744260-221560162310-226472479939-023594ef326c368b601646bec84b64b0")
+        API.sharedInstance.set(token: "")
         configureTableView()
         configureCollectionView()
     }
@@ -138,6 +138,8 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     }
 }
 
+// MARK: - AddteamViewDelegate
+
 extension SafariExtensionViewController: AddTeamViewDelegate {
     func didTapOnCloseButton() {
         addTeamView.removeFromSuperview()
@@ -148,40 +150,32 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
         API.sharedInstance.set(token: token)
         presenter = Presenter()
         
-        presenter?.getTeamInfo().subscribe(onNext: { [weak self](team) in
-            guard let strongSelf = self else { return }
-            strongSelf.save(team: team, name: teamName, token: token)
-            }, onError: { (error) in
-                print("Error \(error)")
-                API.sharedInstance.set(token: saveTemporalToken ?? "")
-        }, onCompleted: {
-            print("Completed")
-        }).disposed(by: disposeBag)
+        presenter?.getTeamInfo()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] team in
+                guard let strongSelf = self else { return }
+                strongSelf.saveTeam(teamIcon: team.icon!, teamName: teamName, token: token)
+                }, onError: { (error) in
+                    print("Error \(error)")
+                    API.sharedInstance.set(token: saveTemporalToken ?? "")
+            }, onCompleted: {
+                print("Completed")
+            }).disposed(by: disposeBag)
         
     }
     
-    private func save(team: Team, name: String, token: String) {
-        guard var teams = UserDefaults.standard.array(forKey: "teams") as? [[String: String]] else {
-            UserDefaults.standard.set([["name": name, "token": token, "image": team.icon!]], forKey: "teams")
-            UserDefaults.standard.synchronize()
+    private func saveTeam(teamIcon: String, teamName: String, token: String) {
+        save(teamIcon: teamIcon, teamName: teamName, token: token) {
+            teamDataProvider?.set(items: $0)
             collectionView.reloadData()
-            return
         }
-        
-        if !arrayContains(array: teams, key: "name", value: name) {
-            teams.append(["name": name, "token": token, "image": team.icon!])
-            UserDefaults.standard.set(teams, forKey: "teams")
-            UserDefaults.standard.synchronize()
-        }
-        teamDataProvider?.set(items: teams)
-        collectionView.reloadData()
     }
 }
 
+// MARK: - CollectionViewDataProviderDelegate
+
 extension SafariExtensionViewController: CollectionViewDataProviderDelegate {
-    
     func didTapOnTeam(withToken token: String) {
-        Swift.print("Get channels with token \(token)")
         API.sharedInstance.set(token: token)
         presenter = Presenter()
         getAllChannels()

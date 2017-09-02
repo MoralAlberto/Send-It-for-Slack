@@ -32,7 +32,7 @@ enum Margin {
 protocol Stylesheetable {
     static func font(_ font: Font) -> NSFont
     static func color(_ color: Color) -> NSColor
-    static func margin(_ font: Margin) -> Double
+    static func margin(_ font: Margin) -> CGFloat
 }
 
 struct Stylesheet: Stylesheetable {
