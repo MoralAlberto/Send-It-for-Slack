@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CollectionViewItem" customModule="SlackfariExtension" customModuleProvider="target">
+            <connections>
+                <outlet property="textField" destination="OSM-Cm-PuH" id="FHk-s6-75p"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView misplaced="YES" id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="40" height="20"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSM-Cm-PuH">
+                    <rect key="frame" x="0.0" y="0.0" width="40" height="20"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="B7B-Jf-8i5">
+                        <font key="font" metaFont="system" size="8"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="OSM-Cm-PuH" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="0RM-fN-VSq"/>
+                <constraint firstAttribute="trailing" secondItem="OSM-Cm-PuH" secondAttribute="trailing" id="hwC-QQ-IYP"/>
+                <constraint firstAttribute="bottom" secondItem="OSM-Cm-PuH" secondAttribute="bottom" id="xoj-hR-S1N"/>
+                <constraint firstItem="OSM-Cm-PuH" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="yWU-6R-FQ5"/>
+            </constraints>
+            <point key="canvasLocation" x="-61.5" y="156"/>
+        </customView>
+        <collectionViewItem id="5Xm-KQ-Klt" customClass="CollectionViewItem" customModule="SlackfariExtension" customModuleProvider="target"/>
+    </objects>
+</document>
