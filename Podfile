@@ -6,7 +6,7 @@ target 'Slackfari' do
   use_frameworks!
 
   # Pods for Slackfari
-  pod 'SlackWebAPIKit', '~> 0.1.4'
+  pod 'SlackWebAPIKit', '~> 0.1.5'
   pod 'Cartography', '~> 1.1'
   
   target 'SlackfariTests' do
@@ -24,6 +24,6 @@ end
 target 'SlackfariExtension' do
     use_frameworks!
     
-    pod 'SlackWebAPIKit', '~> 0.1.4'
+    pod 'SlackWebAPIKit', '~> 0.1.5'
     pod 'Cartography', '~> 1.1'
 end

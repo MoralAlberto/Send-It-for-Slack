@@ -16,7 +16,6 @@ protocol AddTeamViewDelegate: class {
 }
 
 class AddTeamView: NSView {
-    
     weak var delegate: AddTeamViewDelegate?
     
     lazy var closeButton: NSButton = {
@@ -26,7 +25,6 @@ class AddTeamView: NSView {
     
     lazy var addButton: NSButton = {
         let button = NSButton(title: "Add", target: self, action: #selector(addTeam))
-        button.title = "Add"
         return button
     }()
     
