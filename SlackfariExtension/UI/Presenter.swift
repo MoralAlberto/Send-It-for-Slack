@@ -26,18 +26,22 @@ class Presenter {
     fileprivate let postUserMessage: FindUserAndPostMessageUseCaseProtocol
     fileprivate let postPrivateChannelMessage: FindGroupAndPostMessageUseCaseProtocol
     
+    fileprivate let teamInfoUseCase: TeamInfoUseCaseProtocol
+    
     init(getChannelsUseCase: ChannelsListUseCaseProtocol = ChannelsListUseCase(),
          getUsersUseCase: UsersListUseCaseProtocol = UsersListUseCase(),
          getPrivateChannelsUseCase: GroupsListUseCaseProtocol = GroupsListUseCase(),
          postChannelMessage: FindChannelAndPostMessageUseCaseProtocol = FindChannelAndPostMessageUseCase(),
          postUserMessage: FindUserAndPostMessageUseCaseProtocol = FindUserAndPostMessageUseCase(),
-         postPrivateChannelMessage: FindGroupAndPostMessageUseCaseProtocol = FindGroupAndPostMessageUseCase()) {
+         postPrivateChannelMessage: FindGroupAndPostMessageUseCaseProtocol = FindGroupAndPostMessageUseCase(),
+         teamInfoUseCase: TeamInfoUseCaseProtocol = TeamInfoUseCase()) {
         self.getChannelsUseCase = getChannelsUseCase
         self.getUsersUseCase = getUsersUseCase
         self.getGroupsUseCase = getPrivateChannelsUseCase
         self.postChannelMessage = postChannelMessage
         self.postUserMessage = postUserMessage
         self.postPrivateChannelMessage = postPrivateChannelMessage
+        self.teamInfoUseCase = teamInfoUseCase
     }
     
     func getChannels() -> Observable<[Channel]> {
@@ -61,5 +65,9 @@ class Presenter {
         case .group:
             return postPrivateChannelMessage.execute(text: message, group: channel)
         }
+    }
+    
+    func getTeamInfo() -> Observable<Team> {
+        return teamInfoUseCase.execute()
     }
 }
