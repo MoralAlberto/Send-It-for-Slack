@@ -28,7 +28,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     
     var url: String?
     var dataProvider: TableViewDataProvider?
-    var teamDataProvider: CollectionViewDataProvider?
+    var teamDataProvider: TeamCollectionViewDataProvider?
     
     lazy var addTeamView: AddTeamView = {
         let addTeam = AddTeamView()
@@ -59,7 +59,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     }
     
     private func configureCollectionView() {
-        teamDataProvider = CollectionViewDataProvider(collectionView: collectionView)
+        teamDataProvider = TeamCollectionViewDataProvider(collectionView: collectionView)
         teamDataProvider?.delegate = self
         guard let teams = UserDefaults.standard.array(forKey: "teams") as? [[String: String]] else {
             return
@@ -80,7 +80,6 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (users, channels) in
                 guard let strongSelf = self else { return }
-                Swift.print("Receive channels \(channels)")
                 strongSelf.buildViewModel(users: users, channels: channels)
                 strongSelf.tableView.reloadData()
                 }, onError: { error in
@@ -161,7 +160,6 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
             }, onCompleted: {
                 print("Completed")
             }).disposed(by: disposeBag)
-        
     }
     
     private func saveTeam(teamIcon: String, teamName: String, token: String) {
@@ -174,7 +172,7 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
 
 // MARK: - CollectionViewDataProviderDelegate
 
-extension SafariExtensionViewController: CollectionViewDataProviderDelegate {
+extension SafariExtensionViewController: TeamCollectionViewDataProviderDelegate {
     func didTapOnTeam(withToken token: String) {
         API.sharedInstance.set(token: token)
         presenter = Presenter()

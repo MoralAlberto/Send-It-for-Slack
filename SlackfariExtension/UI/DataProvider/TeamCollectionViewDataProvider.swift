@@ -11,13 +11,13 @@ import Cocoa
 import Alamofire
 import AlamofireImage
 
-protocol CollectionViewDataProviderDelegate: class {
+protocol TeamCollectionViewDataProviderDelegate: class {
     func didTapOnTeam(withToken token: String)
 }
 
-class CollectionViewDataProvider: NSObject {
+class TeamCollectionViewDataProvider: NSObject {
     
-    weak var delegate: CollectionViewDataProviderDelegate?
+    weak var delegate: TeamCollectionViewDataProviderDelegate?
     
     fileprivate var items = [[String: String]]()
     private var collectionView: NSCollectionView
@@ -40,7 +40,7 @@ class CollectionViewDataProvider: NSObject {
     
 }
 
-extension CollectionViewDataProvider: NSCollectionViewDataSource, NSCollectionViewDelegate {
+extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollectionViewDelegate {
     
     func numberOfSectionsInCollectionView(collectionView: NSCollectionView) -> Int {
         return 1
