@@ -41,7 +41,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         
 //        UserDefaults.standard.removeObject(forKey: "teams")
         
-        API.sharedInstance.set(token: "xoxp-220728744260-221560162310-226472479939-023594ef326c368b601646bec84b64b0")
+        API.sharedInstance.set(token: "")
         configureTableView()
         configureCollectionView()
     }
@@ -175,7 +175,6 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
     }
     
     func didTapOnAddTeamButton(teamName: String, token: String) {
-        
         let saveTemporalToken = API.sharedInstance.getToken()
         API.sharedInstance.set(token: token)
         presenter = Presenter()
@@ -185,13 +184,16 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
             .subscribe(onNext: { [weak self] team in
                 guard let strongSelf = self else { return }
                 strongSelf.saveTeam(teamIcon: team.icon!, teamName: teamName, token: token)
-                }, onError: { (error) in
+                }, onError: { [weak self] error in
+                    guard let strongSelf = self else { return }
                     print("Error \(error)")
                     API.sharedInstance.set(token: saveTemporalToken ?? "")
+                    strongSelf.presenter = Presenter()
             }, onCompleted: {
                 print("Completed")
             }).disposed(by: disposeBag)
     }
+    
     
     private func saveTeam(teamIcon: String, teamName: String, token: String) {
         save(teamIcon: teamIcon, teamName: teamName, token: token) {
