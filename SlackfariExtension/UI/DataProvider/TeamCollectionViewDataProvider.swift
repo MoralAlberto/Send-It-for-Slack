@@ -37,7 +37,6 @@ class TeamCollectionViewDataProvider: NSObject {
     func set(items: [[String: String]]) {
         self.items = items
     }
-    
 }
 
 extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollectionViewDelegate {
