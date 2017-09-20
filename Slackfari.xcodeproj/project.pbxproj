@@ -38,7 +38,7 @@
 		399D4BC81F5A9932002D7893 /* TeamCollectionViewDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D4BC71F5A9932002D7893 /* TeamCollectionViewDataProvider.swift */; };
 		399D4BCD1F5A9B85002D7893 /* CollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D4BCB1F5A9B85002D7893 /* CollectionViewItem.swift */; };
 		399D4BCE1F5A9B85002D7893 /* CollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 399D4BCC1F5A9B85002D7893 /* CollectionViewItem.xib */; };
-		39FCC6321F4B5E1100B98C31 /* TableViewDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCC6311F4B5E1100B98C31 /* TableViewDataProvider.swift */; };
+		39FCC6321F4B5E1100B98C31 /* ChannelTableViewDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCC6311F4B5E1100B98C31 /* ChannelTableViewDataProvider.swift */; };
 		60E5750947E64543DC246DD4 /* Pods_Slackfari.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F3A3AB929B9FD07A94831E /* Pods_Slackfari.framework */; };
 		A54C0664296B4F18643C4358 /* Pods_SlackfariTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5AD7DB224EB1185612F98 /* Pods_SlackfariTests.framework */; };
 		C326FBCDDB61338363A21A07 /* Pods_SlackfariUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A04BA0D3660573F347E0F81 /* Pods_SlackfariUITests.framework */; };
@@ -123,7 +123,7 @@
 		399D4BC71F5A9932002D7893 /* TeamCollectionViewDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewDataProvider.swift; sourceTree = "<group>"; };
 		399D4BCB1F5A9B85002D7893 /* CollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.swift; sourceTree = "<group>"; };
 		399D4BCC1F5A9B85002D7893 /* CollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewItem.xib; sourceTree = "<group>"; };
-		39FCC6311F4B5E1100B98C31 /* TableViewDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataProvider.swift; sourceTree = "<group>"; };
+		39FCC6311F4B5E1100B98C31 /* ChannelTableViewDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewDataProvider.swift; sourceTree = "<group>"; };
 		580D57991675FB42EA12B22F /* Pods-Slackfari.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slackfari.release.xcconfig"; path = "Pods/Target Support Files/Pods-Slackfari/Pods-Slackfari.release.xcconfig"; sourceTree = "<group>"; };
 		5932746A3300289464BE5D52 /* Pods-SlackfariUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlackfariUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SlackfariUITests/Pods-SlackfariUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		66F3A3AB929B9FD07A94831E /* Pods_Slackfari.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slackfari.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -354,7 +354,7 @@
 		39FCC6301F4B5E0700B98C31 /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
-				39FCC6311F4B5E1100B98C31 /* TableViewDataProvider.swift */,
+				39FCC6311F4B5E1100B98C31 /* ChannelTableViewDataProvider.swift */,
 				399D4BC71F5A9932002D7893 /* TeamCollectionViewDataProvider.swift */,
 			);
 			path = DataProvider;
@@ -768,7 +768,7 @@
 			files = (
 				394F82601F44E5ED00C377C3 /* Presenter.swift in Sources */,
 				394047861F4A089900133098 /* UserViewModel+User.swift in Sources */,
-				39FCC6321F4B5E1100B98C31 /* TableViewDataProvider.swift in Sources */,
+				39FCC6321F4B5E1100B98C31 /* ChannelTableViewDataProvider.swift in Sources */,
 				394047881F4A08A800133098 /* ChannelViewModel+Channel.swift in Sources */,
 				3940477F1F4A074A00133098 /* UserViewModel.swift in Sources */,
 				394047831F4A075A00133098 /* GroupViewModel.swift in Sources */,
