@@ -32,6 +32,7 @@
 		394F825E1F44E5C500C377C3 /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394F825C1F44E5C500C377C3 /* SafariExtensionViewController.swift */; };
 		394F82601F44E5ED00C377C3 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394F825F1F44E5ED00C377C3 /* Presenter.swift */; };
 		396613DA1F59D03500C07998 /* AddTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396613D91F59D03500C07998 /* AddTeamView.swift */; };
+		398DF4771F72FE20007B1649 /* SafariExtensionViewController+AddTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DF4761F72FE20007B1649 /* SafariExtensionViewController+AddTeamView.swift */; };
 		399D4BC11F5A096B002D7893 /* TeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D4BC01F5A096B002D7893 /* TeamViewModel.swift */; };
 		399D4BC31F5A0987002D7893 /* TeamViewModel+Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D4BC21F5A0987002D7893 /* TeamViewModel+Team.swift */; };
 		399D4BC61F5A977D002D7893 /* Array+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D4BC51F5A977D002D7893 /* Array+Dictionary.swift */; };
@@ -117,6 +118,7 @@
 		394F825C1F44E5C500C377C3 /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
 		394F825F1F44E5ED00C377C3 /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		396613D91F59D03500C07998 /* AddTeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTeamView.swift; sourceTree = "<group>"; };
+		398DF4761F72FE20007B1649 /* SafariExtensionViewController+AddTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SafariExtensionViewController+AddTeamView.swift"; sourceTree = "<group>"; };
 		399D4BC01F5A096B002D7893 /* TeamViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamViewModel.swift; sourceTree = "<group>"; };
 		399D4BC21F5A0987002D7893 /* TeamViewModel+Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TeamViewModel+Team.swift"; sourceTree = "<group>"; };
 		399D4BC51F5A977D002D7893 /* Array+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Dictionary.swift"; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				394F825C1F44E5C500C377C3 /* SafariExtensionViewController.swift */,
+				398DF4761F72FE20007B1649 /* SafariExtensionViewController+AddTeamView.swift */,
 				394F825F1F44E5ED00C377C3 /* Presenter.swift */,
 				396613D81F59D02A00C07998 /* Subviews */,
 				39FCC6301F4B5E0700B98C31 /* DataProvider */,
@@ -776,6 +779,7 @@
 				396613DA1F59D03500C07998 /* AddTeamView.swift in Sources */,
 				399D4BC31F5A0987002D7893 /* TeamViewModel+Team.swift in Sources */,
 				399D4BC11F5A096B002D7893 /* TeamViewModel.swift in Sources */,
+				398DF4771F72FE20007B1649 /* SafariExtensionViewController+AddTeamView.swift in Sources */,
 				3940478D1F4A17B900133098 /* Channeable.swift in Sources */,
 				394F825E1F44E5C500C377C3 /* SafariExtensionViewController.swift in Sources */,
 				394047811F4A075100133098 /* ChannelViewModel.swift in Sources */,

@@ -17,18 +17,17 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
 
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var collectionView: NSCollectionView!
-    
-    fileprivate var presenter: Presenter?
-    fileprivate let disposeBag = DisposeBag()
-    
     @IBOutlet weak var addTeamButton: NSButton!
     @IBOutlet weak var buttonSend: NSButton!
     @IBOutlet weak var teamNameLabel: NSTextField!
     
-    let group = ConstraintGroup()
+    fileprivate var presenter: Presenter?
+    fileprivate let disposeBag = DisposeBag()
+    
+    let constraintGroup = ConstraintGroup()
     
     var url: String?
-    var dataProvider: ChannelTableViewDataProvider?
+    var channelDataProvider: ChannelTableViewDataProvider?
     var teamDataProvider: TeamCollectionViewDataProvider?
     
     lazy var addTeamView: AddTeamView = {
@@ -42,7 +41,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         
 //        UserDefaults.standard.removeObject(forKey: "teams")
         
-        API.sharedInstance.set(token: "xoxp-220728744260-221560162310-226472479939-023594ef326c368b601646bec84b64b0")
+        API.sharedInstance.set(token: "")
         configureTableView()
         configureCollectionView()
     }
@@ -54,7 +53,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     }
     
     private func configureTableView() {
-        dataProvider = ChannelTableViewDataProvider(tableView: tableView)
+        channelDataProvider = ChannelTableViewDataProvider(tableView: tableView)
         tableView.rowSizeStyle = .large
         tableView.backgroundColor = NSColor.clear
     }
@@ -68,12 +67,34 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         teamDataProvider?.set(items: teams)
     }
     
+    // MARK: Send Message
+    
     @IBAction func sendMessage(_ sender: Any) {
         guard let post = url else { return }
-        guard let selected = dataProvider?.getItem(at: tableView.selectedRow) else { return }
+        guard let selected = channelDataProvider?.getItem(at: tableView.selectedRow) else { return }
         let type = checkChannel(type: selected)
         send(message: post, toChannel: selected.name, withType: type)
     }
+    
+    private func checkChannel(type: Channelable) -> MessageType {
+        if type is ChannelViewModel {
+            return .channel
+        } else if type is GroupViewModel {
+            return .group
+        } else {
+            return .user
+        }
+    }
+    
+    private func send(message: String, toChannel channel: String, withType type: MessageType) {
+        presenter?.send(message: message, channel: channel, type: type).subscribe(onNext: { isSent in
+            print("message sent")
+        }, onError: { (error) in
+            print("Error \(error)")
+        }).disposed(by: disposeBag)
+    }
+    
+    // MARK: Get team's information
     
     fileprivate func getAllChannels() {
         guard let presenter = presenter else { return }
@@ -120,64 +141,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
             }).disposed(by: disposeBag)
     }
     
-    private func buildUsersViewModel(users: [User]) {
-        guard let dataProvider = dataProvider else { return }
-        let usersViewModel: [Channelable] = users.flatMap(UserViewModel.init)
-        dataProvider.add(items: usersViewModel)
-    }
-    
-    private func buildChannelsViewModel(channels: [Channel]) {
-        guard let dataProvider = dataProvider else { return }
-        let channelsViewModel: [Channelable] = channels.flatMap(ChannelViewModel.init)
-        dataProvider.add(items: channelsViewModel)
-    }
-    
-    private func buildGroupsViewModel(groups: [Group]) {
-        guard let dataProvider = dataProvider else { return }
-        let groupsViewModel: [Channelable] = groups.flatMap(GroupViewModel.init)
-        dataProvider.add(items: groupsViewModel)
-    }
-    
-    private func checkChannel(type: Channelable) -> MessageType {
-        if type is ChannelViewModel {
-            return .channel
-        } else if type is GroupViewModel {
-            return .group
-        } else {
-            return .user
-        }
-    }
-    
-    private func send(message: String, toChannel channel: String, withType type: MessageType) {
-        presenter?.send(message: message, channel: channel, type: type).subscribe(onNext: { isSent in
-            print("message sent")
-        }, onError: { (error) in
-            print("Error \(error)")
-        }).disposed(by: disposeBag)
-    }
-    
-    @IBAction func addTeam(_ sender: NSButton) {
-        view.addSubview(addTeamView)
-        
-        constrain(addTeamView, replace: group) { addTeamView in
-            addTeamView.leading == addTeamView.superview!.leading
-            addTeamView.trailing == addTeamView.superview!.trailing
-            addTeamView.bottom == addTeamView.superview!.bottom
-            addTeamView.height == 0
-        }
-        
-        NSAnimationContext.runAnimationGroup({ context in
-            constrain(addTeamView, replace: group) { addTeamView in
-                context.duration = 1
-                context.allowsImplicitAnimation = true
-                
-                addTeamView.leading == addTeamView.superview!.leading
-                addTeamView.trailing == addTeamView.superview!.trailing
-                addTeamView.bottom == addTeamView.superview!.bottom
-                addTeamView.height == 140
-            }
-        }, completionHandler: nil)
-    }
+
 }
 
 // MARK: - AddteamViewDelegate
@@ -217,12 +181,34 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
     }
 }
 
+// MARK: - Build View Models
+
+extension SafariExtensionViewController {
+    fileprivate func buildUsersViewModel(users: [User]) {
+        guard let dataProvider = channelDataProvider else { return }
+        let usersViewModel: [Channelable] = users.flatMap(UserViewModel.init)
+        dataProvider.add(items: usersViewModel)
+    }
+    
+    fileprivate func buildChannelsViewModel(channels: [Channel]) {
+        guard let dataProvider = channelDataProvider else { return }
+        let channelsViewModel: [Channelable] = channels.flatMap(ChannelViewModel.init)
+        dataProvider.add(items: channelsViewModel)
+    }
+    
+    fileprivate func buildGroupsViewModel(groups: [Group]) {
+        guard let dataProvider = channelDataProvider else { return }
+        let groupsViewModel: [Channelable] = groups.flatMap(GroupViewModel.init)
+        dataProvider.add(items: groupsViewModel)
+    }
+}
+
 // MARK: - CollectionViewDataProviderDelegate
 
 extension SafariExtensionViewController: TeamCollectionViewDataProviderDelegate {
     func didTapOnTeam(withToken token: String) {
         //  Clean channels
-        guard let dataProvider = dataProvider else { return }
+        guard let dataProvider = channelDataProvider else { return }
         dataProvider.removeItems()
         
         API.sharedInstance.set(token: token)
