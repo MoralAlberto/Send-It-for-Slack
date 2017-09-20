@@ -23,6 +23,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     
     @IBOutlet weak var addTeamButton: NSButton!
     @IBOutlet weak var buttonSend: NSButton!
+    @IBOutlet weak var teamNameLabel: NSTextField!
     
     let group = ConstraintGroup()
     
@@ -41,7 +42,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         
 //        UserDefaults.standard.removeObject(forKey: "teams")
         
-        API.sharedInstance.set(token: "")
+        API.sharedInstance.set(token: "xoxp-220728744260-221560162310-226472479939-023594ef326c368b601646bec84b64b0")
         configureTableView()
         configureCollectionView()
     }
@@ -104,6 +105,18 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
                 strongSelf.tableView.reloadData()
                 }, onError: { error in
                     print("Error \( error)")
+            }).disposed(by: disposeBag)
+        
+        presenter.getTeamInfo()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] team in
+                guard let strongSelf = self else { return }
+                strongSelf.teamNameLabel.stringValue = team.name ?? ""
+                }, onError: { [weak self] error in
+                    guard let strongSelf = self else { return }
+                    strongSelf.teamNameLabel.stringValue = "Error"
+                }, onCompleted: {
+                    print("Completed")
             }).disposed(by: disposeBag)
     }
     
@@ -183,6 +196,7 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] team in
                 guard let strongSelf = self else { return }
+                strongSelf.teamNameLabel.stringValue = teamName
                 strongSelf.saveTeam(teamIcon: team.icon!, teamName: teamName, token: token)
                 }, onError: { [weak self] error in
                     guard let strongSelf = self else { return }
