@@ -9,9 +9,9 @@
 import Foundation
 import Cocoa
 
-class TableViewDataProvider: NSObject {
+class ChannelTableViewDataProvider: NSObject {
     
-    fileprivate var items = [Channelable]()
+    fileprivate var items: [Channelable] = [Channelable]()
     private var tableView: NSTableView
     
     init(tableView: NSTableView) {
@@ -26,12 +26,16 @@ class TableViewDataProvider: NSObject {
         return items[index]
     }
     
-    func set(items: [Channelable]) {
-        self.items = items
+    func add(items: [Channelable]) {
+        self.items += items
+    }
+    
+    func removeItems() {
+        items.removeAll()
     }
 }
 
-extension TableViewDataProvider: NSTableViewDataSource, NSTableViewDelegate {
+extension ChannelTableViewDataProvider: NSTableViewDataSource, NSTableViewDelegate {
     func numberOfRows(in tableView: NSTableView) -> Int {
         return items.count
     }
