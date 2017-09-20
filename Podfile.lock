@@ -11,7 +11,7 @@ PODS:
     - RxSwift (~> 3.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.3)
+  - Alamofire (~> 4.5)
   - AlamofireImage (~> 3.1)
   - Cartography (~> 1.1)
   - SlackWebAPIKit (~> 0.1.5)
@@ -24,6 +24,6 @@ SPEC CHECKSUMS:
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
   SlackWebAPIKit: 88ff36dc88fc2c4c1fd16a7f5a34d82979020ce1
 
-PODFILE CHECKSUM: 5f2d18203c790449247b9bf087c6c5de021e3a62
+PODFILE CHECKSUM: 434576c751a9f1c5ea0506d78a29715d452aa3fc
 
 COCOAPODS: 1.3.1
