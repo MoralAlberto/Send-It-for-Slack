@@ -36,18 +36,16 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         return addTeam
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-//        UserDefaults.standard.removeObject(forKey: "teams")
-        
-        API.sharedInstance.set(token: "")
+    override func viewWillAppear() {
+        super.viewWillAppear()
         configureTableView()
         configureCollectionView()
     }
     
-    override func viewWillAppear() {
-        super.viewWillAppear()
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        guard let team = UserDefaults.standard.getTeam(), let token = team["token"] else { return }
+        API.sharedInstance.set(token: token)
         presenter = Presenter()
         getAllChannels()
     }
@@ -61,7 +59,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     private func configureCollectionView() {
         teamDataProvider = TeamCollectionViewDataProvider(collectionView: collectionView)
         teamDataProvider?.delegate = self
-        guard let teams = UserDefaults.standard.array(forKey: "teams") as? [[String: String]] else {
+        guard let teams = UserDefaults.standard.array(forKey: "teams") as? UserDefaultTeams else {
             return
         }
         teamDataProvider?.set(items: teams)
@@ -140,8 +138,6 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
                     print("Completed")
             }).disposed(by: disposeBag)
     }
-    
-
 }
 
 // MARK: - AddteamViewDelegate
@@ -171,7 +167,6 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
                 print("Completed")
             }).disposed(by: disposeBag)
     }
-    
     
     private func saveTeam(teamIcon: String, teamName: String, token: String) {
         save(teamIcon: teamIcon, teamName: teamName, token: token) {

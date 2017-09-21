@@ -10,6 +10,8 @@ import Foundation
 import Cocoa
 
 class ChannelTableViewDataProvider: NSObject {
+    static let cellId = "NameCellID"
+    static let heightOfRow: CGFloat = 26
     
     fileprivate var items: [Channelable] = [Channelable]()
     private var tableView: NSTableView
@@ -41,9 +43,7 @@ extension ChannelTableViewDataProvider: NSTableViewDataSource, NSTableViewDelega
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let cellIdentifier = "NameCellID"
-        
-        if let cell = tableView.make(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView {
+        if let cell = tableView.make(withIdentifier: ChannelTableViewDataProvider.cellId, owner: self) as? NSTableCellView {
             let item = items[row]
             let name = item.name
             cell.textField?.stringValue = name
@@ -53,6 +53,6 @@ extension ChannelTableViewDataProvider: NSTableViewDataSource, NSTableViewDelega
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return 26
+        return ChannelTableViewDataProvider.heightOfRow
     }
 }

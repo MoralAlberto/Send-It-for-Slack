@@ -16,6 +16,8 @@ protocol TeamCollectionViewDataProviderDelegate: class {
 }
 
 class TeamCollectionViewDataProvider: NSObject {
+    static let numberOfSections = 1
+    static let itemId = "CollectionViewItem"
     
     weak var delegate: TeamCollectionViewDataProviderDelegate?
     
@@ -40,9 +42,8 @@ class TeamCollectionViewDataProvider: NSObject {
 }
 
 extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollectionViewDelegate {
-    
     func numberOfSectionsInCollectionView(collectionView: NSCollectionView) -> Int {
-        return 1
+        return TeamCollectionViewDataProvider.numberOfSections
     }
     
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -50,7 +51,7 @@ extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollecti
     }
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        let item = collectionView.makeItem(withIdentifier: "CollectionViewItem", for: indexPath)
+        let item = collectionView.makeItem(withIdentifier: TeamCollectionViewDataProvider.itemId, for: indexPath)
         guard let collectionViewItem = item as? CollectionViewItem else { return item }
         
         collectionViewItem.nameLabel?.stringValue = items[indexPath.item]["name"]!
@@ -62,7 +63,6 @@ extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollecti
                 collectionViewItem.teamImageView.image = image
             }
         }
-        
         return item
     }
     
