@@ -14,7 +14,7 @@ extension SafariExtensionViewController {
     
     private struct Constants {
         struct TeamView {
-            static let minHeight: CGFloat = 140
+            static let minHeight: CGFloat = 0
             static let maxHeight: CGFloat = 140
             static let animationDuration: TimeInterval = 2
         }
