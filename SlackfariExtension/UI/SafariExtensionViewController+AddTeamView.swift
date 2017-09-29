@@ -11,7 +11,6 @@ import Cocoa
 import Cartography
 
 extension SafariExtensionViewController {
-    
     private struct Constants {
         struct TeamView {
             static let minHeight: CGFloat = 0
@@ -20,7 +19,7 @@ extension SafariExtensionViewController {
         }
     }
     
-    @IBAction func addTeam(_ sender: NSButton) {
+    func showAddTeamView() {
         view.addSubview(addTeamView)
         
         constrain(addTeamView, replace: constraintGroup) { addTeamView in
@@ -32,8 +31,8 @@ extension SafariExtensionViewController {
         
         NSAnimationContext.runAnimationGroup({ context in
             constrain(addTeamView, replace: constraintGroup) { addTeamView in
-                context.duration = Constants.TeamView.animationDuration
                 context.allowsImplicitAnimation = true
+                context.duration = Constants.TeamView.animationDuration
                 
                 addTeamView.leading == addTeamView.superview!.leading
                 addTeamView.trailing == addTeamView.superview!.trailing

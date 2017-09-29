@@ -15,18 +15,14 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     
     static let shared = SafariExtensionViewController()
 
-    @IBOutlet weak var tableView: NSTableView!
-    @IBOutlet weak var collectionView: NSCollectionView!
-    @IBOutlet weak var addTeamButton: NSButton!
-    @IBOutlet weak var buttonSend: NSButton!
-    @IBOutlet weak var teamNameLabel: NSTextField!
+    var mainView: SafariExtensionView { return self.view as! SafariExtensionView }
     
     fileprivate var presenter: Presenter?
     fileprivate let disposeBag = DisposeBag()
     
     let constraintGroup = ConstraintGroup()
     
-    var url: String?
+    var url: String? { didSet { mainView.messageField.stringValue = self.url! } }
     var channelDataProvider: ChannelTableViewDataProvider?
     var teamDataProvider: TeamCollectionViewDataProvider?
     
@@ -35,6 +31,15 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         addTeam.delegate = self
         return addTeam
     }()
+    
+    override func loadView() {
+        view = SafariExtensionView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mainView.delegate = self
+    }
     
     override func viewWillAppear() {
         super.viewWillAppear()
@@ -51,13 +56,11 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     }
     
     private func configureTableView() {
-        channelDataProvider = ChannelTableViewDataProvider(tableView: tableView)
-        tableView.rowSizeStyle = .large
-        tableView.backgroundColor = NSColor.clear
+        channelDataProvider = ChannelTableViewDataProvider(tableView: mainView.tableView)
     }
     
     private func configureCollectionView() {
-        teamDataProvider = TeamCollectionViewDataProvider(collectionView: collectionView)
+        teamDataProvider = TeamCollectionViewDataProvider(collectionView: mainView.collectionView)
         teamDataProvider?.delegate = self
         guard let teams = UserDefaults.standard.array(forKey: "teams") as? UserDefaultTeams else {
             return
@@ -65,16 +68,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         teamDataProvider?.set(items: teams)
     }
     
-    // MARK: Send Message
-    
-    @IBAction func sendMessage(_ sender: Any) {
-        guard let post = url else { return }
-        guard let selected = channelDataProvider?.getItem(at: tableView.selectedRow) else { return }
-        let type = checkChannel(type: selected)
-        send(message: post, toChannel: selected.name, withType: type)
-    }
-    
-    private func checkChannel(type: Channelable) -> MessageType {
+    fileprivate func checkChannel(type: Channelable) -> MessageType {
         if type is ChannelViewModel {
             return .channel
         } else if type is GroupViewModel {
@@ -84,7 +78,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         }
     }
     
-    private func send(message: String, toChannel channel: String, withType type: MessageType) {
+    fileprivate func send(message: String, toChannel channel: String, withType type: MessageType) {
         presenter?.send(message: message, channel: channel, type: type).subscribe(onNext: { isSent in
             print("message sent")
         }, onError: { (error) in
@@ -101,7 +95,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
             .subscribe(onNext: { [weak self] users in
                 guard let strongSelf = self else { return }
                 strongSelf.buildUsersViewModel(users: users)
-                strongSelf.tableView.reloadData()
+                strongSelf.mainView.tableView.reloadData()
             }, onError: { error in
                 print("Error \(error)")
             }).disposed(by: disposeBag)
@@ -111,7 +105,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
             .subscribe(onNext: { [weak self] channels in
                 guard let strongSelf = self else { return }
                 strongSelf.buildChannelsViewModel(channels: channels)
-                strongSelf.tableView.reloadData()
+                strongSelf.mainView.tableView.reloadData()
                 }, onError: { error in
                     print("Error \(error)")
             }).disposed(by: disposeBag)
@@ -121,7 +115,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
             .subscribe(onNext: { [weak self] groups in
                 guard let strongSelf = self else { return }
                 strongSelf.buildGroupsViewModel(groups: groups)
-                strongSelf.tableView.reloadData()
+                strongSelf.mainView.tableView.reloadData()
                 }, onError: { error in
                     print("Error \( error)")
             }).disposed(by: disposeBag)
@@ -130,10 +124,10 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] team in
                 guard let strongSelf = self else { return }
-                strongSelf.teamNameLabel.stringValue = team.name ?? ""
+                strongSelf.mainView.teamNameLabel.stringValue = team.name ?? ""
                 }, onError: { [weak self] error in
                     guard let strongSelf = self else { return }
-                    strongSelf.teamNameLabel.stringValue = "Error"
+                    strongSelf.mainView.teamNameLabel.stringValue = "Error"
                 }, onCompleted: {
                     print("Completed")
             }).disposed(by: disposeBag)
@@ -156,7 +150,7 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] team in
                 guard let strongSelf = self else { return }
-                strongSelf.teamNameLabel.stringValue = teamName
+                strongSelf.mainView.teamNameLabel.stringValue = teamName
                 strongSelf.saveTeam(teamIcon: team.icon!, teamName: teamName, token: token)
                 }, onError: { [weak self] error in
                     guard let strongSelf = self else { return }
@@ -171,7 +165,7 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
     private func saveTeam(teamIcon: String, teamName: String, token: String) {
         save(teamIcon: teamIcon, teamName: teamName, token: token) {
             teamDataProvider?.set(items: $0)
-            collectionView.reloadData()
+            mainView.collectionView.reloadData()
         }
     }
 }
@@ -209,5 +203,18 @@ extension SafariExtensionViewController: TeamCollectionViewDataProviderDelegate 
         API.sharedInstance.set(token: token)
         presenter = Presenter()
         getAllChannels()
+    }
+}
+
+extension SafariExtensionViewController: SafariExtensionViewDelegate {
+    func didTapOnSendMessage() {
+        guard !mainView.messageField.stringValue.isEmpty else { return }
+        guard let selected = channelDataProvider?.getItem(at: mainView.tableView.selectedRow) else { return }
+        let type = checkChannel(type: selected)
+        send(message: mainView.messageField.stringValue, toChannel: selected.name, withType: type)
+    }
+    
+    func didTapOnAddTeam() {
+        showAddTeamView()
     }
 }
