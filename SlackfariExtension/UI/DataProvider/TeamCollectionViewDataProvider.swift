@@ -17,11 +17,15 @@ protocol TeamCollectionViewDataProviderDelegate: class {
 
 class TeamCollectionViewDataProvider: NSObject {
     static let numberOfSections = 1
-    static let itemId = "CollectionViewItem"
+    static let itemId = "TeamCollectionViewItem"
     
     weak var delegate: TeamCollectionViewDataProviderDelegate?
     
-    fileprivate var items = [[String: String]]()
+    fileprivate var items = [[String: String]]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     private var collectionView: NSCollectionView
     
     init(collectionView: NSCollectionView) {
@@ -52,15 +56,15 @@ extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollecti
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         let item = collectionView.makeItem(withIdentifier: TeamCollectionViewDataProvider.itemId, for: indexPath)
-        guard let collectionViewItem = item as? CollectionViewItem else { return item }
+        guard let collectionViewItem = item as? TeamCollectionViewItem else { return item }
         
-        collectionViewItem.nameLabel?.stringValue = items[indexPath.item]["name"]!
+        collectionViewItem.teamCellView.nameField.stringValue = items[indexPath.item]["name"]!
         
         let imageURL = items[indexPath.item]["image"]!
         
         Alamofire.request(imageURL).responseImage { response in
             if let image = response.result.value {
-                collectionViewItem.teamImageView.image = image
+                collectionViewItem.teamCellView.imageView.image = image
             }
         }
         return item
