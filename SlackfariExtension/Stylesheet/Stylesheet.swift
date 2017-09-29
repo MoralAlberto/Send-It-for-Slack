@@ -15,6 +15,7 @@ enum Color {
     case mainBlue
     case white
     case black
+    case clear
 }
 
 enum Font {
@@ -50,15 +51,17 @@ struct Stylesheet: Stylesheetable {
     static func color(_ color: Color) -> NSColor {
         switch color {
         case .mainGray:
-            return NSColor(colorLiteralRed: 144/255.0, green: 146/255.0, blue: 165/255.0, alpha: 1.0)
+            return NSColor(red: 144/255.0, green: 146/255.0, blue: 165/255.0, alpha: 1.0)
         case .mainLightGray:
-            return NSColor(colorLiteralRed: 247/255.0, green: 247/255.0, blue: 247/255.0, alpha: 1.0)
+            return NSColor(red: 247/255.0, green: 247/255.0, blue: 247/255.0, alpha: 1.0)
         case .mainBlue:
-            return NSColor(colorLiteralRed: 49/255.0, green: 165/255.0, blue: 236/255.0, alpha: 1.0)
+            return NSColor(red: 49/255.0, green: 165/255.0, blue: 236/255.0, alpha: 1.0)
         case .white:
             return NSColor.white
         case .black:
             return NSColor.black
+        case .clear:
+            return NSColor.clear
         }
     }
     
