@@ -39,7 +39,7 @@ class SafariExtensionView: NSView {
         
         let column = NSTableColumn(identifier: "column")
         table.headerView = nil
-        column.width = 200
+        column.width = 1
         table.addTableColumn(column)
         return table
     }()
@@ -56,6 +56,8 @@ class SafariExtensionView: NSView {
     var messageField: NSTextField = {
         let textField = NSTextField()
         textField.isBordered = false
+        textField.isHighlighted = false
+        textField.focusRingType = .none
         textField.placeholderString = "Message to send"
         return textField
     }()
@@ -97,10 +99,10 @@ class SafariExtensionView: NSView {
     
     private func addConstraints() {
         constrain(teamNameLabel, messageField, scrollViewTableView, sendButton) { teamNameLabel, messageField, scrollViewTableView, sendButton in
-            messageField.leading == messageField.superview!.leading
-            messageField.trailing == messageField.superview!.trailing
+            messageField.leading == messageField.superview!.leading + Stylesheet.margin(.small)
+            messageField.trailing == messageField.superview!.trailing - Stylesheet.margin(.small)
             messageField.top == sendButton.bottom + Stylesheet.margin(.medium)
-            messageField.height == 40
+            messageField.height == Configuration.MessageField.height
             
             scrollViewTableView.top == messageField.bottom + Stylesheet.margin(.medium)
         }
@@ -117,22 +119,22 @@ class SafariExtensionView: NSView {
             tableView.leading == tableView.superview!.leading
             tableView.trailing == tableView.superview!.trailing
             tableView.bottom == tableView.superview!.bottom
-            tableView.height == 400
-            tableView.width == 400
+            tableView.height == Configuration.Screen.height
+            tableView.width == Configuration.Screen.width
             
-            scrollViewTableView.leading == scrollViewTableView.superview!.leading
-            scrollViewTableView.trailing == scrollViewTableView.superview!.trailing
-            scrollViewTableView.bottom == scrollViewCollectionView.top
+            scrollViewTableView.leading == scrollViewTableView.superview!.leading + Stylesheet.margin(.small)
+            scrollViewTableView.trailing == scrollViewTableView.superview!.trailing - Stylesheet.margin(.small)
+            scrollViewTableView.bottom == scrollViewCollectionView.top - Stylesheet.margin(.small)
         }
         
         constrain(scrollViewCollectionView, addButton) { scrollViewCollectionView, addButton in
             addButton.bottom == addButton.superview!.bottom - Stylesheet.margin(.medium)
             addButton.trailing == addButton.superview!.trailing - Stylesheet.margin(.medium)
             
-            scrollViewCollectionView.bottom == scrollViewCollectionView.superview!.bottom
-            scrollViewCollectionView.leading == scrollViewCollectionView.superview!.leading
-            scrollViewCollectionView.trailing == addButton.leading - Stylesheet.margin(.medium)
-            scrollViewCollectionView.height == 50
+            scrollViewCollectionView.bottom == scrollViewCollectionView.superview!.bottom - Stylesheet.margin(.small)
+            scrollViewCollectionView.leading == scrollViewCollectionView.superview!.leading + Stylesheet.margin(.small)
+            scrollViewCollectionView.trailing == addButton.leading - Stylesheet.margin(.medium) - Stylesheet.margin(.small)
+            scrollViewCollectionView.height == Configuration.TeamCollectionView.height
         }
     }
     
