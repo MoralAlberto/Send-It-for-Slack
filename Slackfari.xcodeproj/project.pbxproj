@@ -40,6 +40,7 @@
 		39F128CD1F7E480F004A2493 /* AddTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F128C91F7E478F004A2493 /* AddTeamView.swift */; };
 		39F128CE1F7E4812004A2493 /* TeamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F128CB1F7E47BA004A2493 /* TeamCellView.swift */; };
 		39F128CF1F7E4814004A2493 /* TeamCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F128CC1F7E47BA004A2493 /* TeamCollectionViewItem.swift */; };
+		39F128D21F7E70BC004A2493 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F128D11F7E70BC004A2493 /* Configuration.swift */; };
 		39FCC6321F4B5E1100B98C31 /* ChannelTableViewDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39FCC6311F4B5E1100B98C31 /* ChannelTableViewDataProvider.swift */; };
 		60E5750947E64543DC246DD4 /* Pods_Slackfari.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F3A3AB929B9FD07A94831E /* Pods_Slackfari.framework */; };
 		A54C0664296B4F18643C4358 /* Pods_SlackfariTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E5AD7DB224EB1185612F98 /* Pods_SlackfariTests.framework */; };
@@ -127,6 +128,7 @@
 		39F128C91F7E478F004A2493 /* AddTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTeamView.swift; sourceTree = "<group>"; };
 		39F128CB1F7E47BA004A2493 /* TeamCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCellView.swift; sourceTree = "<group>"; };
 		39F128CC1F7E47BA004A2493 /* TeamCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewItem.swift; sourceTree = "<group>"; };
+		39F128D11F7E70BC004A2493 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		39FCC6311F4B5E1100B98C31 /* ChannelTableViewDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewDataProvider.swift; sourceTree = "<group>"; };
 		580D57991675FB42EA12B22F /* Pods-Slackfari.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slackfari.release.xcconfig"; path = "Pods/Target Support Files/Pods-Slackfari/Pods-Slackfari.release.xcconfig"; sourceTree = "<group>"; };
 		5932746A3300289464BE5D52 /* Pods-SlackfariUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlackfariUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SlackfariUITests/Pods-SlackfariUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				39275A1A1F43693300BF003C /* SafariExtensionHandler.swift */,
+				39F128D01F7E70B2004A2493 /* Configuration */,
 				391476351F5B3AFC00DFB2FB /* Stylesheet */,
 				394F825B1F44E5C500C377C3 /* UI */,
 				399D4BC41F5A975A002D7893 /* Helpers */,
@@ -371,6 +374,14 @@
 				39F128CC1F7E47BA004A2493 /* TeamCollectionViewItem.swift */,
 			);
 			path = TeamViewItem;
+			sourceTree = "<group>";
+		};
+		39F128D01F7E70B2004A2493 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				39F128D11F7E70BC004A2493 /* Configuration.swift */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		39FCC6301F4B5E0700B98C31 /* DataProvider */ = {
@@ -807,6 +818,7 @@
 				399D4BC61F5A977D002D7893 /* Array+Dictionary.swift in Sources */,
 				399D4BC81F5A9932002D7893 /* TeamCollectionViewDataProvider.swift in Sources */,
 				3940478A1F4A08B300133098 /* GroupViewModel+Group.swift in Sources */,
+				39F128D21F7E70BC004A2493 /* Configuration.swift in Sources */,
 				39F128CE1F7E4812004A2493 /* TeamCellView.swift in Sources */,
 				391476371F5B3B3D00DFB2FB /* Stylesheet.swift in Sources */,
 			);

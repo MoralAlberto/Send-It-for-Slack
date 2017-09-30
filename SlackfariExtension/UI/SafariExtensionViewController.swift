@@ -95,7 +95,6 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
             .subscribe(onNext: { [weak self] users in
                 guard let strongSelf = self else { return }
                 strongSelf.buildUsersViewModel(users: users)
-                strongSelf.mainView.tableView.reloadData()
             }, onError: { error in
                 print("Error \(error)")
             }).disposed(by: disposeBag)
@@ -105,7 +104,6 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
             .subscribe(onNext: { [weak self] channels in
                 guard let strongSelf = self else { return }
                 strongSelf.buildChannelsViewModel(channels: channels)
-                strongSelf.mainView.tableView.reloadData()
                 }, onError: { error in
                     print("Error \(error)")
             }).disposed(by: disposeBag)
@@ -115,7 +113,6 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
             .subscribe(onNext: { [weak self] groups in
                 guard let strongSelf = self else { return }
                 strongSelf.buildGroupsViewModel(groups: groups)
-                strongSelf.mainView.tableView.reloadData()
                 }, onError: { error in
                     print("Error \( error)")
             }).disposed(by: disposeBag)
@@ -165,7 +162,6 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
     private func saveTeam(teamIcon: String, teamName: String, token: String) {
         save(teamIcon: teamIcon, teamName: teamName, token: token) {
             teamDataProvider?.set(items: $0)
-            mainView.collectionView.reloadData()
         }
     }
 }
