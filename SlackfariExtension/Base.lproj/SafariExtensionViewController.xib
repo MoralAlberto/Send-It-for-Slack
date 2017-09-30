@@ -12,6 +12,7 @@
                 <outlet property="buttonSend" destination="ioh-V4-enG" id="in8-Lk-mzO"/>
                 <outlet property="collectionView" destination="7pp-bb-esY" id="2RM-SO-teQ"/>
                 <outlet property="tableView" destination="TTF-g7-hNo" id="shu-v7-vQe"/>
+                <outlet property="teamNameLabel" destination="MNj-9i-uC4" id="VkP-2t-oro"/>
                 <outlet property="view" destination="c22-O7-iKe" id="vwT-Xx-Aiz"/>
             </connections>
         </customObject>
@@ -22,8 +23,8 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4Iy-aV-wGF">
-                    <rect key="frame" x="13" y="190" width="57" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Slackfari" id="2Ec-kd-q2K">
+                    <rect key="frame" x="9" y="190" width="66" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Slackfari -" id="2Ec-kd-q2K">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -145,6 +146,17 @@
                         <action selector="sendMessage:" target="-2" id="ywj-FK-fjS"/>
                     </connections>
                 </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MNj-9i-uC4">
+                    <rect key="frame" x="76" y="190" width="172" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="168" id="ZL5-cB-3pf"/>
+                    </constraints>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Team Name" id="fIN-0d-dn2">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
                 <constraint firstItem="4Iy-aV-wGF" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="10" id="0JV-9z-wG6"/>
@@ -157,11 +169,14 @@
                 <constraint firstItem="ioh-V4-enG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" symbolic="YES" id="PHs-fH-Bwm"/>
                 <constraint firstItem="ioh-V4-enG" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="9" id="PpQ-wJ-F5N"/>
                 <constraint firstItem="h5f-jA-dmo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" symbolic="YES" id="SF2-Hk-Oc2"/>
+                <constraint firstItem="ioh-V4-enG" firstAttribute="leading" secondItem="MNj-9i-uC4" secondAttribute="trailing" constant="13" id="XVg-OK-c0S"/>
                 <constraint firstAttribute="trailing" secondItem="xkh-ik-0Tj" secondAttribute="trailing" id="a0e-5S-HgI"/>
                 <constraint firstAttribute="trailing" secondItem="h5f-jA-dmo" secondAttribute="trailing" constant="4" id="boV-Qd-cgV"/>
                 <constraint firstItem="xkh-ik-0Tj" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="cer-K7-CfM"/>
+                <constraint firstItem="MNj-9i-uC4" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="10" id="fLs-VV-k2I"/>
                 <constraint firstItem="2YI-5J-N3k" firstAttribute="top" secondItem="4Iy-aV-wGF" secondAttribute="bottom" constant="8" id="jUv-w3-hX6"/>
                 <constraint firstItem="nR6-69-hBK" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="nhO-ud-dv1"/>
+                <constraint firstItem="2YI-5J-N3k" firstAttribute="top" secondItem="MNj-9i-uC4" secondAttribute="bottom" constant="8" id="slb-tU-3Jw"/>
             </constraints>
             <point key="canvasLocation" x="-288" y="109.5"/>
         </customView>

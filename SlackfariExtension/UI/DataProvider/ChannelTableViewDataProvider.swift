@@ -10,8 +10,15 @@ import Foundation
 import Cocoa
 
 class ChannelTableViewDataProvider: NSObject {
+    static let column = "column"
+    static let heightOfRow: CGFloat = 26
     
-    fileprivate var items: [Channelable] = [Channelable]()
+    fileprivate var items: [Channelable] = [Channelable]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     private var tableView: NSTableView
     
     init(tableView: NSTableView) {
@@ -35,24 +42,30 @@ class ChannelTableViewDataProvider: NSObject {
     }
 }
 
-extension ChannelTableViewDataProvider: NSTableViewDataSource, NSTableViewDelegate {
+extension ChannelTableViewDataProvider: NSTableViewDelegate, NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         return items.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let cellIdentifier = "NameCellID"
         
-        if let cell = tableView.make(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView {
-            let item = items[row]
-            let name = item.name
-            cell.textField?.stringValue = name
-            return cell
-        }
-        return nil
+        guard tableColumn?.identifier == ChannelTableViewDataProvider.column else { fatalError() }
+
+        let item = items[row]
+        let name = item.name
+        
+        let view = NSTextField(string: name)
+        view.isEditable = false
+        view.isBordered = false
+        view.backgroundColor = Stylesheet.color(.clear)
+        return view
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return 26
+        return ChannelTableViewDataProvider.heightOfRow
+    }
+    
+    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        return true
     }
 }

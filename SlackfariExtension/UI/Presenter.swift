@@ -17,7 +17,6 @@ enum MessageType {
 }
 
 class Presenter {
-    
     fileprivate let getChannelsUseCase: ChannelsListUseCaseProtocol
     fileprivate let getUsersUseCase: UsersListUseCaseProtocol
     fileprivate let getGroupsUseCase: GroupsListUseCaseProtocol

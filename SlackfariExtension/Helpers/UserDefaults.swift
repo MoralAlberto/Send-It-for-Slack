@@ -8,14 +8,15 @@
 
 import Foundation
 
-typealias UserDefaultTeam = [[String: String]]
+typealias UserDefaultTeams = [[String: String]]
+typealias UserDefaultTeam = [String: String]
 
 struct SlackUserDefaultTeam {
     static let key = "teams"
 }
 
-func save(teamIcon: String, teamName: String, token: String, refresh: (UserDefaultTeam) -> ()) {
-    guard var teams = UserDefaults.standard.array(forKey: SlackUserDefaultTeam.key) as? [[String: String]] else {
+func save(teamIcon: String, teamName: String, token: String, refresh: (UserDefaultTeams) -> ()) {
+    guard var teams = UserDefaults.standard.array(forKey: SlackUserDefaultTeam.key) as? UserDefaultTeams else {
         UserDefaults.standard.saveTeam(value: [["name": teamName, "token": token, "image": teamIcon]])
         refresh([["name": teamName, "token": token, "image": teamIcon]])
         return
@@ -23,7 +24,7 @@ func save(teamIcon: String, teamName: String, token: String, refresh: (UserDefau
     
     if !arrayContains(array: teams, key: "name", value: teamName) {
         teams.append(["name": teamName, "token": token, "image": teamIcon])
-        UserDefaults.standard.saveTeam(value: [["name": teamName, "token": token, "image": teamIcon]])
+        UserDefaults.standard.saveTeam(value: teams)
     }
     refresh(teams)
 }
@@ -31,8 +32,15 @@ func save(teamIcon: String, teamName: String, token: String, refresh: (UserDefau
 // MARK: User Defaults Extension
 
 extension UserDefaults {
-    func saveTeam(value: UserDefaultTeam) {
+    func saveTeam(value: UserDefaultTeams) {
         UserDefaults.standard.set(value, forKey: SlackUserDefaultTeam.key)
         UserDefaults.standard.synchronize()
+    }
+    
+    func getTeam() -> UserDefaultTeam? {
+        guard let teams = UserDefaults.standard.array(forKey: SlackUserDefaultTeam.key) as? UserDefaultTeams, let firstTeam = teams.first else {
+            return nil
+        }
+        return firstTeam
     }
 }
