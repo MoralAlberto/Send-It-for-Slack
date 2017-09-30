@@ -25,6 +25,7 @@ enum Font {
 }
 
 enum Margin {
+    case smallest
     case small
     case medium
     case big
@@ -67,6 +68,8 @@ struct Stylesheet: Stylesheetable {
     
     static func margin(_ font: Margin) -> CGFloat {
         switch font {
+        case .smallest:
+            return 1
         case .small:
             return 4
         case .medium:
