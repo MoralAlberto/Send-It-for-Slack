@@ -53,6 +53,16 @@ class SafariExtensionView: NSView {
         return textField
     }()
     
+    var notificationLabel: NSTextField = {
+        let textField = NSTextField()
+        textField.isBordered = false
+        textField.isEditable = false
+        textField.stringValue = "Last message sent to: "
+        textField.font = NSFont.systemFont(ofSize: 10)
+        textField.backgroundColor = Stylesheet.color(.clear)
+        return textField
+    }()
+    
     var messageField: NSTextField = {
         let textField = NSTextField()
         textField.isBordered = false
@@ -89,19 +99,21 @@ class SafariExtensionView: NSView {
     private func addSubviews() {
         scrollViewTableView.documentView = tableView
         scrollViewCollectionView.documentView = collectionView
-        addSubview(scrollViewTableView)
-        addSubview(scrollViewCollectionView)
-        addSubview(teamNameLabel)
-        addSubview(sendButton)
-        addSubview(addButton)
-        addSubview(messageField)
+        
+        [scrollViewTableView, scrollViewCollectionView, teamNameLabel, sendButton, addButton, messageField, notificationLabel].forEach(addSubview)
     }
     
     private func addConstraints() {
-        constrain(teamNameLabel, messageField, scrollViewTableView, sendButton) { teamNameLabel, messageField, scrollViewTableView, sendButton in
+        constrain(teamNameLabel, messageField, scrollViewTableView, sendButton, notificationLabel) { teamNameLabel, messageField, scrollViewTableView, sendButton, notificationLabel in
+            
+            notificationLabel.top == teamNameLabel.bottom + Stylesheet.margin(.small)
+            notificationLabel.leading == teamNameLabel.leading
+            notificationLabel.trailing == teamNameLabel.trailing
+            notificationLabel.height == 20
+            
             messageField.leading == messageField.superview!.leading + Stylesheet.margin(.small)
             messageField.trailing == messageField.superview!.trailing - Stylesheet.margin(.small)
-            messageField.top == sendButton.bottom + Stylesheet.margin(.medium)
+            messageField.top == notificationLabel.bottom + Stylesheet.margin(.small)
             messageField.height == Configuration.MessageField.height
             
             scrollViewTableView.top == messageField.bottom + Stylesheet.margin(.medium)
@@ -109,11 +121,12 @@ class SafariExtensionView: NSView {
         
         constrain(teamNameLabel, sendButton, tableView, scrollViewTableView, scrollViewCollectionView) { teamNameLabel, sendButton, tableView, scrollViewTableView, scrollViewCollectionView in
             teamNameLabel.centerY == sendButton.centerY
-            teamNameLabel.leading == teamNameLabel.superview!.leading
+            teamNameLabel.leading == teamNameLabel.superview!.leading + Stylesheet.margin(.medium)
             teamNameLabel.trailing == sendButton.leading
             
             sendButton.top == sendButton.superview!.top + Stylesheet.margin(.medium)
             sendButton.trailing == sendButton.superview!.trailing - Stylesheet.margin(.medium)
+            sendButton.width == 60
             
             tableView.top == tableView.superview!.top + Stylesheet.margin(.big)
             tableView.leading == tableView.superview!.leading

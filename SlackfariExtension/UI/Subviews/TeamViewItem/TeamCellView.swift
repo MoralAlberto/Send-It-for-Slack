@@ -12,7 +12,24 @@ class TeamCellView: NSView {
         textField.backgroundColor = Stylesheet.color(.white)
         textField.isBordered = false
         textField.isEditable = false
+        textField.font = NSFont.systemFont(ofSize: 10)
         textField.alignment = .center
+        return textField
+    }()
+    
+    lazy var deleteTeam: NSTextField = {        
+        let textField = NSTextField()
+        textField.backgroundColor = Stylesheet.color(.mainLightGray)
+        textField.isBordered = false
+        textField.isEditable = false
+        textField.font = NSFont.systemFont(ofSize: 6)
+        textField.alignment = .center
+        textField.stringValue = "x"
+        
+        let gesture = NSClickGestureRecognizer(target: self, action: #selector(delete))
+        gesture.numberOfClicksRequired = 1
+        textField.addGestureRecognizer(gesture)
+        
         return textField
     }()
     
@@ -26,7 +43,7 @@ class TeamCellView: NSView {
     }
     
     func setup() {
-        [imageView, nameField].forEach(addSubview)
+        [imageView, nameField, deleteTeam].forEach(addSubview)
 
         constrain(imageView) { imageView in
             imageView.leading == imageView.superview!.leading
@@ -35,11 +52,18 @@ class TeamCellView: NSView {
             imageView.top == imageView.superview!.top
         }
         
-        constrain(nameField) { nameField in
+        constrain(nameField, deleteTeam) { nameField, deleteTeam in
             nameField.leading == nameField.superview!.leading
             nameField.trailing == nameField.superview!.trailing
             nameField.bottom == nameField.superview!.bottom
+            
+            deleteTeam.top == deleteTeam.superview!.top
+            deleteTeam.trailing == deleteTeam.superview!.trailing
         }
+    }
+    
+    func delete() {
+        Swift.print("Delete team")
     }
 }
 

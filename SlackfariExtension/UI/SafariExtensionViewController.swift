@@ -12,25 +12,20 @@ import RxSwift
 import Cartography
 
 class SafariExtensionViewController: SFSafariExtensionViewController {
-    
     static let shared = SafariExtensionViewController()
 
     var mainView: SafariExtensionView { return self.view as! SafariExtensionView }
+    var url: String? { didSet { mainView.messageField.stringValue = self.url! } }
+    var addTeamView = AddTeamView()
     
-    fileprivate var presenter: Presenter?
+    fileprivate var presenter: SafariExtensionPresenter?
+    fileprivate var channelDataProvider: ChannelTableViewDataProvider?
+    fileprivate var teamDataProvider: TeamCollectionViewDataProvider?
     fileprivate let disposeBag = DisposeBag()
     
     let constraintGroup = ConstraintGroup()
     
-    var url: String? { didSet { mainView.messageField.stringValue = self.url! } }
-    var channelDataProvider: ChannelTableViewDataProvider?
-    var teamDataProvider: TeamCollectionViewDataProvider?
-    
-    lazy var addTeamView: AddTeamView = {
-        let addTeam = AddTeamView()
-        addTeam.delegate = self
-        return addTeam
-    }()
+    // MARK: View Controller lifecycle
     
     override func loadView() {
         view = SafariExtensionView()
@@ -39,20 +34,26 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.delegate = self
+        addTeamView.delegate = self
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        configureTableView()
-        configureCollectionView()
+        configureView()
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
         guard let team = UserDefaults.standard.getTeam(), let token = team["token"] else { return }
-        API.sharedInstance.set(token: token)
-        presenter = Presenter()
+        setup(token: token)
         getAllChannels()
+    }
+    
+    // MARK: Configure Table View and Collection View providers
+    
+    private func configureView() {
+        configureTableView()
+        configureCollectionView()
     }
     
     private func configureTableView() {
@@ -68,6 +69,13 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
         teamDataProvider?.set(items: teams)
     }
     
+    fileprivate func setup(token: String) {
+        API.sharedInstance.set(token: token)
+        presenter = SafariExtensionPresenter()
+    }
+    
+    // MARK: Send Message
+    
     fileprivate func checkChannel(type: Channelable) -> MessageType {
         if type is ChannelViewModel {
             return .channel
@@ -79,14 +87,18 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     }
     
     fileprivate func send(message: String, toChannel channel: String, withType type: MessageType) {
-        presenter?.send(message: message, channel: channel, type: type).subscribe(onNext: { isSent in
-            print("message sent")
-        }, onError: { (error) in
-            print("Error \(error)")
+        presenter?.send(message: message, channel: channel, type: type)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isSent in
+                guard let strongSelf = self else { return }
+                strongSelf.mainView.notificationLabel.stringValue = "Last message sent to: \(channel)"
+                }, onError: { [weak self] error in
+                    guard let strongSelf = self else { return }
+                    strongSelf.mainView.notificationLabel.stringValue = "Error trying to send the message"
         }).disposed(by: disposeBag)
     }
     
-    // MARK: Get team's information
+    // MARK: Get Slack Data
     
     fileprivate func getAllChannels() {
         guard let presenter = presenter else { return }
@@ -140,8 +152,7 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
     
     func didTapOnAddTeamButton(teamName: String, token: String) {
         let saveTemporalToken = API.sharedInstance.getToken()
-        API.sharedInstance.set(token: token)
-        presenter = Presenter()
+        setup(token: token)
         
         presenter?.getTeamInfo()
             .observeOn(MainScheduler.instance)
@@ -151,9 +162,7 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
                 strongSelf.saveTeam(teamIcon: team.icon!, teamName: teamName, token: token)
                 }, onError: { [weak self] error in
                     guard let strongSelf = self else { return }
-                    print("Error \(error)")
-                    API.sharedInstance.set(token: saveTemporalToken ?? "")
-                    strongSelf.presenter = Presenter()
+                    strongSelf.setup(token: saveTemporalToken ?? "")
             }, onCompleted: {
                 print("Completed")
             }).disposed(by: disposeBag)
@@ -196,8 +205,7 @@ extension SafariExtensionViewController: TeamCollectionViewDataProviderDelegate 
         guard let dataProvider = channelDataProvider else { return }
         dataProvider.removeItems()
         
-        API.sharedInstance.set(token: token)
-        presenter = Presenter()
+        setup(token: token)
         getAllChannels()
     }
 }

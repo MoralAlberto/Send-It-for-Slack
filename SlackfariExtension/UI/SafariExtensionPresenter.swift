@@ -16,7 +16,7 @@ enum MessageType {
     case channel
 }
 
-class Presenter {
+class SafariExtensionPresenter {
     fileprivate let getChannelsUseCase: ChannelsListUseCaseProtocol
     fileprivate let getUsersUseCase: UsersListUseCaseProtocol
     fileprivate let getGroupsUseCase: GroupsListUseCaseProtocol
