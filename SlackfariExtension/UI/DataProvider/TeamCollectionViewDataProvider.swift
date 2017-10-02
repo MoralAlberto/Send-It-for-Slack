@@ -27,7 +27,7 @@ class TeamCollectionViewDataProvider: NSObject {
         }
     }
     private var collectionView: NSCollectionView
-    
+        
     init(collectionView: NSCollectionView) {
         self.collectionView = collectionView
         super.init()
@@ -82,6 +82,12 @@ extension TeamCollectionViewDataProvider: TeamCollectionViewItemDelegate {
         UserDefaults.standard.removeTeam(withName: name) { [weak self] position  in
             guard let strongSelf = self else { return }
             strongSelf.items.remove(at: position)
+            if strongSelf.items.count > 0 {
+                let token = strongSelf.items.first?["token"]
+                strongSelf.delegate?.didTapOnTeam(withToken: token!)
+            } else {
+                strongSelf.items = [[String: String]]()
+            }
         }
     }
 }

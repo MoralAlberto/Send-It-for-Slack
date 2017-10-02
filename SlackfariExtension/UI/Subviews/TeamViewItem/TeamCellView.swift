@@ -16,6 +16,7 @@ class TeamCellView: NSView {
     let nameField: NSTextField = {
         let textField = NSTextField()
         textField.backgroundColor = Stylesheet.color(.white)
+        textField.maximumNumberOfLines = 1
         textField.isBordered = false
         textField.isEditable = false
         textField.font = NSFont.systemFont(ofSize: 10)

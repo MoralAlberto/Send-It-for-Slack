@@ -169,8 +169,11 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
     }
     
     private func saveTeam(teamIcon: String, teamName: String, token: String) {
-        save(teamIcon: teamIcon, teamName: teamName, token: token) {
-            teamDataProvider?.set(items: $0)
+        save(teamIcon: teamIcon, teamName: teamName, token: token) { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.teamDataProvider?.set(items: $0)
+            strongSelf.addTeamView.removeFromSuperview()
+            strongSelf.didTapOnTeam(withToken: token)
         }
     }
 }
