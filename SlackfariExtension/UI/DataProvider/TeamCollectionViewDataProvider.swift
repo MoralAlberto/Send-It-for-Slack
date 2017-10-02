@@ -59,6 +59,7 @@ extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollecti
         guard let collectionViewItem = item as? TeamCollectionViewItem else { return item }
         
         collectionViewItem.teamCellView.nameField.stringValue = items[indexPath.item]["name"]!
+        collectionViewItem.delegate = self
         
         let imageURL = items[indexPath.item]["image"]!
         
@@ -73,5 +74,14 @@ extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollecti
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         let token = items[(indexPaths.first?.item)!]["token"]
         delegate?.didTapOnTeam(withToken: token!)
+    }
+}
+
+extension TeamCollectionViewDataProvider: TeamCollectionViewItemDelegate {
+    func didTapOnRemoveTeam(withName name: String) {
+        UserDefaults.standard.removeTeam(withName: name) { [weak self] position  in
+            guard let strongSelf = self else { return }
+            strongSelf.items.remove(at: position)
+        }
     }
 }

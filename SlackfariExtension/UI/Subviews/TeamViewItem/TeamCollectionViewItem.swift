@@ -10,11 +10,18 @@ import Foundation
 import Cocoa
 import Cartography
 
+protocol TeamCollectionViewItemDelegate: class {
+    func didTapOnRemoveTeam(withName name: String)
+}
+
 class TeamCollectionViewItem: NSCollectionViewItem {
+    weak var delegate: TeamCollectionViewItemDelegate?
+    
     let teamCellView = TeamCellView(frame: .zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        teamCellView.delegate = self
         view.wantsLayer = true
         view.layer?.backgroundColor = Stylesheet.color(.white).cgColor
     }
@@ -32,5 +39,11 @@ class TeamCollectionViewItem: NSCollectionViewItem {
         super.prepareForReuse()
         teamCellView.name = nil
         teamCellView.imageView.image = nil
+    }
+}
+
+extension TeamCollectionViewItem: TeamCellViewDelegate {
+    func didTapOnRemoveTeam(withName name: String) {
+        delegate?.didTapOnRemoveTeam(withName: name)
     }
 }

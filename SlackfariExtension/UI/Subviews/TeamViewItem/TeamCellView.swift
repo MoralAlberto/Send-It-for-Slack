@@ -4,7 +4,13 @@ import Cartography
 import Alamofire
 import AlamofireImage
 
+protocol TeamCellViewDelegate: class {
+    func didTapOnRemoveTeam(withName name: String)
+}
+
 class TeamCellView: NSView {
+    weak var delegate: TeamCellViewDelegate?
+    
     let imageView: NSImageView = NSImageView()
     
     let nameField: NSTextField = {
@@ -63,7 +69,8 @@ class TeamCellView: NSView {
     }
     
     func delete() {
-        Swift.print("Delete team")
+        guard let name = name else { return }
+        delegate?.didTapOnRemoveTeam(withName: name)
     }
 }
 
