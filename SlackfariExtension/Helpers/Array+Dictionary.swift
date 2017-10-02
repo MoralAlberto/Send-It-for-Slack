@@ -1,8 +1,8 @@
 
-func arrayContains(array: [[String:String]], key: String, value: String) -> (hasKey: Bool, position: Int?) {
+func arrayContains(teams: [TeamModel], value: String) -> (hasKey: Bool, position: Int?) {
     var index = 0
-    for dict in array {
-        if dict[key] == value {
+    for team in teams {
+        if team.name == value {
             return (true, index)
         }
         index += 1

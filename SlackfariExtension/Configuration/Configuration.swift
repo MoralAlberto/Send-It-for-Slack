@@ -22,4 +22,7 @@ class Configuration {
     struct MessageField {
         static let height: CGFloat = 40
     }
+//    struct Teams {
+//        static let value = "teams"
+//    }
 }

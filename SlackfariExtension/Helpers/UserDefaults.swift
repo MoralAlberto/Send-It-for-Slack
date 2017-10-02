@@ -8,22 +8,26 @@
 
 import Foundation
 
-typealias UserDefaultTeams = [[String: String]]
-typealias UserDefaultTeam = [String: String]
+//typealias UserDefaultTeams = [[String: String]]
+//typealias UserDefaultTeam = [String: String]
 
 struct SlackUserDefaultTeam {
     static let key = "teams"
 }
 
-func save(teamIcon: String, teamName: String, token: String, refresh: (UserDefaultTeams) -> ()) {
-    guard var teams = UserDefaults.standard.array(forKey: SlackUserDefaultTeam.key) as? UserDefaultTeams else {
-        UserDefaults.standard.saveTeam(value: [["name": teamName, "token": token, "image": teamIcon]])
-        refresh([["name": teamName, "token": token, "image": teamIcon]])
-        return
+func save(teamIcon: String, teamName: String, token: String, refresh: ([TeamModel]) -> ()) {
+    guard let decodedTeams = UserDefaults.standard.value(forKey: SlackUserDefaultTeam.key) as? Data,
+        var teams = NSKeyedUnarchiver.unarchiveObject(with: decodedTeams) as? [TeamModel]
+        else {
+            let team = TeamModel(name: teamName, token: token, imageIcon: teamIcon)
+            UserDefaults.standard.saveTeam(value: [team])
+            refresh([team])
+            return
     }
     
-    if !arrayContains(array: teams, key: "name", value: teamName).0 {
-        teams.append(["name": teamName, "token": token, "image": teamIcon])
+    let team = TeamModel(name: teamName, token: token, imageIcon: teamIcon)
+    if !arrayContains(teams: teams, value: teamName).0 {
+        teams.append(team)
         UserDefaults.standard.saveTeam(value: teams)
     }
     refresh(teams)
@@ -32,15 +36,18 @@ func save(teamIcon: String, teamName: String, token: String, refresh: (UserDefau
 // MARK: User Defaults Extension
 
 extension UserDefaults {
-    func saveTeam(value: UserDefaultTeams) {
-        UserDefaults.standard.set(value, forKey: SlackUserDefaultTeam.key)
+    func saveTeam(value: [TeamModel]) {
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: value)
+        UserDefaults.standard.set(encodedData, forKey: SlackUserDefaultTeam.key)
         UserDefaults.standard.synchronize()
     }
     
     func removeTeam(withName name: String, completion: @escaping (Int) -> Void) {
-        guard var teams = UserDefaults.standard.array(forKey: SlackUserDefaultTeam.key) as? UserDefaultTeams else { return }
+        guard let decodedTeams = UserDefaults.standard.value(forKey: SlackUserDefaultTeam.key) as? Data,
+            var teams = NSKeyedUnarchiver.unarchiveObject(with: decodedTeams) as? [TeamModel]
+        else { return }
         
-        let value = arrayContains(array: teams, key: "name", value: name)
+        let value = arrayContains(teams: teams, value: name)
         if value.hasKey, let position = value.position {
             teams.remove(at: position)
             UserDefaults.standard.saveTeam(value: teams)
@@ -48,10 +55,20 @@ extension UserDefaults {
         }
     }
     
-    func getTeam() -> UserDefaultTeam? {
-        guard let teams = UserDefaults.standard.array(forKey: SlackUserDefaultTeam.key) as? UserDefaultTeams, let firstTeam = teams.first else {
+    func getTeam() -> TeamModel? {
+        guard let decodedTeams = UserDefaults.standard.value(forKey: SlackUserDefaultTeam.key) as? Data,
+            let teams = NSKeyedUnarchiver.unarchiveObject(with: decodedTeams) as? [TeamModel],
+            let firstTeam = teams.first else {
             return nil
         }
         return firstTeam
+    }
+    
+    func getTeams() -> [TeamModel]? {
+        guard let decodedTeams = UserDefaults.standard.value(forKey: SlackUserDefaultTeam.key) as? Data,
+            let teams = NSKeyedUnarchiver.unarchiveObject(with: decodedTeams) as? [TeamModel] else {
+                return nil
+        }
+        return teams
     }
 }

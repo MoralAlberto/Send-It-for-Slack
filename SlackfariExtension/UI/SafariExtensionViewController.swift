@@ -44,8 +44,8 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        guard let team = UserDefaults.standard.getTeam(), let token = team["token"] else { return }
-        setup(token: token)
+        guard let team = UserDefaults.standard.getTeam() else { return }
+        setup(token: team.token)
         getAllChannels()
     }
     
@@ -63,7 +63,7 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     private func configureCollectionView() {
         teamDataProvider = TeamCollectionViewDataProvider(collectionView: mainView.collectionView)
         teamDataProvider?.delegate = self
-        guard let teams = UserDefaults.standard.array(forKey: "teams") as? UserDefaultTeams else {
+        guard let teams = UserDefaults.standard.getTeams() else {
             return
         }
         teamDataProvider?.set(items: teams)
