@@ -6,7 +6,6 @@
 //  Copyright © 2017 Alberto Moral. All rights reserved.
 //
 
-
 protocol Channelable {
     var name: String { get }
 }

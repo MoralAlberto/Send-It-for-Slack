@@ -17,7 +17,7 @@ protocol TeamCollectionViewItemDelegate: class {
 class TeamCollectionViewItem: NSCollectionViewItem {
     weak var delegate: TeamCollectionViewItemDelegate?
     
-    let teamCellView = TeamCellView(frame: .zero)
+    let teamCellView = TeamCellView()
     
     override func viewDidLoad() {
         super.viewDidLoad()

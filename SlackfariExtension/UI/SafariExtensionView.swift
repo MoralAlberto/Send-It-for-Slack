@@ -15,7 +15,7 @@ protocol SafariExtensionViewDelegate: class {
     func didTapOnAddTeam()
 }
 
-class SafariExtensionView: NSView {
+class SafariExtensionView: BaseView {
     
     weak var delegate: SafariExtensionViewDelegate?
     
@@ -82,28 +82,19 @@ class SafariExtensionView: NSView {
         return button
     }()
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        setup()
-    }
-    
-    func setup() {
+    override func setup() {
         addSubviews()
         addConstraints()
     }
     
-    private func addSubviews() {
+    override func addSubviews() {
         scrollViewTableView.documentView = tableView
         scrollViewCollectionView.documentView = collectionView
         
         [scrollViewTableView, scrollViewCollectionView, teamNameLabel, sendButton, addButton, messageField, notificationLabel].forEach(addSubview)
     }
     
-    private func addConstraints() {
+    override func addConstraints() {
         constrain(teamNameLabel, messageField, scrollViewTableView, sendButton, notificationLabel) { teamNameLabel, messageField, scrollViewTableView, sendButton, notificationLabel in
             
             notificationLabel.top == teamNameLabel.bottom + Stylesheet.margin(.small)

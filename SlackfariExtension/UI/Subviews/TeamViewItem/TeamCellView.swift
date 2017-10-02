@@ -8,7 +8,7 @@ protocol TeamCellViewDelegate: class {
     func didTapOnRemoveTeam(withName name: String)
 }
 
-class TeamCellView: NSView {
+class TeamCellView: BaseView {
     weak var delegate: TeamCellViewDelegate?
     
     let imageView: NSImageView = NSImageView()
@@ -40,18 +40,11 @@ class TeamCellView: NSView {
         return textField
     }()
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        setup()
-    }
-    
-    func setup() {
+    override func addSubviews() {
         [imageView, nameField, deleteTeam].forEach(addSubview)
-
+    }
+    
+    override func addConstraints() {
         constrain(imageView) { imageView in
             imageView.leading == imageView.superview!.leading
             imageView.trailing == imageView.superview!.trailing
