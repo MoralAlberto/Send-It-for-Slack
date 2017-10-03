@@ -1,4 +1,4 @@
-![github.gif](resources/github.pdf)
+![github.gif](resources/github.png)
 
 Slackfari is a Safari Extension to communicate quickly with your teams, written in Swift.
 
@@ -9,7 +9,7 @@ The idea behind Slackfari is to quickly send awesome posts or messages to our te
 ## Create Token
 Generate token with Slack Token Generator [Slack](https://api.slack.com/custom-integrations/legacy-tokens), you will see the next image
 
-![slack-token](resources/slack_token.png)
+![slack-token](resources/slack-token.png)
 
 **this token is mandatory in order to send message in our team**
 
