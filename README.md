@@ -1,15 +1,15 @@
-![github.gif](../resources/github.pdf)
+![github.gif](resources/github.pdf)
 
 Slackfari is a Safari Extension to communicate quickly with your teams, written in Swift.
 
 The idea behind Slackfari is to quickly send awesome posts or messages to our teams directly from Safari. Besides, I've created a small pod called [SlackWebAPIKit](https://github.com/MoralAlberto/SlackWebAPIKit) to reuse in iOS, macOS or tvOS projects.
 
-![demo.gif](../resources/demo.gif)
+![demo.gif](resources/demo.gif)
 
 ## Create Token
 Generate token with Slack Token Generator [Slack](https://api.slack.com/custom-integrations/legacy-tokens), you will see the next image
 
-![slack-token](/resources/slack_token.png)
+![slack-token](resources/slack_token.png)
 
 **this token is mandatory in order to send message in our team**
 
@@ -20,6 +20,9 @@ Generate token with Slack Token Generator [Slack](https://api.slack.com/custom-i
 - [x] Sent message to public channels
 - [x] Sent message to private channels (groups)
 - [x] Add multiple teams
+- [x] Delete team
+
+![slack-add-token.gif](resources/delete-team.gif)
 
 ##Component Libraries
 Slackfari uses **RxSwift**. Why? I love the simplicity of reactive programming.
