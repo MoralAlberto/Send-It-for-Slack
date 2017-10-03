@@ -19,9 +19,9 @@ enum Color {
 }
 
 enum Font {
-    case light
-    case bold
-    case italic
+    case small
+    case normal
+    case big
 }
 
 enum Margin {
@@ -40,12 +40,12 @@ protocol Stylesheetable {
 struct Stylesheet: Stylesheetable {
     static func font(_ font: Font) -> NSFont {
         switch font {
-        case .light:
-            return NSFont(name: "HelveticaNeue-Light", size: 20)!
-        case .bold:
-            return NSFont(name: "HelveticaNeue-Bold", size: 20)!
-        case .italic:
-            return NSFont(name: "HelveticaNeue-Italic", size: 20)!
+        case .small:
+            return NSFont.systemFont(ofSize: 6)
+        case .normal:
+            return NSFont.systemFont(ofSize: 10)
+        case .big:
+            return NSFont.systemFont(ofSize: 20)
         }
     }
     

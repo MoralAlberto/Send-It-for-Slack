@@ -1,5 +1,4 @@
-import Foundation
-import AppKit
+import Cocoa
 import Cartography
 import Alamofire
 import AlamofireImage
@@ -11,15 +10,15 @@ protocol TeamCellViewDelegate: class {
 class TeamCellView: BaseView {
     weak var delegate: TeamCellViewDelegate?
     
-    let imageView: NSImageView = NSImageView()
+    fileprivate let imageView: NSImageView = NSImageView()
     
-    let nameField: NSTextField = {
+    fileprivate let nameField: NSTextField = {
         let textField = NSTextField()
         textField.backgroundColor = Stylesheet.color(.white)
         textField.maximumNumberOfLines = 1
         textField.isBordered = false
         textField.isEditable = false
-        textField.font = NSFont.systemFont(ofSize: 10)
+        textField.font = Stylesheet.font(.normal)
         textField.alignment = .center
         return textField
     }()
@@ -29,7 +28,7 @@ class TeamCellView: BaseView {
         textField.backgroundColor = Stylesheet.color(.mainLightGray)
         textField.isBordered = false
         textField.isEditable = false
-        textField.font = NSFont.systemFont(ofSize: 6)
+        textField.font = Stylesheet.font(.small)
         textField.alignment = .center
         textField.stringValue = "x"
         
@@ -65,6 +64,11 @@ class TeamCellView: BaseView {
     func delete() {
         guard let name = name else { return }
         delegate?.didTapOnRemoveTeam(withName: name)
+    }
+    
+    func flushData() {
+        nameField.stringValue = ""
+        imageView.image = nil
     }
 }
 

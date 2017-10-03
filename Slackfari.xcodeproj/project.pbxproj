@@ -19,7 +19,6 @@
 		39275A161F43693300BF003C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39275A151F43693300BF003C /* Cocoa.framework */; };
 		39275A1B1F43693300BF003C /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39275A1A1F43693300BF003C /* SafariExtensionHandler.swift */; };
 		39275A231F43693300BF003C /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 39275A221F43693300BF003C /* script.js */; };
-		39275A251F43693300BF003C /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 39275A241F43693300BF003C /* ToolbarItemIcon.pdf */; };
 		39275A281F43693300BF003C /* SlackfariExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 39275A131F43693300BF003C /* SlackfariExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3940477F1F4A074A00133098 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3940477E1F4A074A00133098 /* UserViewModel.swift */; };
 		394047811F4A075100133098 /* ChannelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394047801F4A075100133098 /* ChannelViewModel.swift */; };
@@ -33,6 +32,7 @@
 		398B74AC1F82ABBD00879F80 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B74AB1F82ABBD00879F80 /* BaseView.swift */; };
 		398B74B01F82C45700879F80 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B74AF1F82C45700879F80 /* TeamModel.swift */; };
 		398B74B11F82C4AC00879F80 /* SafariExtensionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B74AE1F82C1F600879F80 /* SafariExtensionPresenter.swift */; };
+		398B74B81F83AB2600879F80 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 398B74B71F83AB1C00879F80 /* ToolbarItemIcon.pdf */; };
 		398DF4771F72FE20007B1649 /* SafariExtensionViewController+AddTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DF4761F72FE20007B1649 /* SafariExtensionViewController+AddTeamView.swift */; };
 		399D4BC11F5A096B002D7893 /* TeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D4BC01F5A096B002D7893 /* TeamViewModel.swift */; };
 		399D4BC31F5A0987002D7893 /* TeamViewModel+Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D4BC21F5A0987002D7893 /* TeamViewModel+Team.swift */; };
@@ -109,7 +109,6 @@
 		39275A1A1F43693300BF003C /* SafariExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionHandler.swift; sourceTree = "<group>"; };
 		39275A211F43693300BF003C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39275A221F43693300BF003C /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
-		39275A241F43693300BF003C /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 		3940477D1F49F8CF00133098 /* Slackfari.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Slackfari.entitlements; sourceTree = "<group>"; };
 		3940477E1F4A074A00133098 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		394047801F4A075100133098 /* ChannelViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewModel.swift; sourceTree = "<group>"; };
@@ -123,6 +122,7 @@
 		398B74AB1F82ABBD00879F80 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		398B74AE1F82C1F600879F80 /* SafariExtensionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionPresenter.swift; sourceTree = "<group>"; };
 		398B74AF1F82C45700879F80 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
+		398B74B71F83AB1C00879F80 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = ToolbarItemIcon.pdf; path = "../../../../../var/folders/w9/dljpk_h12xq03k2fkdlm56l80000gn/T/-882632654/ToolbarItemIcon.pdf"; sourceTree = "<group>"; };
 		398DF4761F72FE20007B1649 /* SafariExtensionViewController+AddTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SafariExtensionViewController+AddTeamView.swift"; sourceTree = "<group>"; };
 		399D4BC01F5A096B002D7893 /* TeamViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamViewModel.swift; sourceTree = "<group>"; };
 		399D4BC21F5A0987002D7893 /* TeamViewModel+Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TeamViewModel+Team.swift"; sourceTree = "<group>"; };
@@ -283,7 +283,7 @@
 				399D4BC41F5A975A002D7893 /* Helpers */,
 				39275A211F43693300BF003C /* Info.plist */,
 				39275A221F43693300BF003C /* script.js */,
-				39275A241F43693300BF003C /* ToolbarItemIcon.pdf */,
+				398B74B71F83AB1C00879F80 /* ToolbarItemIcon.pdf */,
 				39275A181F43693300BF003C /* Supporting Files */,
 			);
 			path = SlackfariExtension;
@@ -587,7 +587,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39275A251F43693300BF003C /* ToolbarItemIcon.pdf in Resources */,
+				398B74B81F83AB2600879F80 /* ToolbarItemIcon.pdf in Resources */,
 				39F128D41F7FCFEC004A2493 /* Assets.xcassets in Resources */,
 				39275A231F43693300BF003C /* script.js in Resources */,
 			);

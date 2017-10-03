@@ -6,7 +6,6 @@
 //  Copyright © 2017 Alberto Moral. All rights reserved.
 //
 
-import Foundation
 import Cocoa
 import Alamofire
 import AlamofireImage
@@ -16,8 +15,8 @@ protocol TeamCollectionViewDataProviderDelegate: class {
 }
 
 class TeamCollectionViewDataProvider: NSObject {
-    static let numberOfSections = 1
-    static let itemId = "TeamCollectionViewItem"
+    fileprivate static let numberOfSections = 1
+    fileprivate static let itemId = "TeamCollectionViewItem"
     
     weak var delegate: TeamCollectionViewDataProviderDelegate?
     
@@ -58,16 +57,11 @@ extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollecti
         let item = collectionView.makeItem(withIdentifier: TeamCollectionViewDataProvider.itemId, for: indexPath)
         guard let collectionViewItem = item as? TeamCollectionViewItem else { return item }
         
-        collectionViewItem.teamCellView.nameField.stringValue = items[indexPath.item].name
+        let name = items[indexPath.item].name
+        let icon = items[indexPath.item].imageIcon
+        collectionViewItem.configure(name: name, avatarURL: icon)
         collectionViewItem.delegate = self
         
-        let imageURL = items[indexPath.item].imageIcon
-        
-        Alamofire.request(imageURL).responseImage { response in
-            if let image = response.result.value {
-                collectionViewItem.teamCellView.imageView.image = image
-            }
-        }
         return item
     }
     
@@ -79,10 +73,10 @@ extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollecti
 
 extension TeamCollectionViewDataProvider: TeamCollectionViewItemDelegate {
     func didTapOnRemoveTeam(withName name: String) {
-        UserDefaults.standard.removeTeam(withName: name) { [weak self] position  in
+        UserDefaults.standard.removeTeam(withName: name) { [weak self] position in
             guard let strongSelf = self else { return }
             strongSelf.items.remove(at: position)
-            if strongSelf.items.count > 0 {
+            if !strongSelf.items.isEmpty {
                 let token = strongSelf.items.first?.token
                 strongSelf.delegate?.didTapOnTeam(withToken: token!)
             } else {

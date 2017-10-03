@@ -6,7 +6,6 @@
 //  Copyright © 2017 Alberto Moral. All rights reserved.
 //
 
-import Foundation
 import Cocoa
 import Cartography
 
@@ -18,23 +17,24 @@ protocol AddTeamViewDelegate: class {
 class AddTeamView: BaseView {
     weak var delegate: AddTeamViewDelegate?
     
-    lazy var closeButton: NSButton = {
+    lazy private var closeButton: NSButton = {
         let button = NSButton(title: "Close", target: self, action: #selector(closeView))
         return button
     }()
     
-    lazy var addButton: NSButton = {
+    lazy private var addButton: NSButton = {
         let button = NSButton(title: "Add", target: self, action: #selector(addTeam))
         return button
     }()
     
-    let nameField: NSTextField = {
+    lazy private var nameField: NSTextField = {
         let field = NSTextField()
         field.placeholderString = "Add Team Name"
+        field.nextKeyView = self.tokenField
         return field
     }()
     
-    let tokenField: NSTextField = {
+    lazy private var tokenField: NSTextField = {
         let field = NSTextField()
         field.placeholderString = "Add Token"
         return field

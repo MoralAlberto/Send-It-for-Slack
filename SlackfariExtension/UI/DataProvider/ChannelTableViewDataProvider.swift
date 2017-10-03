@@ -6,12 +6,11 @@
 //  Copyright © 2017 Alberto Moral. All rights reserved.
 //
 
-import Foundation
 import Cocoa
 
 class ChannelTableViewDataProvider: NSObject {
-    static let column = "column"
-    static let heightOfRow: CGFloat = 26
+    fileprivate static let column = "column"
+    fileprivate static let heightOfRow: CGFloat = 26
     
     fileprivate var items: [Channelable] = [Channelable]() {
         didSet {
@@ -49,11 +48,9 @@ extension ChannelTableViewDataProvider: NSTableViewDelegate, NSTableViewDataSour
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-        guard tableColumn?.identifier == ChannelTableViewDataProvider.column else { fatalError() }
-
-        let item = items[row]
-        let name = item.name
+        guard tableColumn?.identifier == ChannelTableViewDataProvider.column else { fatalError("Channel Table View Data Provider identifier not found") }
         
+        let name = items[row].name
         let view = NSTextField(string: name)
         view.isEditable = false
         view.isBordered = false

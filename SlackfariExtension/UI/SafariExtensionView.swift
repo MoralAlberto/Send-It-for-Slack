@@ -6,7 +6,6 @@
 //  Copyright © 2017 Alberto Moral. All rights reserved.
 //
 
-import Foundation
 import Cocoa
 import Cartography
 
@@ -16,6 +15,15 @@ protocol SafariExtensionViewDelegate: class {
 }
 
 class SafariExtensionView: BaseView {
+    
+    private struct ViewConstraints {
+        struct NotificationLabel {
+            static let height: CGFloat = 20
+        }
+        struct SendButton {
+            static let width: CGFloat = 60
+        }
+    }
     
     weak var delegate: SafariExtensionViewDelegate?
     
@@ -58,7 +66,7 @@ class SafariExtensionView: BaseView {
         textField.isBordered = false
         textField.isEditable = false
         textField.stringValue = "Last message sent to: "
-        textField.font = NSFont.systemFont(ofSize: 10)
+        textField.font = Stylesheet.font(.normal)
         textField.backgroundColor = Stylesheet.color(.clear)
         return textField
     }()
@@ -100,7 +108,7 @@ class SafariExtensionView: BaseView {
             notificationLabel.top == teamNameLabel.bottom + Stylesheet.margin(.small)
             notificationLabel.leading == teamNameLabel.leading
             notificationLabel.trailing == teamNameLabel.trailing
-            notificationLabel.height == 20
+            notificationLabel.height == ViewConstraints.NotificationLabel.height
             
             messageField.leading == messageField.superview!.leading + Stylesheet.margin(.small)
             messageField.trailing == messageField.superview!.trailing - Stylesheet.margin(.small)
@@ -117,23 +125,26 @@ class SafariExtensionView: BaseView {
             
             sendButton.top == sendButton.superview!.top + Stylesheet.margin(.medium)
             sendButton.trailing == sendButton.superview!.trailing - Stylesheet.margin(.medium)
-            sendButton.width == 60
+            sendButton.width == ViewConstraints.SendButton.width
             
             tableView.top == tableView.superview!.top + Stylesheet.margin(.big)
             tableView.leading == tableView.superview!.leading
             tableView.trailing == tableView.superview!.trailing
             tableView.bottom == tableView.superview!.bottom
-            tableView.height == Configuration.Screen.height
-            tableView.width == Configuration.Screen.width
+//            tableView.height == Configuration.Screen.height
+//            tableView.width == Configuration.Screen.width
             
+            scrollViewTableView.height == Configuration.Screen.height
             scrollViewTableView.leading == scrollViewTableView.superview!.leading + Stylesheet.margin(.small)
             scrollViewTableView.trailing == scrollViewTableView.superview!.trailing - Stylesheet.margin(.small)
             scrollViewTableView.bottom == scrollViewCollectionView.top - Stylesheet.margin(.small)
         }
         
-        constrain(scrollViewCollectionView, addButton) { scrollViewCollectionView, addButton in
+        constrain(scrollViewCollectionView, addButton, collectionView) { scrollViewCollectionView, addButton, collectionView in
             addButton.bottom == addButton.superview!.bottom - Stylesheet.margin(.medium)
             addButton.trailing == addButton.superview!.trailing - Stylesheet.margin(.medium)
+            
+            collectionView.edges == collectionView.superview!.edges
             
             scrollViewCollectionView.bottom == scrollViewCollectionView.superview!.bottom - Stylesheet.margin(.small)
             scrollViewCollectionView.leading == scrollViewCollectionView.superview!.leading + Stylesheet.margin(.small)
