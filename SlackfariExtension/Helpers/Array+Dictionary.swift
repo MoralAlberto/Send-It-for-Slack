@@ -1,3 +1,8 @@
+/**
+ *  Slackfari
+ *  Copyright (c) 2017 Alberto Moral
+ *  Licensed under the MIT license, see LICENSE file
+ */
 
 func arrayContains(teams: [TeamModel], value: String) -> (hasKey: Bool, position: Int?) {
     var index = 0

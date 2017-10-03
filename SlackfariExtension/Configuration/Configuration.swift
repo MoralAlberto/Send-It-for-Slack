@@ -1,10 +1,9 @@
-//
-//  Configuration.swift
-//  SlackfariExtension
-//
-//  Created by Alberto Moral on 29/09/2017.
-//  Copyright © 2017 Alberto Moral. All rights reserved.
-//
+/**
+ *  Slackfari
+ *  Copyright (c) 2017 Alberto Moral
+ *  Licensed under the MIT license, see LICENSE file
+ */
+
 
 import Foundation
 
