@@ -1,9 +1,9 @@
 import Foundation
 
 public class Purpose {
-    var value: String?
-    var creator: String?
-    var lastSet: Int?
+    public var value: String?
+    public var creator: String?
+    public var lastSet: Int?
     
     init(value: String?,
          creator: String?,

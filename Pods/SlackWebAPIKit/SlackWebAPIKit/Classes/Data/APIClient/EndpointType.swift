@@ -3,4 +3,5 @@ public enum EndpointType: String {
     case channelsList = "channels.list"
     case groupsList = "groups.list"
     case usersList = "users.list"
+    case teamInfo = "team.info"
 }

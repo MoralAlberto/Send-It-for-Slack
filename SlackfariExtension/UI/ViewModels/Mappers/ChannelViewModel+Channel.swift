@@ -6,11 +6,11 @@
 //  Copyright © 2017 Alberto Moral. All rights reserved.
 //
 
-import Foundation
 import SlackWebAPIKit
 
 extension ChannelViewModel {
-    init(channel: Channel) {
-        self.name = channel.name ?? ""
+    init?(channel: Channel) {
+        guard let name = channel.name else { return nil }
+        self.name = name
     }
 }

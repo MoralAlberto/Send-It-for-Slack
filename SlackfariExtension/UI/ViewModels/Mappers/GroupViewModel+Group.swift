@@ -6,11 +6,11 @@
 //  Copyright © 2017 Alberto Moral. All rights reserved.
 //
 
-import Foundation
 import SlackWebAPIKit
 
 extension GroupViewModel {
-    init(group: Group) {
-        self.name = group.name ?? ""
+    init?(group: Group) {
+        guard let name = group.name else { return nil }
+        self.name = name
     }
 }

@@ -9,100 +9,146 @@
 import SafariServices
 import SlackWebAPIKit
 import RxSwift
+import Cartography
 
 class SafariExtensionViewController: SFSafariExtensionViewController {
-    
     static let shared = SafariExtensionViewController()
 
-    @IBOutlet weak var tableView: NSTableView!
+    var mainView: SafariExtensionView { return self.view as! SafariExtensionView }
+    var addTeamView = AddTeamView()
     
-    fileprivate var presenter: Presenter?
+    var url: String? {
+        didSet {
+            mainView.messageField.stringValue = self.url!
+        }
+    }
+    
+    let constraintGroup = ConstraintGroup()
+    
+    fileprivate var presenter: SafariExtensionPresenter?
+    fileprivate var channelDataProvider: ChannelTableViewDataProvider?
+    fileprivate var teamDataProvider: TeamCollectionViewDataProvider?
     fileprivate let disposeBag = DisposeBag()
+        
+    // MARK: View Controller lifecycle
     
-    fileprivate var items = [Channelable]()
-    var url: String?
+    override func loadView() {
+        view = SafariExtensionView()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        API.sharedInstance.set(token: "")
-        configureTableView()
+        mainView.delegate = self
+        addTeamView.delegate = self
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        presenter = Presenter()
-        getAllChannels()
+        configureView()
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        guard let team = UserDefaults.standard.getTeam() else { return }
+        setup(token: team.token)
+        presenter?.getAllChannels()
+    }
+    
+    // MARK: Configure Table View and Collection View providers
+    
+    private func configureView() {
+        configureTableView()
+        configureCollectionView()
     }
     
     private func configureTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.rowSizeStyle = .large
-        tableView.backgroundColor = NSColor.clear
+        channelDataProvider = ChannelTableViewDataProvider(tableView: mainView.tableView)
     }
     
-    @IBAction func sendMessage(_ sender: Any) {
-        let selected = items[tableView.selectedRow]
-        guard let post = url else { return }
-        let type = checkChannel(type: selected)
-        send(message: post, toChannel: selected.name, withType: type)
+    private func configureCollectionView() {
+        teamDataProvider = TeamCollectionViewDataProvider(collectionView: mainView.collectionView)
+        teamDataProvider?.delegate = self
+        guard let teams = UserDefaults.standard.getTeams() else { return }
+        teamDataProvider?.set(items: teams)
     }
     
-    private func getAllChannels() {
-        Observable.combineLatest(presenter!.getUsers(), presenter!.getChannels(), presenter!.getGroups())
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] (users, channels, groups) in
-                guard let strongSelf = self else { return }
-                let usersViewModel: [Channelable] = users.map(UserViewModel.init)
-                let channelsViewModel: [Channelable] = channels.map(ChannelViewModel.init)
-                let groupsViewModel: [Channelable] = groups.map(GroupViewModel.init)
-                
-                strongSelf.items = usersViewModel + channelsViewModel + groupsViewModel
-                strongSelf.tableView.reloadData()
-                }, onError: { error in
-                    print("Error \(error)")
-            }
-        ).disposed(by: disposeBag)
-    }
-    
-    private func checkChannel(type: Channelable) -> MessageType {
-        if type is ChannelViewModel {
-            return .channel
-        } else if type is GroupViewModel {
-            return .group
-        } else {
-            return .user
-        }
-    }
-    
-    private func send(message: String, toChannel channel: String, withType type: MessageType) {
-        presenter?.send(message: message, channel: channel, type: type).subscribe(onNext: { isSent in
-            print("message sent")
-        }, onError: { (error) in
-            print("Error \(error)")
-        }).disposed(by: disposeBag)
+    fileprivate func setup(token: String) {
+        API.sharedInstance.set(token: token)
+        presenter = SafariExtensionPresenter()
+        presenter?.delegate = self
     }
 }
 
-extension SafariExtensionViewController: NSTableViewDataSource, NSTableViewDelegate {
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return items.count
+// MARK: - AddteamViewDelegate
+
+extension SafariExtensionViewController: AddTeamViewDelegate {
+    func didTapOnCloseButton() {
+        addTeamView.removeFromSuperview()
     }
     
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let cellIdentifier = "NameCellID"
-        
-        if let cell = tableView.make(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView {
-            let item = items[row]
-            let name = item.name
-            cell.textField?.stringValue = name
-            return cell
+    func didTapOnAddTeamButton(teamName: String, token: String) {
+        setup(token: token)
+        presenter?.getTeamInfo(name: teamName, token: token)
+    }
+    
+    private func saveTeam(name: String, token: String, icon: String) {
+        save(name: name, token: token, icon: icon) { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.teamDataProvider?.set(items: $0)
+            strongSelf.addTeamView.removeFromSuperview()
+            strongSelf.didTapOnTeam(withToken: token)
         }
-        return nil
+    }
+}
+
+// MARK: - CollectionViewDataProviderDelegate
+
+extension SafariExtensionViewController: TeamCollectionViewDataProviderDelegate {
+    func didTapOnTeam(withToken token: String) {
+        guard let dataProvider = channelDataProvider else { return }
+        dataProvider.removeItems()
+        setup(token: token)
+        presenter?.getAllChannels()
+    }
+}
+
+extension SafariExtensionViewController: SafariExtensionViewDelegate {
+    func didTapOnSendMessage() {
+        guard !mainView.messageField.stringValue.isEmpty else { return }
+        guard let selected = channelDataProvider?.getItem(at: mainView.tableView.selectedRow) else { return }
+        guard let type = presenter?.checkChannel(type: selected) else { return }
+        presenter?.sendMessage(message: mainView.messageField.stringValue, toChannel: selected.name, withType: type)
     }
     
-    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return 26
+    func didTapOnAddTeam() {
+        showAddTeamView()
+    }
+}
+
+// MARK: - SafariExtensionPresenterDelegate
+
+extension SafariExtensionViewController: SafariExtensionPresenterDelegate {
+    func update(team: String) {
+        mainView.teamNameLabel.stringValue = team
+    }
+    
+    func update(notification: String) {
+        mainView.notificationLabel.stringValue = notification
+    }
+    
+    func build(viewModel: [Channelable]) {
+        guard let dataProvider = channelDataProvider else { return }
+        dataProvider.add(items: viewModel)
+    }
+    
+    func didAddNewTeam(withToken token: String, items: [TeamModel]) {
+        guard let teamDataProvider = teamDataProvider else { return }
+        teamDataProvider.set(items: items)
+        addTeamView.removeFromSuperview()
+        didTapOnTeam(withToken: token)
+    }
+    
+    func didUpdateTeam(withToken token: String) {
+        setup(token: token)
     }
 }

@@ -6,7 +6,10 @@ target 'Slackfari' do
   use_frameworks!
 
   # Pods for Slackfari
-  pod 'SlackWebAPIKit', '~> 0.1.2'
+  pod 'SlackWebAPIKit', '~> 0.1.5'
+  pod 'Cartography', '~> 1.1'
+  pod 'Alamofire', '~> 4.5'
+  pod 'AlamofireImage', '~> 3.1'
   
   target 'SlackfariTests' do
     inherit! :search_paths
@@ -23,5 +26,8 @@ end
 target 'SlackfariExtension' do
     use_frameworks!
     
-    pod 'SlackWebAPIKit', '~> 0.1.2'
+    pod 'SlackWebAPIKit', '~> 0.1.5'
+    pod 'Cartography', '~> 1.1'
+    pod 'Alamofire', '~> 4.5'
+    pod 'AlamofireImage', '~> 3.1'
 end
