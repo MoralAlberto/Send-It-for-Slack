@@ -1,3 +1,9 @@
+/**
+ *  Slackfari
+ *  Copyright (c) 2017 Alberto Moral
+ *  Licensed under the MIT license, see LICENSE file
+ */
+
 import Cocoa
 import Cartography
 import Alamofire
