@@ -9,11 +9,11 @@ The idea behind Slackfari is to quickly send awesome posts or messages to our te
 ## Create Token
 Generate token with Slack Token Generator [Slack](https://api.slack.com/custom-integrations/legacy-tokens), you will see the next image
 
-![slack-token](../resources/slack_token.png)
+![slack-token](/resources/slack_token.png)
 
 **this token is mandatory in order to send message in our team**
 
-![slack-add-token.gif](../resources/slack-add-token.gif)
+![slack-add-token.gif](resources/slack-add-token.gif)
 
 ## Features
 - [x] Sent message to users
