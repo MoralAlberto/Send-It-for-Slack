@@ -88,7 +88,7 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
     
     func didTapOnAddTeamButton(teamName: String, token: String) {
         setup(token: token)
-        presenter?.getTeamInfo(token: token)
+        presenter?.getTeamInfo(name: teamName, token: token)
     }
     
     private func saveTeam(name: String, token: String, icon: String) {

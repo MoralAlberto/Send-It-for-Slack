@@ -118,7 +118,7 @@ class SafariExtensionView: BaseView {
             scrollViewTableView.top == messageField.bottom + Stylesheet.margin(.medium)
         }
         
-        constrain(teamNameLabel, sendButton, tableView, scrollViewTableView, scrollViewCollectionView) { teamNameLabel, sendButton, tableView, scrollViewTableView, scrollViewCollectionView in
+        constrain(teamNameLabel, sendButton, scrollViewTableView, scrollViewCollectionView) { teamNameLabel, sendButton, scrollViewTableView, scrollViewCollectionView in
             teamNameLabel.centerY == sendButton.centerY
             teamNameLabel.leading == teamNameLabel.superview!.leading + Stylesheet.margin(.medium)
             teamNameLabel.trailing == sendButton.leading
@@ -127,24 +127,16 @@ class SafariExtensionView: BaseView {
             sendButton.trailing == sendButton.superview!.trailing - Stylesheet.margin(.medium)
             sendButton.width == ViewConstraints.SendButton.width
             
-            tableView.top == tableView.superview!.top + Stylesheet.margin(.big)
-            tableView.leading == tableView.superview!.leading
-            tableView.trailing == tableView.superview!.trailing
-            tableView.bottom == tableView.superview!.bottom
-//            tableView.height == Configuration.Screen.height
-//            tableView.width == Configuration.Screen.width
-            
+            scrollViewTableView.width == Configuration.Screen.width
             scrollViewTableView.height == Configuration.Screen.height
             scrollViewTableView.leading == scrollViewTableView.superview!.leading + Stylesheet.margin(.small)
             scrollViewTableView.trailing == scrollViewTableView.superview!.trailing - Stylesheet.margin(.small)
             scrollViewTableView.bottom == scrollViewCollectionView.top - Stylesheet.margin(.small)
         }
         
-        constrain(scrollViewCollectionView, addButton, collectionView) { scrollViewCollectionView, addButton, collectionView in
+        constrain(scrollViewCollectionView, addButton) { scrollViewCollectionView, addButton in
             addButton.bottom == addButton.superview!.bottom - Stylesheet.margin(.medium)
             addButton.trailing == addButton.superview!.trailing - Stylesheet.margin(.medium)
-            
-            collectionView.edges == collectionView.superview!.edges
             
             scrollViewCollectionView.bottom == scrollViewCollectionView.superview!.bottom - Stylesheet.margin(.small)
             scrollViewCollectionView.leading == scrollViewCollectionView.superview!.leading + Stylesheet.margin(.small)

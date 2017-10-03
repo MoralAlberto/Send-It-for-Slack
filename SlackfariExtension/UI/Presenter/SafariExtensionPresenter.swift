@@ -149,14 +149,14 @@ class SafariExtensionPresenter {
     
     // MARK: Get Team Info
     
-    func getTeamInfo(token: String) {
+    func getTeamInfo(name: String, token: String) {
         let saveTemporalToken = API.sharedInstance.getToken()
         
         getTeamInfo()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] team in
                 guard let strongSelf = self else { return }
-                guard let name = team.name, let icon = team.icon else { return }
+                guard let icon = team.icon else { return }
                 strongSelf.delegate?.update(team: name)
                 strongSelf.saveTeam(name: name, token: token, icon: icon)
                 }, onError: { [weak self] error in

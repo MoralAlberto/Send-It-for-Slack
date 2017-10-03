@@ -48,10 +48,7 @@ class AddTeamView: BaseView {
     
     override func addSubviews() {
         layer?.backgroundColor = Stylesheet.color(.mainLightGray).cgColor
-        addSubview(closeButton)
-        addSubview(addButton)
-        addSubview(nameField)
-        addSubview(tokenField)
+        [closeButton, addButton, nameField, tokenField].forEach(addSubview)
     }
     
     override func addConstraints() {
