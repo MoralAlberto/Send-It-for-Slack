@@ -6,7 +6,6 @@
 //  Copyright © 2017 Alberto Moral. All rights reserved.
 //
 
-import Foundation
 import Cocoa
 import Alamofire
 import AlamofireImage
@@ -16,18 +15,18 @@ protocol TeamCollectionViewDataProviderDelegate: class {
 }
 
 class TeamCollectionViewDataProvider: NSObject {
-    static let numberOfSections = 1
-    static let itemId = "TeamCollectionViewItem"
+    fileprivate static let numberOfSections = 1
+    fileprivate static let itemId = "TeamCollectionViewItem"
     
     weak var delegate: TeamCollectionViewDataProviderDelegate?
     
-    fileprivate var items = [[String: String]]() {
+    fileprivate var items = [TeamModel]() {
         didSet {
             collectionView.reloadData()
         }
     }
     private var collectionView: NSCollectionView
-    
+        
     init(collectionView: NSCollectionView) {
         self.collectionView = collectionView
         super.init()
@@ -35,12 +34,12 @@ class TeamCollectionViewDataProvider: NSObject {
         self.collectionView.delegate = self
     }
     
-    func getTeam(at index: Int) -> [String: String]? {
+    func getTeam(at index: Int) -> TeamModel? {
         guard index <= items.count else { return nil }
         return items[index]
     }
     
-    func set(items: [[String: String]]) {
+    func set(items: [TeamModel]) {
         self.items = items
     }
 }
@@ -58,20 +57,31 @@ extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollecti
         let item = collectionView.makeItem(withIdentifier: TeamCollectionViewDataProvider.itemId, for: indexPath)
         guard let collectionViewItem = item as? TeamCollectionViewItem else { return item }
         
-        collectionViewItem.teamCellView.nameField.stringValue = items[indexPath.item]["name"]!
+        let name = items[indexPath.item].name
+        let icon = items[indexPath.item].imageIcon
+        collectionViewItem.configure(name: name, avatarURL: icon)
+        collectionViewItem.delegate = self
         
-        let imageURL = items[indexPath.item]["image"]!
-        
-        Alamofire.request(imageURL).responseImage { response in
-            if let image = response.result.value {
-                collectionViewItem.teamCellView.imageView.image = image
-            }
-        }
         return item
     }
     
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
-        let token = items[(indexPaths.first?.item)!]["token"]
-        delegate?.didTapOnTeam(withToken: token!)
+        let token = items[(indexPaths.first?.item)!].token
+        delegate?.didTapOnTeam(withToken: token)
+    }
+}
+
+extension TeamCollectionViewDataProvider: TeamCollectionViewItemDelegate {
+    func didTapOnRemoveTeam(withName name: String) {
+        UserDefaults.standard.removeTeam(withName: name) { [weak self] position in
+            guard let strongSelf = self else { return }
+            strongSelf.items.remove(at: position)
+            if !strongSelf.items.isEmpty {
+                let token = strongSelf.items.first?.token
+                strongSelf.delegate?.didTapOnTeam(withToken: token!)
+            } else {
+                strongSelf.items = [TeamModel]()
+            }
+        }
     }
 }

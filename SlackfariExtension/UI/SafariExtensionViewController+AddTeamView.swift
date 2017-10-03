@@ -6,7 +6,6 @@
 //  Copyright © 2017 Alberto Moral. All rights reserved.
 //
 
-import Foundation
 import Cocoa
 import Cartography
 
@@ -42,3 +41,4 @@ extension SafariExtensionViewController {
         }, completionHandler: nil)
     }
 }
+

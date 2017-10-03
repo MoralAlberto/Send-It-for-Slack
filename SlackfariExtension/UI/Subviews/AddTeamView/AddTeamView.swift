@@ -6,7 +6,6 @@
 //  Copyright © 2017 Alberto Moral. All rights reserved.
 //
 
-import Foundation
 import Cocoa
 import Cartography
 
@@ -15,63 +14,44 @@ protocol AddTeamViewDelegate: class {
     func didTapOnAddTeamButton(teamName: String, token: String)
 }
 
-class AddTeamView: NSView {
+class AddTeamView: BaseView {
     weak var delegate: AddTeamViewDelegate?
     
-    lazy var closeButton: NSButton = {
+    lazy private var closeButton: NSButton = {
         let button = NSButton(title: "Close", target: self, action: #selector(closeView))
         return button
     }()
     
-    lazy var addButton: NSButton = {
+    lazy private var addButton: NSButton = {
         let button = NSButton(title: "Add", target: self, action: #selector(addTeam))
         return button
     }()
     
-    let nameField: NSTextField = {
+    lazy private var nameField: NSTextField = {
         let field = NSTextField()
         field.placeholderString = "Add Team Name"
+        field.nextKeyView = self.tokenField
         return field
     }()
     
-    let tokenField: NSTextField = {
+    lazy private var tokenField: NSTextField = {
         let field = NSTextField()
         field.placeholderString = "Add Token"
         return field
     }()
     
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        setup()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setup() {
+    override func setup() {
         wantsLayer = true
         addSubviews()
         addConstraints()
     }
     
-    private func addSubviews() {
+    override func addSubviews() {
         layer?.backgroundColor = Stylesheet.color(.mainLightGray).cgColor
-        addSubview(closeButton)
-        addSubview(addButton)
-        addSubview(nameField)
-        addSubview(tokenField)
+        [closeButton, addButton, nameField, tokenField].forEach(addSubview)
     }
     
-    func closeView() {
-        delegate?.didTapOnCloseButton()
-    }
-    
-    func addTeam() {
-        delegate?.didTapOnAddTeamButton(teamName: nameField.stringValue, token: tokenField.stringValue)
-    }
-    
-    private func addConstraints() {
+    override func addConstraints() {
         constrain(nameField, tokenField, closeButton, addButton) { nameField, tokenField, closeButton, addButton in
             nameField.top == nameField.superview!.top + Stylesheet.margin(.big) + Stylesheet.margin(.medium) + Stylesheet.margin(.small)
             nameField.leading == nameField.superview!.leading + Stylesheet.margin(.medium)
@@ -87,5 +67,13 @@ class AddTeamView: NSView {
             addButton.bottom == addButton.superview!.bottom - Stylesheet.margin(.medium)
             addButton.trailing == addButton.superview!.trailing - Stylesheet.margin(.medium)
         }
+    }
+    
+    func closeView() {
+        delegate?.didTapOnCloseButton()
+    }
+    
+    func addTeam() {
+        delegate?.didTapOnAddTeamButton(teamName: nameField.stringValue, token: tokenField.stringValue)
     }
 }

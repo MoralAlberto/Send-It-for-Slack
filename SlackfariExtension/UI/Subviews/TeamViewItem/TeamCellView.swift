@@ -1,33 +1,49 @@
-import Foundation
-import AppKit
+import Cocoa
 import Cartography
 import Alamofire
 import AlamofireImage
 
-class TeamCellView: NSView {
-    let imageView: NSImageView = NSImageView()
+protocol TeamCellViewDelegate: class {
+    func didTapOnRemoveTeam(withName name: String)
+}
+
+class TeamCellView: BaseView {
+    weak var delegate: TeamCellViewDelegate?
     
-    let nameField: NSTextField = {
+    fileprivate let imageView: NSImageView = NSImageView()
+    
+    fileprivate let nameField: NSTextField = {
         let textField = NSTextField()
         textField.backgroundColor = Stylesheet.color(.white)
+        textField.maximumNumberOfLines = 1
         textField.isBordered = false
         textField.isEditable = false
+        textField.font = Stylesheet.font(.normal)
         textField.alignment = .center
         return textField
     }()
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    lazy var deleteTeam: NSTextField = {        
+        let textField = NSTextField()
+        textField.backgroundColor = Stylesheet.color(.mainLightGray)
+        textField.isBordered = false
+        textField.isEditable = false
+        textField.font = Stylesheet.font(.small)
+        textField.alignment = .center
+        textField.stringValue = "x"
+        
+        let gesture = NSClickGestureRecognizer(target: self, action: #selector(delete))
+        gesture.numberOfClicksRequired = 1
+        textField.addGestureRecognizer(gesture)
+        
+        return textField
+    }()
+    
+    override func addSubviews() {
+        [imageView, nameField, deleteTeam].forEach(addSubview)
     }
     
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        setup()
-    }
-    
-    func setup() {
-        [imageView, nameField].forEach(addSubview)
-
+    override func addConstraints() {
         constrain(imageView) { imageView in
             imageView.leading == imageView.superview!.leading
             imageView.trailing == imageView.superview!.trailing
@@ -35,11 +51,24 @@ class TeamCellView: NSView {
             imageView.top == imageView.superview!.top
         }
         
-        constrain(nameField) { nameField in
+        constrain(nameField, deleteTeam) { nameField, deleteTeam in
             nameField.leading == nameField.superview!.leading
             nameField.trailing == nameField.superview!.trailing
             nameField.bottom == nameField.superview!.bottom
+            
+            deleteTeam.top == deleteTeam.superview!.top
+            deleteTeam.trailing == deleteTeam.superview!.trailing
         }
+    }
+    
+    func delete() {
+        guard let name = name else { return }
+        delegate?.didTapOnRemoveTeam(withName: name)
+    }
+    
+    func flushData() {
+        nameField.stringValue = ""
+        imageView.image = nil
     }
 }
 

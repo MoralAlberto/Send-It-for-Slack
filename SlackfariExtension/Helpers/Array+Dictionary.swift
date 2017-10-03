@@ -1,9 +1,11 @@
 
-func arrayContains(array: [[String:String]], key: String, value: String) -> Bool {
-    for dict in array {
-        if dict[key] == value {
-            return true
+func arrayContains(teams: [TeamModel], value: String) -> (hasKey: Bool, position: Int?) {
+    var index = 0
+    for team in teams {
+        if team.name == value {
+            return (true, index)
         }
+        index += 1
     }
-    return false
+    return (false, nil)
 }

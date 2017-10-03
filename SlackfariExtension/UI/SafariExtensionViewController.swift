@@ -12,25 +12,25 @@ import RxSwift
 import Cartography
 
 class SafariExtensionViewController: SFSafariExtensionViewController {
-    
     static let shared = SafariExtensionViewController()
 
     var mainView: SafariExtensionView { return self.view as! SafariExtensionView }
+    var addTeamView = AddTeamView()
     
-    fileprivate var presenter: Presenter?
-    fileprivate let disposeBag = DisposeBag()
+    var url: String? {
+        didSet {
+            mainView.messageField.stringValue = self.url!
+        }
+    }
     
     let constraintGroup = ConstraintGroup()
     
-    var url: String? { didSet { mainView.messageField.stringValue = self.url! } }
-    var channelDataProvider: ChannelTableViewDataProvider?
-    var teamDataProvider: TeamCollectionViewDataProvider?
-    
-    lazy var addTeamView: AddTeamView = {
-        let addTeam = AddTeamView()
-        addTeam.delegate = self
-        return addTeam
-    }()
+    fileprivate var presenter: SafariExtensionPresenter?
+    fileprivate var channelDataProvider: ChannelTableViewDataProvider?
+    fileprivate var teamDataProvider: TeamCollectionViewDataProvider?
+    fileprivate let disposeBag = DisposeBag()
+        
+    // MARK: View Controller lifecycle
     
     override func loadView() {
         view = SafariExtensionView()
@@ -39,20 +39,26 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.delegate = self
+        addTeamView.delegate = self
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        configureTableView()
-        configureCollectionView()
+        configureView()
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        guard let team = UserDefaults.standard.getTeam(), let token = team["token"] else { return }
-        API.sharedInstance.set(token: token)
-        presenter = Presenter()
-        getAllChannels()
+        guard let team = UserDefaults.standard.getTeam() else { return }
+        setup(token: team.token)
+        presenter?.getAllChannels()
+    }
+    
+    // MARK: Configure Table View and Collection View providers
+    
+    private func configureView() {
+        configureTableView()
+        configureCollectionView()
     }
     
     private func configureTableView() {
@@ -62,72 +68,14 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     private func configureCollectionView() {
         teamDataProvider = TeamCollectionViewDataProvider(collectionView: mainView.collectionView)
         teamDataProvider?.delegate = self
-        guard let teams = UserDefaults.standard.array(forKey: "teams") as? UserDefaultTeams else {
-            return
-        }
+        guard let teams = UserDefaults.standard.getTeams() else { return }
         teamDataProvider?.set(items: teams)
     }
     
-    fileprivate func checkChannel(type: Channelable) -> MessageType {
-        if type is ChannelViewModel {
-            return .channel
-        } else if type is GroupViewModel {
-            return .group
-        } else {
-            return .user
-        }
-    }
-    
-    fileprivate func send(message: String, toChannel channel: String, withType type: MessageType) {
-        presenter?.send(message: message, channel: channel, type: type).subscribe(onNext: { isSent in
-            print("message sent")
-        }, onError: { (error) in
-            print("Error \(error)")
-        }).disposed(by: disposeBag)
-    }
-    
-    // MARK: Get team's information
-    
-    fileprivate func getAllChannels() {
-        guard let presenter = presenter else { return }
-        presenter.getUsers()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] users in
-                guard let strongSelf = self else { return }
-                strongSelf.buildUsersViewModel(users: users)
-            }, onError: { error in
-                print("Error \(error)")
-            }).disposed(by: disposeBag)
-        
-        presenter.getChannels()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] channels in
-                guard let strongSelf = self else { return }
-                strongSelf.buildChannelsViewModel(channels: channels)
-                }, onError: { error in
-                    print("Error \(error)")
-            }).disposed(by: disposeBag)
-        
-        presenter.getGroups()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] groups in
-                guard let strongSelf = self else { return }
-                strongSelf.buildGroupsViewModel(groups: groups)
-                }, onError: { error in
-                    print("Error \( error)")
-            }).disposed(by: disposeBag)
-        
-        presenter.getTeamInfo()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] team in
-                guard let strongSelf = self else { return }
-                strongSelf.mainView.teamNameLabel.stringValue = team.name ?? ""
-                }, onError: { [weak self] error in
-                    guard let strongSelf = self else { return }
-                    strongSelf.mainView.teamNameLabel.stringValue = "Error"
-                }, onCompleted: {
-                    print("Completed")
-            }).disposed(by: disposeBag)
+    fileprivate func setup(token: String) {
+        API.sharedInstance.set(token: token)
+        presenter = SafariExtensionPresenter()
+        presenter?.delegate = self
     }
 }
 
@@ -139,52 +87,17 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
     }
     
     func didTapOnAddTeamButton(teamName: String, token: String) {
-        let saveTemporalToken = API.sharedInstance.getToken()
-        API.sharedInstance.set(token: token)
-        presenter = Presenter()
-        
-        presenter?.getTeamInfo()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] team in
-                guard let strongSelf = self else { return }
-                strongSelf.mainView.teamNameLabel.stringValue = teamName
-                strongSelf.saveTeam(teamIcon: team.icon!, teamName: teamName, token: token)
-                }, onError: { [weak self] error in
-                    guard let strongSelf = self else { return }
-                    print("Error \(error)")
-                    API.sharedInstance.set(token: saveTemporalToken ?? "")
-                    strongSelf.presenter = Presenter()
-            }, onCompleted: {
-                print("Completed")
-            }).disposed(by: disposeBag)
+        setup(token: token)
+        presenter?.getTeamInfo(name: teamName, token: token)
     }
     
-    private func saveTeam(teamIcon: String, teamName: String, token: String) {
-        save(teamIcon: teamIcon, teamName: teamName, token: token) {
-            teamDataProvider?.set(items: $0)
+    private func saveTeam(name: String, token: String, icon: String) {
+        save(name: name, token: token, icon: icon) { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.teamDataProvider?.set(items: $0)
+            strongSelf.addTeamView.removeFromSuperview()
+            strongSelf.didTapOnTeam(withToken: token)
         }
-    }
-}
-
-// MARK: - Build View Models
-
-extension SafariExtensionViewController {
-    fileprivate func buildUsersViewModel(users: [User]) {
-        guard let dataProvider = channelDataProvider else { return }
-        let usersViewModel: [Channelable] = users.flatMap(UserViewModel.init)
-        dataProvider.add(items: usersViewModel)
-    }
-    
-    fileprivate func buildChannelsViewModel(channels: [Channel]) {
-        guard let dataProvider = channelDataProvider else { return }
-        let channelsViewModel: [Channelable] = channels.flatMap(ChannelViewModel.init)
-        dataProvider.add(items: channelsViewModel)
-    }
-    
-    fileprivate func buildGroupsViewModel(groups: [Group]) {
-        guard let dataProvider = channelDataProvider else { return }
-        let groupsViewModel: [Channelable] = groups.flatMap(GroupViewModel.init)
-        dataProvider.add(items: groupsViewModel)
     }
 }
 
@@ -192,13 +105,10 @@ extension SafariExtensionViewController {
 
 extension SafariExtensionViewController: TeamCollectionViewDataProviderDelegate {
     func didTapOnTeam(withToken token: String) {
-        //  Clean channels
         guard let dataProvider = channelDataProvider else { return }
         dataProvider.removeItems()
-        
-        API.sharedInstance.set(token: token)
-        presenter = Presenter()
-        getAllChannels()
+        setup(token: token)
+        presenter?.getAllChannels()
     }
 }
 
@@ -206,11 +116,39 @@ extension SafariExtensionViewController: SafariExtensionViewDelegate {
     func didTapOnSendMessage() {
         guard !mainView.messageField.stringValue.isEmpty else { return }
         guard let selected = channelDataProvider?.getItem(at: mainView.tableView.selectedRow) else { return }
-        let type = checkChannel(type: selected)
-        send(message: mainView.messageField.stringValue, toChannel: selected.name, withType: type)
+        guard let type = presenter?.checkChannel(type: selected) else { return }
+        presenter?.sendMessage(message: mainView.messageField.stringValue, toChannel: selected.name, withType: type)
     }
     
     func didTapOnAddTeam() {
         showAddTeamView()
+    }
+}
+
+// MARK: - SafariExtensionPresenterDelegate
+
+extension SafariExtensionViewController: SafariExtensionPresenterDelegate {
+    func update(team: String) {
+        mainView.teamNameLabel.stringValue = team
+    }
+    
+    func update(notification: String) {
+        mainView.notificationLabel.stringValue = notification
+    }
+    
+    func build(viewModel: [Channelable]) {
+        guard let dataProvider = channelDataProvider else { return }
+        dataProvider.add(items: viewModel)
+    }
+    
+    func didAddNewTeam(withToken token: String, items: [TeamModel]) {
+        guard let teamDataProvider = teamDataProvider else { return }
+        teamDataProvider.set(items: items)
+        addTeamView.removeFromSuperview()
+        didTapOnTeam(withToken: token)
+    }
+    
+    func didUpdateTeam(withToken token: String) {
+        setup(token: token)
     }
 }

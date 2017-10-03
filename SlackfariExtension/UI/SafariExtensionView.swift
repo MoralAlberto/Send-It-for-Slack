@@ -6,7 +6,6 @@
 //  Copyright © 2017 Alberto Moral. All rights reserved.
 //
 
-import Foundation
 import Cocoa
 import Cartography
 
@@ -15,7 +14,16 @@ protocol SafariExtensionViewDelegate: class {
     func didTapOnAddTeam()
 }
 
-class SafariExtensionView: NSView {
+class SafariExtensionView: BaseView {
+    
+    private struct ViewConstraints {
+        struct NotificationLabel {
+            static let height: CGFloat = 20
+        }
+        struct SendButton {
+            static let width: CGFloat = 60
+        }
+    }
     
     weak var delegate: SafariExtensionViewDelegate?
     
@@ -53,6 +61,16 @@ class SafariExtensionView: NSView {
         return textField
     }()
     
+    var notificationLabel: NSTextField = {
+        let textField = NSTextField()
+        textField.isBordered = false
+        textField.isEditable = false
+        textField.stringValue = "Last message sent to: "
+        textField.font = Stylesheet.font(.normal)
+        textField.backgroundColor = Stylesheet.color(.clear)
+        return textField
+    }()
+    
     var messageField: NSTextField = {
         let textField = NSTextField()
         textField.isBordered = false
@@ -72,56 +90,45 @@ class SafariExtensionView: NSView {
         return button
     }()
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        setup()
-    }
-    
-    func setup() {
+    override func setup() {
         addSubviews()
         addConstraints()
     }
     
-    private func addSubviews() {
+    override func addSubviews() {
         scrollViewTableView.documentView = tableView
         scrollViewCollectionView.documentView = collectionView
-        addSubview(scrollViewTableView)
-        addSubview(scrollViewCollectionView)
-        addSubview(teamNameLabel)
-        addSubview(sendButton)
-        addSubview(addButton)
-        addSubview(messageField)
+        
+        [scrollViewTableView, scrollViewCollectionView, teamNameLabel, sendButton, addButton, messageField, notificationLabel].forEach(addSubview)
     }
     
-    private func addConstraints() {
-        constrain(teamNameLabel, messageField, scrollViewTableView, sendButton) { teamNameLabel, messageField, scrollViewTableView, sendButton in
+    override func addConstraints() {
+        constrain(teamNameLabel, messageField, scrollViewTableView, sendButton, notificationLabel) { teamNameLabel, messageField, scrollViewTableView, sendButton, notificationLabel in
+            
+            notificationLabel.top == teamNameLabel.bottom + Stylesheet.margin(.small)
+            notificationLabel.leading == teamNameLabel.leading
+            notificationLabel.trailing == teamNameLabel.trailing
+            notificationLabel.height == ViewConstraints.NotificationLabel.height
+            
             messageField.leading == messageField.superview!.leading + Stylesheet.margin(.small)
             messageField.trailing == messageField.superview!.trailing - Stylesheet.margin(.small)
-            messageField.top == sendButton.bottom + Stylesheet.margin(.medium)
+            messageField.top == notificationLabel.bottom + Stylesheet.margin(.small)
             messageField.height == Configuration.MessageField.height
             
             scrollViewTableView.top == messageField.bottom + Stylesheet.margin(.medium)
         }
         
-        constrain(teamNameLabel, sendButton, tableView, scrollViewTableView, scrollViewCollectionView) { teamNameLabel, sendButton, tableView, scrollViewTableView, scrollViewCollectionView in
+        constrain(teamNameLabel, sendButton, scrollViewTableView, scrollViewCollectionView) { teamNameLabel, sendButton, scrollViewTableView, scrollViewCollectionView in
             teamNameLabel.centerY == sendButton.centerY
-            teamNameLabel.leading == teamNameLabel.superview!.leading
+            teamNameLabel.leading == teamNameLabel.superview!.leading + Stylesheet.margin(.medium)
             teamNameLabel.trailing == sendButton.leading
             
             sendButton.top == sendButton.superview!.top + Stylesheet.margin(.medium)
             sendButton.trailing == sendButton.superview!.trailing - Stylesheet.margin(.medium)
+            sendButton.width == ViewConstraints.SendButton.width
             
-            tableView.top == tableView.superview!.top + Stylesheet.margin(.big)
-            tableView.leading == tableView.superview!.leading
-            tableView.trailing == tableView.superview!.trailing
-            tableView.bottom == tableView.superview!.bottom
-            tableView.height == Configuration.Screen.height
-            tableView.width == Configuration.Screen.width
-            
+            scrollViewTableView.width == Configuration.Screen.width
+            scrollViewTableView.height == Configuration.Screen.height
             scrollViewTableView.leading == scrollViewTableView.superview!.leading + Stylesheet.margin(.small)
             scrollViewTableView.trailing == scrollViewTableView.superview!.trailing - Stylesheet.margin(.small)
             scrollViewTableView.bottom == scrollViewCollectionView.top - Stylesheet.margin(.small)
