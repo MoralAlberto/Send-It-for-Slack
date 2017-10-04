@@ -4,20 +4,19 @@
  *  Licensed under the MIT license, see LICENSE file
  */
 
-
 import Cocoa
 import Alamofire
 import AlamofireImage
 
-protocol TeamCollectionViewDataProviderDelegate: class {
+protocol TeamCollectionViewAdapterDelegate: class {
     func didTapOnTeam(withToken token: String)
 }
 
-class TeamCollectionViewDataProvider: NSObject {
+class TeamCollectionViewAdapter: NSObject {
     fileprivate static let numberOfSections = 1
     fileprivate static let itemId = "TeamCollectionViewItem"
     
-    weak var delegate: TeamCollectionViewDataProviderDelegate?
+    weak var delegate: TeamCollectionViewAdapterDelegate?
     
     fileprivate var items = [TeamModel]() {
         didSet {
@@ -43,9 +42,9 @@ class TeamCollectionViewDataProvider: NSObject {
     }
 }
 
-extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollectionViewDelegate {
+extension TeamCollectionViewAdapter: NSCollectionViewDataSource, NSCollectionViewDelegate {
     func numberOfSectionsInCollectionView(collectionView: NSCollectionView) -> Int {
-        return TeamCollectionViewDataProvider.numberOfSections
+        return TeamCollectionViewAdapter.numberOfSections
     }
     
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -53,7 +52,7 @@ extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollecti
     }
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        let item = collectionView.makeItem(withIdentifier: TeamCollectionViewDataProvider.itemId, for: indexPath)
+        let item = collectionView.makeItem(withIdentifier: TeamCollectionViewAdapter.itemId, for: indexPath)
         guard let collectionViewItem = item as? TeamCollectionViewItem else { return item }
         
         let name = items[indexPath.item].name
@@ -70,7 +69,7 @@ extension TeamCollectionViewDataProvider: NSCollectionViewDataSource, NSCollecti
     }
 }
 
-extension TeamCollectionViewDataProvider: TeamCollectionViewItemDelegate {
+extension TeamCollectionViewAdapter: TeamCollectionViewItemDelegate {
     func didTapOnRemoveTeam(withName name: String) {
         UserDefaults.standard.removeTeam(withName: name) { [weak self] position in
             guard let strongSelf = self else { return }

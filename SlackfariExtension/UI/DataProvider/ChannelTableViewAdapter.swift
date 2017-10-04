@@ -4,10 +4,9 @@
  *  Licensed under the MIT license, see LICENSE file
  */
 
-
 import Cocoa
 
-class ChannelTableViewDataProvider: NSObject {
+class ChannelTableViewAdapter: NSObject {
     fileprivate static let column = "column"
     fileprivate static let heightOfRow: CGFloat = 26
     
@@ -40,14 +39,13 @@ class ChannelTableViewDataProvider: NSObject {
     }
 }
 
-extension ChannelTableViewDataProvider: NSTableViewDelegate, NSTableViewDataSource {
+extension ChannelTableViewAdapter: NSTableViewDelegate, NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
         return items.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
-        guard tableColumn?.identifier == ChannelTableViewDataProvider.column else { fatalError("Channel Table View Data Provider identifier not found") }
+        guard tableColumn?.identifier == ChannelTableViewAdapter.column else { fatalError("Channel Table View Data Provider identifier not found") }
         
         let name = items[row].name
         let view = NSTextField(string: name)
@@ -58,7 +56,7 @@ extension ChannelTableViewDataProvider: NSTableViewDelegate, NSTableViewDataSour
     }
     
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        return ChannelTableViewDataProvider.heightOfRow
+        return ChannelTableViewAdapter.heightOfRow
     }
     
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {

@@ -4,7 +4,6 @@
  *  Licensed under the MIT license, see LICENSE file
  */
 
-
 protocol Channelable {
     var name: String { get }
 }

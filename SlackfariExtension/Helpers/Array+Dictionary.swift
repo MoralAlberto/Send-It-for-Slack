@@ -4,10 +4,10 @@
  *  Licensed under the MIT license, see LICENSE file
  */
 
-func arrayContains(teams: [TeamModel], value: String) -> (hasKey: Bool, position: Int?) {
+func arrayContains(teamName: String, in teams: [TeamModel]) -> (hasKey: Bool, position: Int?) {
     var index = 0
     for team in teams {
-        if team.name == value {
+        if team.name == teamName {
             return (true, index)
         }
         index += 1
