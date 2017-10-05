@@ -1,10 +1,11 @@
+![github.gif](Assets/github.png)
+
 <p align="center">
 <a href="https://twitter.com/albertmoral">
 <img src="https://img.shields.io/badge/contact-@albertmoral-blue.svg?style=flat" alt="Twitter: @albertmoral" />
 </a>
 </p>
 
-![github.gif](Assets/github.png)
 
 Slackfari is a Safari Extension to communicate quickly with your teams, written in Swift.
 
