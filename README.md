@@ -31,9 +31,6 @@ Generate token with Slack Token Generator [Slack](https://api.slack.com/custom-i
 
 ![slack-add-token.gif](Assets/delete-team.gif)
 
-##Component Libraries
-Slackfari uses **RxSwift**. Why? I love the simplicity of reactive programming.
-
 ## Requirements
 - iOS 9.0+ / macOS 10.10+ / tvOS 9.0+
 - Xcode 8.3+
