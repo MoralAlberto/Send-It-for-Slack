@@ -4,7 +4,6 @@
  *  Licensed under the MIT license, see LICENSE file
  */
 
-
 import SlackWebAPIKit
 import RxSwift
 
@@ -168,7 +167,7 @@ class SafariExtensionPresenter {
     }
     
     private func saveTeam(name: String, token: String, icon: String) {
-        save(name: name, token: token, icon: icon) { [weak self] in
+        UserDefaults.standard.save(name: name, token: token, icon: icon) { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.didAddNewTeam(withToken: token, items: $0)
         }

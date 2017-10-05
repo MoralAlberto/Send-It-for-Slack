@@ -4,7 +4,6 @@
  *  Licensed under the MIT license, see LICENSE file
  */
 
-
 import SafariServices
 import SlackWebAPIKit
 import RxSwift
@@ -25,8 +24,8 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     let constraintGroup = ConstraintGroup()
     
     fileprivate var presenter: SafariExtensionPresenter?
-    fileprivate var channelDataProvider: ChannelTableViewDataProvider?
-    fileprivate var teamDataProvider: TeamCollectionViewDataProvider?
+    fileprivate var channelDataProvider: ChannelTableViewAdapter?
+    fileprivate var teamDataProvider: TeamCollectionViewAdapter?
     fileprivate let disposeBag = DisposeBag()
         
     // MARK: View Controller lifecycle
@@ -61,11 +60,11 @@ class SafariExtensionViewController: SFSafariExtensionViewController {
     }
     
     private func configureTableView() {
-        channelDataProvider = ChannelTableViewDataProvider(tableView: mainView.tableView)
+        channelDataProvider = ChannelTableViewAdapter(tableView: mainView.tableView)
     }
     
     private func configureCollectionView() {
-        teamDataProvider = TeamCollectionViewDataProvider(collectionView: mainView.collectionView)
+        teamDataProvider = TeamCollectionViewAdapter(collectionView: mainView.collectionView)
         teamDataProvider?.delegate = self
         guard let teams = UserDefaults.standard.getTeams() else { return }
         teamDataProvider?.set(items: teams)
@@ -89,20 +88,11 @@ extension SafariExtensionViewController: AddTeamViewDelegate {
         setup(token: token)
         presenter?.getTeamInfo(name: teamName, token: token)
     }
-    
-    private func saveTeam(name: String, token: String, icon: String) {
-        save(name: name, token: token, icon: icon) { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.teamDataProvider?.set(items: $0)
-            strongSelf.addTeamView.removeFromSuperview()
-            strongSelf.didTapOnTeam(withToken: token)
-        }
-    }
 }
 
 // MARK: - CollectionViewDataProviderDelegate
 
-extension SafariExtensionViewController: TeamCollectionViewDataProviderDelegate {
+extension SafariExtensionViewController: TeamCollectionViewAdapterDelegate {
     func didTapOnTeam(withToken token: String) {
         guard let dataProvider = channelDataProvider else { return }
         dataProvider.removeItems()
