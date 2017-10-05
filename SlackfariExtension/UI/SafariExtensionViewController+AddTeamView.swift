@@ -4,7 +4,6 @@
  *  Licensed under the MIT license, see LICENSE file
  */
 
-
 import Cocoa
 import Cartography
 
@@ -40,4 +39,3 @@ extension SafariExtensionViewController {
         }, completionHandler: nil)
     }
 }
-

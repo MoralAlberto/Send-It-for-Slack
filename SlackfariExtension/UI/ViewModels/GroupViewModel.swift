@@ -4,7 +4,6 @@
  *  Licensed under the MIT license, see LICENSE file
  */
 
-
 struct GroupViewModel: Channelable {
     var name: String
 }
