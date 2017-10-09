@@ -11,8 +11,18 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    let popover = NSPopover()
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
+        setupNavigationButton()
+        configureInitialViewController()
+    }
+    
+    private func configureInitialViewController() {
+        let vc = ViewController()
+        popover.contentViewController = vc
+        popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
     }
 }
 

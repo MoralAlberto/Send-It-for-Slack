@@ -9,9 +9,14 @@
 import Cocoa
 
 class ViewController: NSViewController {
-    
+    var mainView: HomeView { return self.view as! HomeView }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func loadView() {
+        view = HomeView()
     }
 }
 

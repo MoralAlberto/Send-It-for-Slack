@@ -50,11 +50,15 @@
 		<dict>
 			<key>Level</key>
 			<string>All</string>
+			<key>Allowed Domains</key>
+			<array>
+				<string>*</string>
+			</array>
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2017 Alberto Moral. All rights reserved.</string>
 	<key>NSHumanReadableDescription</key>
-	<string>This is a Safari Extension. You should tell us what your extension does here.</string>
+	<string>Send Slack messages to your team with this Safari Extension</string>
 </dict>
 </plist>
