@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -660,37 +659,5 @@
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="hIz-AP-VOD">
-            <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Slackfari" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="279" height="282"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oAd-HY-uas">
-                                <rect key="frame" x="0.0" y="0.0" width="279" height="282"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="282" id="VPZ-X0-kzo"/>
-                                    <constraint firstAttribute="width" constant="279" id="gil-65-6Ia"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon_background" id="706-im-iqy"/>
-                            </imageView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="oAd-HY-uas" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Bd4-tD-aFJ"/>
-                            <constraint firstAttribute="trailing" secondItem="oAd-HY-uas" secondAttribute="trailing" id="jv5-CG-MIt"/>
-                            <constraint firstAttribute="bottom" secondItem="oAd-HY-uas" secondAttribute="bottom" id="rNN-BE-CB6"/>
-                            <constraint firstItem="oAd-HY-uas" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="zZ9-R8-Pbo"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="87" y="250"/>
-        </scene>
     </scenes>
-    <resources>
-        <image name="icon_background" width="372" height="376"/>
-    </resources>
 </document>
