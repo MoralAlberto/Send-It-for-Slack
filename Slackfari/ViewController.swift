@@ -13,6 +13,7 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainView.delegate = self
     }
     
     override func loadView() {
@@ -20,3 +21,8 @@ class ViewController: NSViewController {
     }
 }
 
+extension ViewController: HomeViewDelegate {
+    func didTapOnQuit() {
+        NSApp.terminate(self)
+    }
+}
