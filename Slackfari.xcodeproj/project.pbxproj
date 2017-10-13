@@ -19,7 +19,7 @@
 		39275A161F43693300BF003C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39275A151F43693300BF003C /* Cocoa.framework */; };
 		39275A1B1F43693300BF003C /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39275A1A1F43693300BF003C /* SafariExtensionHandler.swift */; };
 		39275A231F43693300BF003C /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 39275A221F43693300BF003C /* script.js */; };
-		39275A281F43693300BF003C /* SlackfariExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 39275A131F43693300BF003C /* SlackfariExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		39275A281F43693300BF003C /* Send It Extension - for Slack.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 39275A131F43693300BF003C /* Send It Extension - for Slack.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3940477F1F4A074A00133098 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3940477E1F4A074A00133098 /* UserViewModel.swift */; };
 		394047811F4A075100133098 /* ChannelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394047801F4A075100133098 /* ChannelViewModel.swift */; };
 		394047831F4A075A00133098 /* GroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394047821F4A075A00133098 /* GroupViewModel.swift */; };
@@ -84,7 +84,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				39275A281F43693300BF003C /* SlackfariExtension.appex in Embed App Extensions */,
+				39275A281F43693300BF003C /* Send It Extension - for Slack.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,7 +107,7 @@
 		392759FD1F43692800BF003C /* SlackfariUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlackfariUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39275A011F43692800BF003C /* SlackfariUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackfariUITests.swift; sourceTree = "<group>"; };
 		39275A031F43692800BF003C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		39275A131F43693300BF003C /* SlackfariExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SlackfariExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		39275A131F43693300BF003C /* Send It Extension - for Slack.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Send It Extension - for Slack.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39275A151F43693300BF003C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		39275A191F43693300BF003C /* SlackfariExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SlackfariExtension.entitlements; sourceTree = "<group>"; };
 		39275A1A1F43693300BF003C /* SafariExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionHandler.swift; sourceTree = "<group>"; };
@@ -232,7 +232,7 @@
 				392759E11F43692800BF003C /* Send It - for Slack.app */,
 				392759F21F43692800BF003C /* SlackfariTests.xctest */,
 				392759FD1F43692800BF003C /* SlackfariUITests.xctest */,
-				39275A131F43693300BF003C /* SlackfariExtension.appex */,
+				39275A131F43693300BF003C /* Send It Extension - for Slack.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -506,9 +506,9 @@
 			productReference = 392759FD1F43692800BF003C /* SlackfariUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		39275A121F43693300BF003C /* SlackfariExtension */ = {
+		39275A121F43693300BF003C /* Send It Extension - for Slack */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 39275A291F43693300BF003C /* Build configuration list for PBXNativeTarget "SlackfariExtension" */;
+			buildConfigurationList = 39275A291F43693300BF003C /* Build configuration list for PBXNativeTarget "Send It Extension - for Slack" */;
 			buildPhases = (
 				A9D562990192322C7E59D290 /* [CP] Check Pods Manifest.lock */,
 				39275A0F1F43693300BF003C /* Sources */,
@@ -520,9 +520,9 @@
 			);
 			dependencies = (
 			);
-			name = SlackfariExtension;
+			name = "Send It Extension - for Slack";
 			productName = SlackfariExtension;
-			productReference = 39275A131F43693300BF003C /* SlackfariExtension.appex */;
+			productReference = 39275A131F43693300BF003C /* Send It Extension - for Slack.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -580,7 +580,7 @@
 				392759E01F43692800BF003C /* Send It - for Slack */,
 				392759F11F43692800BF003C /* SlackfariTests */,
 				392759FC1F43692800BF003C /* SlackfariUITests */,
-				39275A121F43693300BF003C /* SlackfariExtension */,
+				39275A121F43693300BF003C /* Send It Extension - for Slack */,
 			);
 		};
 /* End PBXProject section */
@@ -891,7 +891,7 @@
 		};
 		39275A271F43693300BF003C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 39275A121F43693300BF003C /* SlackfariExtension */;
+			target = 39275A121F43693300BF003C /* Send It Extension - for Slack */;
 			targetProxy = 39275A261F43693300BF003C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1191,7 +1191,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		39275A291F43693300BF003C /* Build configuration list for PBXNativeTarget "SlackfariExtension" */ = {
+		39275A291F43693300BF003C /* Build configuration list for PBXNativeTarget "Send It Extension - for Slack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				39275A2A1F43693300BF003C /* Debug */,
