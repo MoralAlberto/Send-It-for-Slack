@@ -19,8 +19,7 @@
 		39275A161F43693300BF003C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39275A151F43693300BF003C /* Cocoa.framework */; };
 		39275A1B1F43693300BF003C /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39275A1A1F43693300BF003C /* SafariExtensionHandler.swift */; };
 		39275A231F43693300BF003C /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 39275A221F43693300BF003C /* script.js */; };
-		39275A281F43693300BF003C /* SlackfariExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 39275A131F43693300BF003C /* SlackfariExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		3935F6E21F8550F3002AEC45 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 393554041F854FF5009DFD1F /* ToolbarItemIcon.pdf */; };
+		39275A281F43693300BF003C /* Send It Extension - for Slack.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 39275A131F43693300BF003C /* Send It Extension - for Slack.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3940477F1F4A074A00133098 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3940477E1F4A074A00133098 /* UserViewModel.swift */; };
 		394047811F4A075100133098 /* ChannelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394047801F4A075100133098 /* ChannelViewModel.swift */; };
 		394047831F4A075A00133098 /* GroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394047821F4A075A00133098 /* GroupViewModel.swift */; };
@@ -30,6 +29,7 @@
 		3940478D1F4A17B900133098 /* Channeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3940478C1F4A17B900133098 /* Channeable.swift */; };
 		394F825E1F44E5C500C377C3 /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394F825C1F44E5C500C377C3 /* SafariExtensionViewController.swift */; };
 		39669EB01F7C1EE70063299C /* SafariExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39669EAF1F7C1EE70063299C /* SafariExtensionView.swift */; };
+		3988FA211F8D639700A1B3D8 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3988FA201F8D637A00A1B3D8 /* ToolbarItemIcon.pdf */; };
 		398B74AC1F82ABBD00879F80 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B74AB1F82ABBD00879F80 /* BaseView.swift */; };
 		398B74B01F82C45700879F80 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B74AF1F82C45700879F80 /* TeamModel.swift */; };
 		398B74B11F82C4AC00879F80 /* SafariExtensionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398B74AE1F82C1F600879F80 /* SafariExtensionPresenter.swift */; };
@@ -38,6 +38,10 @@
 		399D4BC31F5A0987002D7893 /* TeamViewModel+Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D4BC21F5A0987002D7893 /* TeamViewModel+Team.swift */; };
 		399D4BC61F5A977D002D7893 /* Array+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D4BC51F5A977D002D7893 /* Array+Dictionary.swift */; };
 		399D4BC81F5A9932002D7893 /* TeamCollectionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D4BC71F5A9932002D7893 /* TeamCollectionViewAdapter.swift */; };
+		39AD3E481F87E3970043F468 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 392759EA1F43692800BF003C /* Main.storyboard */; };
+		39CD19831F88F4AB0031C934 /* AppDelegate+Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CD19821F88F4AB0031C934 /* AppDelegate+Popover.swift */; };
+		39CD19861F88F7200031C934 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CD19851F88F7200031C934 /* HomeView.swift */; };
+		39CD19891F88F74D0031C934 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CD19881F88F74D0031C934 /* BaseView.swift */; };
 		39F128CD1F7E480F004A2493 /* AddTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F128C91F7E478F004A2493 /* AddTeamView.swift */; };
 		39F128CE1F7E4812004A2493 /* TeamCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F128CB1F7E47BA004A2493 /* TeamCellView.swift */; };
 		39F128CF1F7E4814004A2493 /* TeamCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F128CC1F7E47BA004A2493 /* TeamCollectionViewItem.swift */; };
@@ -80,7 +84,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				39275A281F43693300BF003C /* SlackfariExtension.appex in Embed App Extensions */,
+				39275A281F43693300BF003C /* Send It Extension - for Slack.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,7 +95,7 @@
 		0A04BA0D3660573F347E0F81 /* Pods_SlackfariUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SlackfariUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		391476361F5B3B3D00DFB2FB /* Stylesheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stylesheet.swift; sourceTree = "<group>"; };
 		391476381F5B3FA100DFB2FB /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		392759E11F43692800BF003C /* Slackfari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slackfari.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		392759E11F43692800BF003C /* Send It - for Slack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Send It - for Slack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		392759E41F43692800BF003C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		392759E61F43692800BF003C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		392759E81F43692800BF003C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,13 +107,12 @@
 		392759FD1F43692800BF003C /* SlackfariUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlackfariUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39275A011F43692800BF003C /* SlackfariUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackfariUITests.swift; sourceTree = "<group>"; };
 		39275A031F43692800BF003C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		39275A131F43693300BF003C /* SlackfariExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SlackfariExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		39275A131F43693300BF003C /* Send It Extension - for Slack.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Send It Extension - for Slack.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39275A151F43693300BF003C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		39275A191F43693300BF003C /* SlackfariExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SlackfariExtension.entitlements; sourceTree = "<group>"; };
 		39275A1A1F43693300BF003C /* SafariExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionHandler.swift; sourceTree = "<group>"; };
 		39275A211F43693300BF003C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39275A221F43693300BF003C /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
-		393554041F854FF5009DFD1F /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 		3940477D1F49F8CF00133098 /* Slackfari.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Slackfari.entitlements; sourceTree = "<group>"; };
 		3940477E1F4A074A00133098 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		394047801F4A075100133098 /* ChannelViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewModel.swift; sourceTree = "<group>"; };
@@ -120,6 +123,7 @@
 		3940478C1F4A17B900133098 /* Channeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channeable.swift; sourceTree = "<group>"; };
 		394F825C1F44E5C500C377C3 /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
 		39669EAF1F7C1EE70063299C /* SafariExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionView.swift; sourceTree = "<group>"; };
+		3988FA201F8D637A00A1B3D8 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 		398B74AB1F82ABBD00879F80 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		398B74AE1F82C1F600879F80 /* SafariExtensionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionPresenter.swift; sourceTree = "<group>"; };
 		398B74AF1F82C45700879F80 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
@@ -128,6 +132,9 @@
 		399D4BC21F5A0987002D7893 /* TeamViewModel+Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TeamViewModel+Team.swift"; sourceTree = "<group>"; };
 		399D4BC51F5A977D002D7893 /* Array+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Dictionary.swift"; sourceTree = "<group>"; };
 		399D4BC71F5A9932002D7893 /* TeamCollectionViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewAdapter.swift; sourceTree = "<group>"; };
+		39CD19821F88F4AB0031C934 /* AppDelegate+Popover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Popover.swift"; sourceTree = "<group>"; };
+		39CD19851F88F7200031C934 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		39CD19881F88F74D0031C934 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		39F128C91F7E478F004A2493 /* AddTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTeamView.swift; sourceTree = "<group>"; };
 		39F128CB1F7E47BA004A2493 /* TeamCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCellView.swift; sourceTree = "<group>"; };
 		39F128CC1F7E47BA004A2493 /* TeamCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -222,10 +229,10 @@
 		392759E21F43692800BF003C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				392759E11F43692800BF003C /* Slackfari.app */,
+				392759E11F43692800BF003C /* Send It - for Slack.app */,
 				392759F21F43692800BF003C /* SlackfariTests.xctest */,
 				392759FD1F43692800BF003C /* SlackfariUITests.xctest */,
-				39275A131F43693300BF003C /* SlackfariExtension.appex */,
+				39275A131F43693300BF003C /* Send It Extension - for Slack.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,8 +241,11 @@
 			isa = PBXGroup;
 			children = (
 				3940477D1F49F8CF00133098 /* Slackfari.entitlements */,
+				39CD19871F88F7400031C934 /* Base */,
 				392759E41F43692800BF003C /* AppDelegate.swift */,
+				39CD19821F88F4AB0031C934 /* AppDelegate+Popover.swift */,
 				392759E61F43692800BF003C /* ViewController.swift */,
+				39CD19841F88F7010031C934 /* Subviews */,
 				392759E81F43692800BF003C /* Assets.xcassets */,
 				392759EA1F43692800BF003C /* Main.storyboard */,
 				392759ED1F43692800BF003C /* Info.plist */,
@@ -283,7 +293,7 @@
 				399D4BC41F5A975A002D7893 /* Helpers */,
 				39275A211F43693300BF003C /* Info.plist */,
 				39275A221F43693300BF003C /* script.js */,
-				393554041F854FF5009DFD1F /* ToolbarItemIcon.pdf */,
+				3988FA201F8D637A00A1B3D8 /* ToolbarItemIcon.pdf */,
 				39275A181F43693300BF003C /* Supporting Files */,
 			);
 			path = SlackfariExtension;
@@ -379,6 +389,22 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		39CD19841F88F7010031C934 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				39CD19851F88F7200031C934 /* HomeView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		39CD19871F88F7400031C934 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				39CD19881F88F74D0031C934 /* BaseView.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		39F128C81F7E478F004A2493 /* AddTeamView */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,9 +442,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		392759E01F43692800BF003C /* Slackfari */ = {
+		392759E01F43692800BF003C /* Send It - for Slack */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 39275A061F43692800BF003C /* Build configuration list for PBXNativeTarget "Slackfari" */;
+			buildConfigurationList = 39275A061F43692800BF003C /* Build configuration list for PBXNativeTarget "Send It - for Slack" */;
 			buildPhases = (
 				45347598EA6EC98230D45FE8 /* [CP] Check Pods Manifest.lock */,
 				392759DD1F43692800BF003C /* Sources */,
@@ -433,9 +459,9 @@
 			dependencies = (
 				39275A271F43693300BF003C /* PBXTargetDependency */,
 			);
-			name = Slackfari;
+			name = "Send It - for Slack";
 			productName = Slackfari;
-			productReference = 392759E11F43692800BF003C /* Slackfari.app */;
+			productReference = 392759E11F43692800BF003C /* Send It - for Slack.app */;
 			productType = "com.apple.product-type.application";
 		};
 		392759F11F43692800BF003C /* SlackfariTests */ = {
@@ -480,9 +506,9 @@
 			productReference = 392759FD1F43692800BF003C /* SlackfariUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		39275A121F43693300BF003C /* SlackfariExtension */ = {
+		39275A121F43693300BF003C /* Send It Extension - for Slack */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 39275A291F43693300BF003C /* Build configuration list for PBXNativeTarget "SlackfariExtension" */;
+			buildConfigurationList = 39275A291F43693300BF003C /* Build configuration list for PBXNativeTarget "Send It Extension - for Slack" */;
 			buildPhases = (
 				A9D562990192322C7E59D290 /* [CP] Check Pods Manifest.lock */,
 				39275A0F1F43693300BF003C /* Sources */,
@@ -494,9 +520,9 @@
 			);
 			dependencies = (
 			);
-			name = SlackfariExtension;
+			name = "Send It Extension - for Slack";
 			productName = SlackfariExtension;
-			productReference = 39275A131F43693300BF003C /* SlackfariExtension.appex */;
+			productReference = 39275A131F43693300BF003C /* Send It Extension - for Slack.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -551,10 +577,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				392759E01F43692800BF003C /* Slackfari */,
+				392759E01F43692800BF003C /* Send It - for Slack */,
 				392759F11F43692800BF003C /* SlackfariTests */,
 				392759FC1F43692800BF003C /* SlackfariUITests */,
-				39275A121F43693300BF003C /* SlackfariExtension */,
+				39275A121F43693300BF003C /* Send It Extension - for Slack */,
 			);
 		};
 /* End PBXProject section */
@@ -587,9 +613,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3935F6E21F8550F3002AEC45 /* ToolbarItemIcon.pdf in Resources */,
 				39F128D41F7FCFEC004A2493 /* Assets.xcassets in Resources */,
 				39275A231F43693300BF003C /* script.js in Resources */,
+				3988FA211F8D639700A1B3D8 /* ToolbarItemIcon.pdf in Resources */,
+				39AD3E481F87E3970043F468 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +820,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39CD19831F88F4AB0031C934 /* AppDelegate+Popover.swift in Sources */,
+				39CD19861F88F7200031C934 /* HomeView.swift in Sources */,
+				39CD19891F88F74D0031C934 /* BaseView.swift in Sources */,
 				392759E71F43692800BF003C /* ViewController.swift in Sources */,
 				392759E51F43692800BF003C /* AppDelegate.swift in Sources */,
 			);
@@ -851,17 +881,17 @@
 /* Begin PBXTargetDependency section */
 		392759F41F43692800BF003C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 392759E01F43692800BF003C /* Slackfari */;
+			target = 392759E01F43692800BF003C /* Send It - for Slack */;
 			targetProxy = 392759F31F43692800BF003C /* PBXContainerItemProxy */;
 		};
 		392759FF1F43692800BF003C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 392759E01F43692800BF003C /* Slackfari */;
+			target = 392759E01F43692800BF003C /* Send It - for Slack */;
 			targetProxy = 392759FE1F43692800BF003C /* PBXContainerItemProxy */;
 		};
 		39275A271F43693300BF003C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 39275A121F43693300BF003C /* SlackfariExtension */;
+			target = 39275A121F43693300BF003C /* Send It Extension - for Slack */;
 			targetProxy = 39275A261F43693300BF003C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1134,7 +1164,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		39275A061F43692800BF003C /* Build configuration list for PBXNativeTarget "Slackfari" */ = {
+		39275A061F43692800BF003C /* Build configuration list for PBXNativeTarget "Send It - for Slack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				39275A071F43692800BF003C /* Debug */,
@@ -1161,7 +1191,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		39275A291F43693300BF003C /* Build configuration list for PBXNativeTarget "SlackfariExtension" */ = {
+		39275A291F43693300BF003C /* Build configuration list for PBXNativeTarget "Send It Extension - for Slack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				39275A2A1F43693300BF003C /* Debug */,

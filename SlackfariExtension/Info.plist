@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>SlackfariExtension</string>
+	<string>Send It - for Slack</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>Send It - for Slack</string>
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
@@ -48,6 +48,10 @@
 		</dict>
 		<key>SFSafariWebsiteAccess</key>
 		<dict>
+			<key>Allowed Domains</key>
+			<array>
+				<string>*</string>
+			</array>
 			<key>Level</key>
 			<string>All</string>
 		</dict>
@@ -55,6 +59,6 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2017 Alberto Moral. All rights reserved.</string>
 	<key>NSHumanReadableDescription</key>
-	<string>This is a Safari Extension. You should tell us what your extension does here.</string>
+	<string>Send Slack messages to your team with this Safari Extension</string>
 </dict>
 </plist>

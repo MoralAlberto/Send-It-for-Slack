@@ -9,9 +9,20 @@
 import Cocoa
 
 class ViewController: NSViewController {
-    
+    var mainView: HomeView { return self.view as! HomeView }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainView.delegate = self
+    }
+    
+    override func loadView() {
+        view = HomeView()
     }
 }
 
+extension ViewController: HomeViewDelegate {
+    func didTapOnQuit() {
+        NSApp.terminate(self)
+    }
+}
